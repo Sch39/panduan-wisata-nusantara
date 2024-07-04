@@ -6,7 +6,19 @@ export default {
         "./resources/**/*.vue",
     ],
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                primary: '#00A19D',
+                secondary: '#FF6F61',
+                accent: '#FFD700',
+                background: '#F8F8F8',
+                text: '#2F4F4F',
+            },
+            fontFamily: {
+                sans: ['Roboto', 'sans-serif'],
+                serif: ['Playfair Display', 'serif'],
+            },
+        },
     },
     plugins: [],
 }

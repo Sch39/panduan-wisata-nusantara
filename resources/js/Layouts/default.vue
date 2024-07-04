@@ -1,5 +1,6 @@
 <script setup>
 import TheHeader from '../Components/TheHeader.vue';
+import TheFooter from '../Components/TheFooter.vue'
 </script>
 
 
@@ -8,4 +9,5 @@ import TheHeader from '../Components/TheHeader.vue';
     <main>
         <slot />
     </main>
+    <TheFooter />
 </template>

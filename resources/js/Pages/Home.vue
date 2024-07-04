@@ -6,8 +6,11 @@
         <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
     </Head>
 
-    <div>
-        <h1 class="text-3xl font-bold underline text-center">Welcome to Inertia.js with Vue 3 and Laravel 10</h1>
+    <!-- resources/views/welcome.blade.php -->
+    <div class="bg-background min-h-screen flex flex-col items-center justify-center">
+        <h1 class="font-serif text-primary text-4xl mb-4">Selamat Datang di Panduan Wisata Nusantara</h1>
+        <p class="font-sans text-text text-lg">Temukan destinasi wisata terbaik di Indonesia.</p>
+        <button class="bg-secondary text-white py-2 px-4 mt-4 rounded hover:bg-accent">Jelajahi Sekarang</button>
     </div>
 </template>
 

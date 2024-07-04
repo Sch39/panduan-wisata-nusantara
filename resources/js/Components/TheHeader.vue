@@ -3,9 +3,8 @@
         <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
                 <a href="#" class="-m-1.5 p-1.5">
-                    <span class="sr-only">Your Company</span>
-                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt="" />
+                    <span class="sr-only">Panduan Wisata Nusantara</span>
+                    <img class="h-8 w-auto" src="/assets/logo/logo-no-background.png" alt="Logo" />
                 </a>
             </div>
             <div class="flex lg:hidden">
@@ -75,8 +74,7 @@
                 <div class="flex items-center justify-between">
                     <a href="#" class="-m-1.5 p-1.5">
                         <span class="sr-only">Your Company</span>
-                        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                            alt="" />
+                        <img class="h-8 w-auto" src="/assets/logo/logo-icon.svg" alt="" />
                     </a>
                     <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" @click="mobileMenuOpen = false">
                         <span class="sr-only">Close menu</span>
