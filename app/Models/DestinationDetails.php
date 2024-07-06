@@ -13,5 +13,6 @@ class DestinationDetails extends Model
         'title',
         'html_content',
         'destination_id',
+        'regency_id',
     ];
 }

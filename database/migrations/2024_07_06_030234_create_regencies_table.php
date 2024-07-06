@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('regencies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('code');
             $table->string('language_code');
             $table->string('provinces_code');
             $table->timestamps();

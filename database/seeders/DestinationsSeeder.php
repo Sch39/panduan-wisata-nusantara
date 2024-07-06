@@ -17,12 +17,10 @@ class DestinationsSeeder extends Seeder
             [
                 'id' => 1,
                 'slug' => 'prambanan',
-                'regency' => 'Sleman',
             ],
             [
                 'id' => 2,
                 'slug' => 'borobudor',
-                'regency' => 'Magelang',
             ]
         ];
         Destinations::insert($data);

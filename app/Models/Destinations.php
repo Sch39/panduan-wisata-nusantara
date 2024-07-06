@@ -11,6 +11,5 @@ class Destinations extends Model
 
     protected $fillable = [
         'slug',
-        'regency',
     ];
 }

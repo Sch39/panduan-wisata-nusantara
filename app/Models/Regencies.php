@@ -10,7 +10,8 @@ class Regencies extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'code',
         'language_code',
-        'provinces_code'
-    ]
+        'provinces_code',
+    ];
 }

@@ -1,14 +1,28 @@
 <template>
-    <header class="bg-white">
-        <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <header class="bg-background">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 pb-1 lg:px-8" aria-label="Global">
             <Logo />
-            <MobileMenuButton @toggle-mobile-menu="toggleMobileMenu" />
+            <div class="flex flex-1 justify-end gap-x-5">
+                <BaseLink href="" class="hidden lg:flex items-center py-3 px-6 tracking-widest">Log in <span
+                        aria-hidden="true">&rarr;</span>
+                </BaseLink>
+                <BaseLink href=""
+                    class="relative overflow-hidden bg-black !text-background hover:!text-text py-3 px-6 tracking-widest flex items-center group">
+                    <span class="relative z-10 transition-colors duration-500 ease-in-out">SUBSCRIBE</span>
+                    <span
+                        class="absolute inset-0 bg-accent transition-transform duration-500 ease-in-out transform -translate-x-full group-hover:translate-x-0"></span>
+                </BaseLink>
 
-            <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                <NavLinks />
-                <a href="#" class="text-sm text-center font-semibold leading-6 text-gray-900 lg:ml-16 w-20">Log in <span
-                        aria-hidden="true">&rarr;</span></a>
+
+                <MobileMenuButton @toggle-mobile-menu="toggleMobileMenu" />
             </div>
+
+            <!-- <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                <NavLinks />
+                <BaseLink href="" class="text-center lg:ml-16 w-20">Log in <span aria-hidden="true">&rarr;</span>
+                </BaseLink>
+
+            </div> -->
         </nav>
 
         <MobileMenu :open="mobileMenuOpen" @close="toggleMobileMenu" />
@@ -21,6 +35,7 @@ import { ref } from 'vue'
 import MobileMenuButton from './MobileMenuButton.vue'
 import MobileMenu from './MobileMenu.vue'
 import NavLinks from './NavLinks.vue'
+import BaseLink from './BaseLink.vue'
 
 import {
     Dialog,
@@ -62,3 +77,6 @@ function toggleMobileMenu() {
     mobileMenuOpen.value = !mobileMenuOpen.value
 }
 </script>
+
+
+<style scoped></style>
