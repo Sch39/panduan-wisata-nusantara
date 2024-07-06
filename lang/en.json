@@ -1,0 +1,14 @@
+{
+    "header": {
+        "navbar": {
+            "destination": "Destination",
+            "planning": "Planning",
+            "travel_inspiration": "Travel Inspiration",
+            "travel_styles": "Travel Styles"
+        }
+    },
+    "footer": {
+        "credit_asset": "Credit Asset",
+        "privacy_policy": "Privacy Policy"
+    }
+}

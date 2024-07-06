@@ -1,0 +1,14 @@
+{
+    "header": {
+        "navbar": {
+            "destination": "Destinasi",
+            "planning": "Rencana",
+            "travel_inspiration": "Inspirasi Perjalanan",
+            "travel_styles": "Jenis Perjalanan"
+        }
+    },
+    "footer": {
+        "credit_asset": "Kredit Asset",
+        "privacy_policy": "Kebijakan Pribadi"
+    }
+}

@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+
+import headlessUiTailwindCss from '@headlessui/tailwindcss'
 export default {
     content: [
         "./resources/**/*.blade.php",
@@ -20,6 +22,8 @@ export default {
             },
         },
     },
-    plugins: [],
+    plugins: [
+        headlessUiTailwindCss,
+    ],
 }
 

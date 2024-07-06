@@ -11,10 +11,11 @@
         <h1 class="font-serif text-primary text-4xl mb-4">Selamat Datang di Panduan Wisata Nusantara</h1>
         <p class="font-sans text-text text-lg">Temukan destinasi wisata terbaik di Indonesia.</p>
         <button class="bg-secondary text-white py-2 px-4 mt-4 rounded hover:bg-accent">Jelajahi Sekarang</button>
+        <Link :href="$useRoute('/dashboard')">To Dashboard</Link>
+        <Link href="/id">Indonesia</Link>
     </div>
 </template>
 
 <script setup>
-import { Head } from '@inertiajs/vue3';
-
+import { Head, Link } from '@inertiajs/vue3';
 </script>

@@ -1,6 +1,8 @@
 import { createApp, h } from 'vue'
-import { createInertiaApp } from '@inertiajs/vue3'
+import { createInertiaApp, usePage } from '@inertiajs/vue3'
 import DefaultLayout from './Layouts/default.vue'
+import translationPlugin from './Plugins/translationPlugin'
+import { useRoute } from './Composables/useRoute'
 
 createInertiaApp({
     resolve: name => {
@@ -10,8 +12,10 @@ createInertiaApp({
         return page
     },
     setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) })
-            .use(plugin)
-            .mount(el)
+        const app = createApp({ render: () => h(App, props) })
+        app.config.globalProperties.$useRoute = useRoute
+        app.use(translationPlugin, { prop: 'translations' })
+        app.use(plugin)
+        app.mount(el)
     },
 })

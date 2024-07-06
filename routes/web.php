@@ -1,19 +1,19 @@
 <?php
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/', fn () => redirect()->route('Home', ['locale' => App::currentLocale()]));
 
-Route::get('/', function () {
-    return Inertia::render('Home');
+Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->group(function () {
+    Route::get('', fn () => redirect()->route(Route::getRoutes()->match(Request::create(URL::previous()))->getName()) ?? 'Home');
+
+    Route::get('/', function () {
+        return Inertia::render('Home');
+    })->name('Home');
+
+    Route::get('/dashboard', function () {
+        return Inertia::render('dashboard/index');
+    })->name('Home');
 });
