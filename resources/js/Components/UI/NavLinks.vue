@@ -26,11 +26,7 @@
                                     {{ item.name }}
                                     <span class="absolute inset-0" />
                                 </BaseLink>
-                                <!-- <a :href="item.href" class="block font-semibold text-gray-900">
-                                    {{ item.name }}
-                                    <span class="absolute inset-0" />
-                                </a> -->
-                                <!-- <p class="mt-1 text-gray-600">{{ item.description }}</p> -->
+
                             </div>
                         </div>
                     </div>
