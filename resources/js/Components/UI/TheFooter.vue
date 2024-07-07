@@ -8,7 +8,8 @@
                     <a href="#" class="hover:underline me-4 md:me-6">{{ __("footer.privacy_policy") }}</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">{{ __('footer.credit_asset') }}</a>
+                    <a target="_blank" :href="$useRoute('/assets-credit')" class="hover:underline me-4 md:me-6">{{
+                        __('footer.credit_asset') }}</a>
                 </li>
             </ul>
         </div>

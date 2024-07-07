@@ -1,6 +1,9 @@
 {
     "header": {
         "navbar": {
+            "login": "Masuk",
+            "subscribe": "Langganan",
+            "newsletter": "Buletin",
             "destination": "Destinasi",
             "planning": "Rencana",
             "travel_inspiration": "Inspirasi Perjalanan",

@@ -1,6 +1,9 @@
 {
     "header": {
         "navbar": {
+            "login": "Login",
+            "subscribe": "Subscribe",
+            "newsletter": "Newsletter",
             "destination": "Destination",
             "planning": "Planning",
             "travel_inspiration": "Travel Inspiration",

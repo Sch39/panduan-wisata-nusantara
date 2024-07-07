@@ -1,14 +1,19 @@
 <template>
     <header class="bg-background">
-        <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 pb-1 lg:px-8" aria-label="Global">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 pb-1 lg:px-1" aria-label="Global">
             <Logo />
-            <div class="flex flex-1 justify-end gap-x-5">
-                <BaseLink href="" class="hidden lg:flex items-center py-3 px-6 tracking-widest">Log in <span
-                        aria-hidden="true">&rarr;</span>
-                </BaseLink>
+            <div class="flex flex-1 h-12 justify-end gap-x-1">
                 <BaseLink href=""
+                    class="hidden lg:flex items-center py-3 px-3 tracking-widest hover:underline underline-offset-8 decoration-accent decoration-4">
+                    <span class="relative z-10">{{
+                        __('header.navbar.login').toUpperCase() }}</span>
+                </BaseLink>
+                <LangDropdown class="hidden lg:!flex " />
+                <BaseLink :href="$useRoute('/subscribe')"
                     class="relative overflow-hidden bg-black !text-background hover:!text-text py-3 px-6 tracking-widest flex items-center group">
-                    <span class="relative z-10 transition-colors duration-500 ease-in-out">SUBSCRIBE</span>
+                    <span class="relative z-10 transition-colors duration-500 ease-in-out">{{
+                        __('header.navbar.newsletter').toUpperCase()
+                    }}</span>
                     <span
                         class="absolute inset-0 bg-accent transition-transform duration-500 ease-in-out transform -translate-x-full group-hover:translate-x-0"></span>
                 </BaseLink>
@@ -36,6 +41,7 @@ import MobileMenuButton from './MobileMenuButton.vue'
 import MobileMenu from './MobileMenu.vue'
 import NavLinks from './NavLinks.vue'
 import BaseLink from './BaseLink.vue'
+import LangDropdown from './LangDropdown.vue'
 
 import {
     Dialog,
@@ -58,6 +64,7 @@ import {
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/vue/20/solid'
 import { Link } from '@inertiajs/vue3';
 import Logo from './Logo.vue';
+import { getLocale } from '../../Composables/useRoute'
 
 const products = [
     { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },

@@ -16,4 +16,6 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->group(function ()
     Route::get('/dashboard', function () {
         return Inertia::render('dashboard/index');
     })->name('Home');
+
+    Route::get('/assets-credit', fn () => Inertia::render('AssetsCredit'))->name('assets-credit');
 });
