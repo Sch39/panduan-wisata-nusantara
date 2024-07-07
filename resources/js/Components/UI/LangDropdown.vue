@@ -12,17 +12,18 @@
             <transition enter="transition ease-out duration-100 transform" enter-from="opacity-0 scale-95"
                 enter-to="opacity-100 scale-100" leave="transition ease-in duration-100 transform"
                 leave-from="opacity-100 scale-100" leave-to="opacity-0 scale-95">
-                <MenuItems @mouseover.prevent="menuHover = true" @mouseleave.prevent="closeMenu(close)"
-                    class="absolute right-0 w-56 mt-1 origin-top-right bg-white divide-y divide-gray-100 shadow-sm focus:!outline-none border border-text rounded-lg">
-                    <div class="py-1">
-                        <MenuItem v-for="language in languages" :key="language.code">
-                        <Link :href="'/' + language.code"
-                            class="flex items-center px-4 py-2 text-sm text-text hover:bg-gray-100 transition duration-150 ease-in-ou">
-                        <img :src="language.icon" alt="" class="w-4 h-4 mr-3">
-                        {{ language.name }}
-                        </Link>
-                        </MenuItem>
-                    </div>
+                <MenuItems as="BasePopup" @mouseover.prevent="menuHover = true" @mouseleave.prevent="closeMenu(close)">
+                    <BasePopup>
+                        <div class="py-1">
+                            <MenuItem v-for="language in languages" :key="language.code">
+                            <Link :href="'/' + language.code"
+                                class="flex items-center px-4 py-2 text-sm text-text hover:bg-gray-50 transition duration-150 ease-in-ou">
+                            <img :src="language.icon" alt="" class="w-4 h-4 mr-3">
+                            {{ language.name }}
+                            </Link>
+                            </MenuItem>
+                        </div>
+                    </BasePopup>
                 </MenuItems>
             </transition>
         </Menu>
@@ -35,6 +36,7 @@ import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 import { Link } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 import { getLocale } from './../../Composables/useRoute'
+import BasePopup from './BasePopup.vue';
 const props = defineProps({
     class: {
         type: String,
