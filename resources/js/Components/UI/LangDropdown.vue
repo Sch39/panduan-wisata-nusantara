@@ -2,19 +2,21 @@
     <div :class="mergedClass">
         <Menu v-slot="{ open, close }" as="div" class="relative">
             <MenuButton id="toggleMenu" @mouseenter="(e) => hoverMenu(e, open)" @mouseleave="closeMenu(close)"
-                class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-background focus:!ring-0 hover:underline underline-offset-8 decoration-accent decoration-4">
-                <span class="leading-6">{{ selectedLanguage?.name }}</span>
-                <ChevronDownIcon class="w-5 h-5 ml-2 -mr-1 text-gray-400" aria-hidden="true" />
+                :class="mergedButtonClass">
+                <span v-if="!$slots.buttonSlot" class="leading-6">{{ selectedLanguage?.name }}</span>
+                <ChevronDownIcon v-if="!$slots.buttonSlot" class="w-5 h-5 ml-2 -mr-1 text-gray-400"
+                    aria-hidden="true" />
+                <slot v-if="$slots.buttonSlot" name="buttonSlot" :languageName="selectedLanguage?.name"></slot>
             </MenuButton>
             <transition enter="transition ease-out duration-100 transform" enter-from="opacity-0 scale-95"
                 enter-to="opacity-100 scale-100" leave="transition ease-in duration-100 transform"
                 leave-from="opacity-100 scale-100" leave-to="opacity-0 scale-95">
                 <MenuItems @mouseover.prevent="menuHover = true" @mouseleave.prevent="closeMenu(close)"
-                    class="absolute right-0 w-56 mt-1 origin-top-right bg-background divide-y divide-gray-100 focus:!outline-none border border-text">
+                    class="absolute right-0 w-56 mt-1 origin-top-right bg-white divide-y divide-gray-100 shadow-sm focus:!outline-none border border-text rounded-lg">
                     <div class="py-1">
                         <MenuItem v-for="language in languages" :key="language.code">
                         <Link :href="'/' + language.code"
-                            class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition duration-150 ease-in-out">
+                            class="flex items-center px-4 py-2 text-sm text-text hover:bg-gray-100 transition duration-150 ease-in-ou">
                         <img :src="language.icon" alt="" class="w-4 h-4 mr-3">
                         {{ language.name }}
                         </Link>
@@ -37,9 +39,14 @@ const props = defineProps({
         type: String,
         default: ''
     },
+    buttonClass: {
+        type: String,
+        default: ''
+    },
 });
 
 const mergedClass = computed(() => `text-center items-center py-3 px-6 tracking-widest ${props.class}`)
+const mergedButtonClass = computed(() => `inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-background focus:!ring-0 ${props.buttonClass}`)
 const languages = [
     {
         code: 'en',

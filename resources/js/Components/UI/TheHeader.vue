@@ -3,17 +3,27 @@
         <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 pb-1 lg:px-1" aria-label="Global">
             <Logo />
             <div class="flex flex-1 h-12 justify-end gap-x-1">
-                <BaseLink href=""
-                    class="hidden lg:flex items-center py-3 px-3 tracking-widest hover:underline underline-offset-8 decoration-accent decoration-4">
-                    <span class="relative z-10">{{
-                        __('header.navbar.login').toUpperCase() }}</span>
+                <BaseLink href="" class="hidden lg:flex items-center py-3 px-3 tracking-widest relative group">
+                    <span class="relative z-10">
+                        {{ __('header.navbar.login').toUpperCase() }}
+                    </span>
+                    <span
+                        class="absolute left-0 bottom-0 w-full h-[4px] bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
                 </BaseLink>
-                <LangDropdown class="hidden lg:!flex " />
+
+                <LangDropdown class="hidden lg:!flex " button-class="relative group">
+                    <template #buttonSlot="{ languageName }">
+                        <span class="leading-6">{{ languageName }}</span>
+                        <ChevronDownIcon class="w-5 h-5 ml-2 -mr-1 text-gray-400" aria-hidden="true" />
+                        <span
+                            class="absolute left-0 bottom-0 w-11/12 h-[4px] bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+                    </template>
+                </LangDropdown>
                 <BaseLink :href="$useRoute('/subscribe')"
                     class="relative overflow-hidden bg-black !text-background hover:!text-text py-3 px-6 tracking-widest flex items-center group">
                     <span class="relative z-10 transition-colors duration-500 ease-in-out">{{
-                        __('header.navbar.newsletter').toUpperCase()
-                    }}</span>
+                            __('header.navbar.newsletter').toUpperCase()
+                        }}</span>
                     <span
                         class="absolute inset-0 bg-accent transition-transform duration-500 ease-in-out transform -translate-x-full group-hover:translate-x-0"></span>
                 </BaseLink>
