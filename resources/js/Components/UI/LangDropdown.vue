@@ -4,9 +4,10 @@
             <MenuButton id="toggleMenu" @mouseenter="(e) => hoverMenu(e, open)" @mouseleave="closeMenu(close)"
                 :class="mergedButtonClass">
                 <span v-if="!$slots.buttonSlot" class="leading-6">{{ selectedLanguage?.name }}</span>
-                <ChevronDownIcon v-if="!$slots.buttonSlot" class="w-5 h-5 ml-2 -mr-1 text-gray-400"
+                <ChevronDownIcon v-if="!$slots.buttonSlot && open" class="w-5 h-5 ml-2 -mr-1 text-gray-400"
                     aria-hidden="true" />
-                <slot v-if="$slots.buttonSlot" name="buttonSlot" :languageName="selectedLanguage?.name"></slot>
+                <slot v-if="$slots.buttonSlot" name="buttonSlot" :languageName="selectedLanguage?.name"
+                    :menuOpen="open"></slot>
             </MenuButton>
             <transition enter="transition ease-out duration-100 transform" enter-from="opacity-0 scale-95"
                 enter-to="opacity-100 scale-100" leave="transition ease-in duration-100 transform"

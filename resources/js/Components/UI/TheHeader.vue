@@ -9,9 +9,14 @@
                         class="absolute left-0 bottom-0 w-full h-[4px] bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
                 </BaseLink>
                 <LangDropdown class="hidden lg:!flex" button-class="relative group">
-                    <template #buttonSlot="{ languageName }">
+                    <template #buttonSlot="{ languageName, menuOpen }">
                         <span class="leading-6">{{ languageName }}</span>
-                        <ChevronDownIcon class="w-5 h-5 ml-2 -mr-1 text-gray-400" aria-hidden="true" />
+                        <transition name="fade" mode="out-in">
+                            <ChevronDownIcon v-if="!menuOpen" class="w-5 h-5 ml-2 -mr-1 text-gray-400"
+                                aria-hidden="true" key="down" />
+                            <ChevronUpIcon v-else class="w-5 h-5 ml-2 -mr-1 text-gray-400" aria-hidden="true"
+                                key="up" />
+                        </transition>
                         <span
                             class="absolute left-0 bottom-0 w-11/12 h-[4px] bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
                     </template>
@@ -56,7 +61,7 @@ import {
     FingerPrintIcon,
     SquaresPlusIcon,
 } from '@heroicons/vue/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/vue/20/solid'
+import { ChevronDownIcon, PhoneIcon, PlayCircleIcon, ChevronUpIcon } from '@heroicons/vue/20/solid'
 import { Link } from '@inertiajs/vue3';
 import Logo from './Logo.vue';
 import { getLocale } from '../../Composables/useRoute'
@@ -85,7 +90,7 @@ const navbar = ref(null);
 
 const handleScroll = () => {
     const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (currentScrollTop > lastScrollTop.value && currentScrollTop > 100) {
+    if (currentScrollTop > lastScrollTop.value && currentScrollTop > 50) {
         // Scroll down
         navbar.value.classList.add('-translate-y-full');
     } else {
