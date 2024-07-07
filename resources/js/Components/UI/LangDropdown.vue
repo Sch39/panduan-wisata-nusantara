@@ -14,7 +14,8 @@
                     <div class="py-1">
                         <MenuItem v-for="language in languages" :key="language.code">
                         <Link :href="'/' + language.code"
-                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition duration-150 ease-in-out">
+                        <img :src="language.icon" alt="" class="w-4 h-4 mr-3">
                         {{ language.name }}
                         </Link>
                         </MenuItem>
@@ -43,12 +44,12 @@ const languages = [
     {
         code: 'en',
         name: 'English',
-        icon: ''
+        icon: '/assets/icons/countries/united-states.png'
     },
     {
         code: 'id',
         name: 'Indonesia',
-        icon: ''
+        icon: '/assets/icons/countries/indonesia.png'
     }
 ]
 
