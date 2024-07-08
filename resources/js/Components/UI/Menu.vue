@@ -103,31 +103,54 @@ const props = defineProps({
     },
 });
 const propsMenu = usePage().props.translations.header.navbar;
+const destinations = usePage().props.destinations.reduce((acc, current) => {
+    const { province } = current.regency;
+    const provinceIndex = acc.findIndex(p => p.code === province.code);
+
+    const regency = {
+        id: current.regency.id,
+        code: current.regency.code,
+        name: current.regency.name
+    };
+
+    if (provinceIndex === -1) {
+        acc.push({
+            id: province.id,
+            code: province.code,
+            name: province.name,
+            regencies: [regency]
+        });
+    } else {
+        acc[provinceIndex].regencies.push(regency);
+    }
+
+    return acc;
+}, []);
+const destinationsFormatted = []
+for (const destination of destinations) {
+    const data = {
+        name: destination.name,
+        key: `${destination.id}-${destination.code}`,
+        type: 'dropdown',
+        child: [],
+    }
+
+    for (const regency of destination.regencies) {
+        data.child.push({
+            name: regency.name,
+            key: `${regency.id}-${regency.code}`,
+            type: 'link',
+            href: `destinations/${destination.code}${regency.code}`
+        })
+    }
+    destinationsFormatted.push(data)
+}
 const menuData = [
     {
         name: propsMenu.destinations,
         key: 'destinations',
         type: 'slide',
-        child: [{
-            name: 'Jawa Tengah',
-            key: 'jawa_tengah',
-            type: 'dropdown',
-            child: [
-                {
-                    name: 'Grobogan',
-                    key: 'grobogan',
-                    href: 'destinations/grobogan',
-                    type: 'link',
-                },
-                {
-                    name: 'Gubug',
-                    key: 'gubug',
-                    href: 'destinations/gubug',
-                    type: 'link',
-                },
-            ]
-        }],
-
+        child: destinationsFormatted,
     },
     {
         name: propsMenu.travel_inspiration,

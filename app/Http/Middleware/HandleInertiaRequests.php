@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\DestinationDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Inertia\Middleware;
 
@@ -39,15 +40,22 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         $file = lang_path(App::currentLocale() . ".json");
-
+        $destinations = Cache::remember('destinations', 30, fn () => DestinationDetail::select('id', 'language_code', 'regency_id')
+            ->with(['regency' => function ($query) {
+                $query->select('id', 'name', 'code', 'provinces_code')
+                    ->with(['province' => function ($query) {
+                        $query->select('id', 'code', 'name');
+                    }]);
+            }])
+            ->take(10)
+            ->get());
+        // dd($destinations->filter(fn ($item) => $item['language_code'] === App::currentLocale())->values()->toJson());
         return array_merge(parent::share($request), [
             'csrf' => csrf_token(),
             'locale' => App::currentLocale(),
             'locales' => config('app.available_locales'),
             'translations' => File::exists($file) ? File::json($file) : [],
-            'destinations' =>  DestinationDetail::with(['regency.province'])
-                ->take(10)
-                ->get(),
+            'destinations' =>  $destinations->filter(fn ($item) => $item['language_code'] === App::currentLocale())->values(),
         ]);
     }
 }
