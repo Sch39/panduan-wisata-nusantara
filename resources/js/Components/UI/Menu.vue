@@ -71,29 +71,16 @@
 
 <script setup>
 import {
-    ChartPieIcon,
-    CursorArrowRaysIcon,
-    FingerPrintIcon,
-    SquaresPlusIcon,
-    ArrowPathIcon,
-    XMarkIcon,
-} from '@heroicons/vue/24/outline';
-import {
-    PlayCircleIcon,
-    PhoneIcon,
     ChevronDownIcon,
     ChevronRightIcon,
     ChevronLeftIcon,
 } from '@heroicons/vue/20/solid'
 import BaseLink from './BaseLink.vue'
 import {
-    DisclosureButton,
-    DisclosurePanel,
-    Disclosure,
     DialogPanel,
     Dialog,
 } from '@headlessui/vue'
-import { computed, ref, inject } from 'vue'
+import { computed, ref } from 'vue'
 import { usePage } from '@inertiajs/vue3';
 
 const props = defineProps({
@@ -102,105 +89,95 @@ const props = defineProps({
         required: true,
     },
 });
-const propsMenu = usePage().props.translations.header.navbar;
-const destinations = usePage().props.destinations.reduce((acc, current) => {
-    const { province } = current.regency;
-    const provinceIndex = acc.findIndex(p => p.code === province.code);
 
-    const regency = {
-        id: current.regency.id,
-        code: current.regency.code,
-        name: current.regency.name
-    };
+// Watch for changes in usePage().props
+const page = usePage();
 
-    if (provinceIndex === -1) {
-        acc.push({
-            id: province.id,
-            code: province.code,
-            name: province.name,
-            regencies: [regency]
-        });
-    } else {
-        acc[provinceIndex].regencies.push(regency);
-    }
+// Compute menu data
+const menuData = computed(() => {
+    const propsMenu = page.props.translations.header.navbar;
+    const destinations = page.props.destinations.reduce((acc, current) => {
+        const { province } = current.regency;
+        const provinceIndex = acc.findIndex(p => p.code === province.code);
 
-    return acc;
-}, []);
-const destinationsFormatted = []
-for (const destination of destinations) {
-    const data = {
+        const regency = {
+            id: current.regency.id,
+            code: current.regency.code,
+            name: current.regency.name
+        };
+
+        if (provinceIndex === -1) {
+            acc.push({
+                id: province.id,
+                code: province.code,
+                name: province.name,
+                regencies: [regency]
+            });
+        } else {
+            acc[provinceIndex].regencies.push(regency);
+        }
+
+        return acc;
+    }, []);
+
+    const destinationsFormatted = destinations.map(destination => ({
         name: destination.name,
         key: `${destination.id}-${destination.code}`,
         type: 'dropdown',
-        child: [],
-    }
-
-    for (const regency of destination.regencies) {
-        data.child.push({
+        child: destination.regencies.map(regency => ({
             name: regency.name,
             key: `${regency.id}-${regency.code}`,
             type: 'link',
             href: `destinations/${destination.code}${regency.code}`
-        })
-    }
-    destinationsFormatted.push(data)
-}
-const menuData = [
-    {
-        name: propsMenu.destinations,
-        key: 'destinations',
-        type: 'slide',
-        child: destinationsFormatted,
-    },
-    {
-        name: propsMenu.travel_inspiration,
-        key: 'travel_inspiration',
-        type: 'slide',
-        child: [
+        }))
+    }));
 
-        ],
-    },
-    {
-        name: propsMenu.planning,
-        key: 'planning',
-        type: 'slide',
-        child: [
-
-        ],
-    },
-    {
-        name: 'Travel Styles',
-        key: 'travel_styles',
-        type: 'slide',
-        child: [
-            {
-                name: 'Museum',
-                key: 'museum',
-                type: 'link',
-                href: 'travel-styles/museum',
-            },
-            {
-                name: 'Adventure',
-                key: 'adventure',
-                type: 'link',
-                href: 'travel-styles/adventure',
-            },
-        ]
-    }
-]
+    return [
+        {
+            name: propsMenu.destinations,
+            key: 'destinations',
+            type: 'slide',
+            child: destinationsFormatted,
+        },
+        {
+            name: propsMenu.travel_inspiration,
+            key: 'travel_inspiration',
+            type: 'slide',
+            child: [],
+        },
+        {
+            name: propsMenu.planning,
+            key: 'planning',
+            type: 'slide',
+            child: [],
+        },
+        {
+            name: 'Travel Styles',
+            key: 'travel_styles',
+            type: 'slide',
+            child: [
+                {
+                    name: 'Museum',
+                    key: 'museum',
+                    type: 'link',
+                    href: 'travel-styles/museum',
+                },
+                {
+                    name: 'Adventure',
+                    key: 'adventure',
+                    type: 'link',
+                    href: 'travel-styles/adventure',
+                },
+            ]
+        }
+    ];
+});
 
 const selectedDropdown = ref(null);
 const selectedMenu = ref(null);
 const previousMenu = ref(null);
-const menuTitles = {
-    destination: 'Destination',
-    planning: 'Planning',
-    travel_inspiration: 'Travel Inspiration',
-    travel_styles: 'Travel Styles',
-    destination_jawa_tengah: 'Jawa Tengah',
-    destination_jawa_barat: 'Jawa Barat'
-};
-const selectedMenuTitle = computed(() => menuData.find((menu) => menu.key === selectedMenu.value)?.name);
+
+const selectedMenuTitle = computed(() => menuData.value.find((menu) => menu.key === selectedMenu.value)?.name);
 
 const openSubMenu = (menu) => {
     previousMenu.value = selectedMenu.value;
@@ -220,7 +197,6 @@ const goBack = () => {
     previousMenu.value = null;
 };
 
-
 const emits = defineEmits(['close']);
 
 const closeMenu = () => {
@@ -228,7 +204,4 @@ const closeMenu = () => {
     previousMenu.value = null;
     emits('close');
 };
-
-
-
 </script>
