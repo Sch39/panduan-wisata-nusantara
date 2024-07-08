@@ -15,6 +15,7 @@ export default {
                 accent: '#FFD700',
                 background: '#F8F8F8',
                 text: '#2F4F4F',
+                'navbar-link': '#111827',
             },
             fontFamily: {
                 sans: ['Roboto', 'sans-serif'],

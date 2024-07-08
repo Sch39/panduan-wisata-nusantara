@@ -18,6 +18,6 @@ const props = defineProps({
 })
 
 const mergedClass = computed(() => {
-    return `text-sm font-semibold leading-6 text-gray-900 ${props.class}`
+    return `text-sm font-semibold leading-6 text-navbar-link ${props.class}`
 })
 </script>

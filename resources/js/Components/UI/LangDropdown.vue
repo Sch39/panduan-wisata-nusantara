@@ -48,7 +48,7 @@ const props = defineProps({
     },
 });
 
-const mergedClass = computed(() => `text-center items-center py-3 px-6 tracking-widest ${props.class}`)
+const mergedClass = computed(() => `text-center items-center py-3 px-2 tracking-widest ${props.class}`)
 const mergedButtonClass = computed(() => `inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-background focus:!ring-0 ${props.buttonClass}`)
 const languages = [
     {
