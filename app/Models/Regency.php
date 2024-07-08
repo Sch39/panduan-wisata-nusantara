@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Regencies extends Model
+class Regency extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -14,4 +14,14 @@ class Regencies extends Model
         'language_code',
         'provinces_code',
     ];
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'provinces_code', 'code');
+    }
+
+    public function destinationDetails()
+    {
+        return $this->hasMany(DestinationDetail::class);
+    }
 }

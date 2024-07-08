@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\DestinationDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
@@ -43,7 +44,10 @@ class HandleInertiaRequests extends Middleware
             'csrf' => csrf_token(),
             'locale' => App::currentLocale(),
             'locales' => config('app.available_locales'),
-            'translations' => File::exists($file) ? File::json($file) : []
+            'translations' => File::exists($file) ? File::json($file) : [],
+            'destinations' =>  DestinationDetail::with(['regency.province'])
+                ->take(10)
+                ->get(),
         ]);
     }
 }

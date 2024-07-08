@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Destinations;
+use App\Models\Destination;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -23,6 +23,6 @@ class DestinationsSeeder extends Seeder
                 'slug' => 'borobudor',
             ]
         ];
-        Destinations::insert($data);
+        Destination::insert($data);
     }
 }

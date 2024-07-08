@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Provinces extends Model
+class Province extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -13,4 +13,9 @@ class Provinces extends Model
         'language_code',
         'code',
     ];
+
+    public function regencies()
+    {
+        return $this->hasMany(Regency::class, 'provinces_code', 'code');
+    }
 }

@@ -58,8 +58,7 @@
 
                     </div>
 
-
-                    <div class="py-6">
+                    <div class="py-6" v-if="!selectedMenu">
                         <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-lg font-semibold leading-7 text-navbar-link
                              hover:bg-gray-50">{{
                             __('header.navbar.login').toUpperCase() }}</a>
@@ -79,7 +78,6 @@ import {
     ArrowPathIcon,
     XMarkIcon,
 } from '@heroicons/vue/24/outline';
-
 import {
     PlayCircleIcon,
     PhoneIcon,
@@ -95,8 +93,8 @@ import {
     DialogPanel,
     Dialog,
 } from '@headlessui/vue'
-import { computed, ref } from 'vue'
-import { Link } from '@inertiajs/vue3';
+import { computed, ref, inject } from 'vue'
+import { usePage } from '@inertiajs/vue3';
 
 const props = defineProps({
     open: {
@@ -104,11 +102,11 @@ const props = defineProps({
         required: true,
     },
 });
-
+const propsMenu = usePage().props.translations.header.navbar;
 const menuData = [
     {
-        name: 'Destination',
-        key: 'destination',
+        name: propsMenu.destinations,
+        key: 'destinations',
         type: 'slide',
         child: [{
             name: 'Jawa Tengah',
@@ -130,6 +128,22 @@ const menuData = [
             ]
         }],
 
+    },
+    {
+        name: propsMenu.travel_inspiration,
+        key: 'travel_inspiration',
+        type: 'slide',
+        child: [
+
+        ],
+    },
+    {
+        name: propsMenu.planning,
+        key: 'planning',
+        type: 'slide',
+        child: [
+
+        ],
     },
     {
         name: 'Travel Styles',

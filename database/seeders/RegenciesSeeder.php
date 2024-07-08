@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Regencies;
+use App\Models\Regency;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -27,7 +27,7 @@ class RegenciesSeeder extends Seeder
         // Loop through each row of the CSV file
         while (($row = fgetcsv($file, 1000, ',')) !== false) {
             // Insert data into the provinces table
-            Regencies::insert([
+            Regency::insert([
                 'code' => $row[0],
                 'provinces_code' => $row[1],
                 'language_code' => $row[2],

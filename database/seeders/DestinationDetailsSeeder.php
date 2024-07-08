@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\DestinationDetails;
+use App\Models\DestinationDetail;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -44,6 +44,6 @@ class DestinationDetailsSeeder extends Seeder
             ],
         ];
 
-        DestinationDetails::insert($data);
+        DestinationDetail::insert($data);
     }
 }

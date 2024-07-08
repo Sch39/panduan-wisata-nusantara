@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Provinces;
+use App\Models\Province;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -27,7 +27,7 @@ class ProvincesSeeder extends Seeder
         // Loop through each row of the CSV file
         while (($row = fgetcsv($file, 1000, ',')) !== false) {
             // Insert data into the provinces table
-            Provinces::insert([
+            Province::insert([
                 'code' => $row[0],
                 'language_code' => $row[1],
                 'name' => $row[2],
