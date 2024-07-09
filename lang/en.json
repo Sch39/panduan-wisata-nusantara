@@ -14,5 +14,14 @@
     "footer": {
         "credit_asset": "Credit Asset",
         "privacy_policy": "Privacy Policy"
+    },
+    "pages": {
+        "home": {
+            "title": "Home",
+            "meta_description": "Explore the beauty of Nusantara tourism with our comprehensive guide. Discover the best travel destinations, enjoy AR experiences at tourist spots, and calculate your travel carbon footprint. Enjoy a responsible and unforgettable vacation in Indonesia.",
+            "jumbotron_title": "Explore the Beauty of Nusantara",
+            "jumbotron_description": "Discover the best travel destinations, enjoy AR experiences at tourist spots, and calculate your travel carbon footprint. Enjoy a responsible and unforgettable vacation in Indonesia.",
+            "jumbotron_button": "Start Touring!"
+        }
     }
 }

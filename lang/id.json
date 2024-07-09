@@ -14,5 +14,14 @@
     "footer": {
         "credit_asset": "Kredit Asset",
         "privacy_policy": "Kebijakan Pribadi"
+    },
+    "pages": {
+        "home": {
+            "title": "Home",
+            "meta_description": "Jelajahi keindahan wisata Nusantara dengan panduan lengkap kami. Temukan destinasi wisata terbaik, nikmati pengalaman AR di tempat-tempat wisata, dan hitung jejak karbon perjalanan Anda. Nikmati liburan yang bertanggung jawab dan tak terlupakan di Indonesia.",
+            "jumbotron_title": "Jelajahi Keindahan Nusantara",
+            "jumbotron_description": "Temukan destinasi wisata terbaik, nikmati pengalaman AR di tempat-tempat wisata, dan hitung jejak karbon perjalanan Anda. Nikmati liburan yang bertanggung jawab dan tak terlupakan di Indonesia.",
+            "jumbotron_button": "Mulai Berwisata!"
+        }
     }
 }

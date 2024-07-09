@@ -17,7 +17,7 @@
                         <div class="py-1">
                             <MenuItem v-for="language in languages" :key="language.code">
                             <Link :href="'/' + language.code"
-                                class="flex items-center px-4 py-2 text-sm text-text hover:bg-gray-50 transition duration-150 ease-in-ou">
+                                class="flex items-center px-4 py-2 text-sm text-text hover:bg-gray-100 transition duration-150 ease-in-ou">
                             <img :src="language.icon" alt="" class="w-4 h-4 mr-3">
                             {{ language.name }}
                             </Link>

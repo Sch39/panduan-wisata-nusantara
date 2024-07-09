@@ -3,7 +3,7 @@
         <div class="fixed inset-y-12 right-0 z-10 w-full h-full bg-black bg-opacity-10" />
         <DialogPanel class="fixed inset-y-12 right-0 z-10 w-full h-full overflow-y-auto bg-background px-6 sm:max-w-sm">
             <div class="flow-root">
-                <div class="-my-6 divide-y divide-gray-500/10">
+                <div class="-my-6 divide-y divide-gray-500/20">
                     <div class="space-y-2 py-6">
                         <div class="space-y-2">
                             <!-- Back Button -->
@@ -15,7 +15,6 @@
                                     {{ selectedMenuTitle.toUpperCase() }}
                                 </div>
                             </div>
-
 
                             <!-- Menu -->
                             <div v-for="menu of menuData" :key="menu.key">
@@ -49,21 +48,14 @@
                                         <BaseLink
                                             class="inline-block text-sm !font-normal text-navbar-link hover:underline decoration-accent underline-offset-2"
                                             :href="subMenu.href">{{
-                                            subMenu.name.toUpperCase() }}</BaseLink>
+        subMenu.name.toUpperCase() }}</BaseLink>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-
-                    <!-- <div class="flex justify-between items-center py-6 lg:hidden" v-if="!selectedMenu">
-                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-lg font-semibold leading-7 text-navbar-link
-                             hover:bg-gray-50">{{
-                            __('header.navbar.login').toUpperCase() }}</a>
-                        <slot v-if="$slots.langdropdown" name="langdropdown"></slot>
-                    </div> -->
-                    <slot name="navBottom"></slot>
+                    <slot name="navBottom" :selectedMenu="selectedMenu"></slot>
                 </div>
             </div>
         </DialogPanel>

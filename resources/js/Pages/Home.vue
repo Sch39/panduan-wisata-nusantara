@@ -1,18 +1,21 @@
 <template>
 
     <Head>
-        <title>My app</title>
-        <meta head-key="description" name="description" content="This is the default description" />
-        <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+        <title>{{ __('pages.home.title') }}</title>
+        <meta head-key="description" name="description" :content="__('pages.home.meta_description')" />
     </Head>
 
-    <!-- resources/views/welcome.blade.php -->
-    <div class="bg-background min-h-screen flex flex-col items-center justify-center">
-        <h1 class="font-serif text-primary text-4xl mb-4">Selamat Datang di Panduan Wisata Nusantara</h1>
-        <p class="font-sans text-text text-lg">Temukan destinasi wisata terbaik di Indonesia.</p>
-        <button class="bg-secondary text-white py-2 px-4 mt-4 rounded hover:bg-accent">Jelajahi Sekarang</button>
-        <Link :href="$useRoute('/dashboard')">To Dashboard</Link>
-        <Link href="/id">Indonesia</Link>
+    <div class="relative bg-cover bg-center h-screen"
+        style="background-image: url('/assets/images/volcano-with-mist-sunset.jpg');">
+        <div class="absolute inset-0 bg-gray-900 opacity-50"></div>
+        <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white">
+            <h1 class="text-5xl font-bold mb-4">{{ __('pages.home.jumbotron_title') }}</h1>
+            <p class="text-lg mb-8 max-w-xl mx-auto">{{ __('pages.home.jumbotron_description') }}</p>
+            <Link :href="$useRoute('/dashboard')"
+                class="px-6 py-3 bg-accent text-black text-lg rounded-full hover:opacity-80 transition duration-300 font-semibold">
+            {{ __('pages.home.jumbotron_button') }}</Link>
+
+        </div>
     </div>
 </template>
 

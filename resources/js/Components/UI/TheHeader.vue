@@ -24,8 +24,8 @@
             </div>
         </nav>
         <Menu :open="menuOpen" @close="toggleMenu">
-            <template #navBottom>
-                <div class="flex justify-between lg:!hidden items-center">
+            <template #navBottom="{ selectedMenu }">
+                <div v-if="!selectedMenu" class="flex justify-between lg:!hidden items-center">
                     <BaseLink href="" class="items-center py-3 px-3 tracking-widest relative group hover:text-text">
                         {{ __('header.navbar.login').toUpperCase() }}
                         <span
