@@ -1,5 +1,6 @@
 <template>
-    <header ref="navbar" class="bg-background sticky top-0 z-50 transition-transform duration-300 ease-in-out">
+    <header ref="navbar"
+        class="bg-background sticky top-0 z-50 transition-transform duration-300 ease-in-out text-navbar-link">
         <nav class="mx-auto flex max-w-7xl items-center justify-between px-2 pb-1 lg:px-1" aria-label="Global">
             <Logo />
             <div class="flex flex-1 h-12 justify-end gap-x-1">
@@ -9,19 +10,8 @@
                     <span
                         class="absolute left-0 bottom-0 w-full h-[4px] bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
                 </BaseLink>
-                <LangDropdown class="hidden lg:!flex" button-class="relative group">
-                    <template #buttonSlot="{ languageName, menuOpen }">
-                        <span class="leading-6">{{ languageName }}</span>
-                        <transition name="fade" mode="out-in">
-                            <ChevronDownIcon v-if="!menuOpen" class="w-5 h-5 ml-1 -mr-1 text-gray-400"
-                                aria-hidden="true" key="down" />
-                            <ChevronUpIcon v-else class="w-5 h-5 ml-1 -mr-1 text-gray-400" aria-hidden="true"
-                                key="up" />
-                        </transition>
-                        <span
-                            class="absolute left-0 bottom-0 w-11/12 h-[4px] bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
-                    </template>
-                </LangDropdown>
+                <LangDropdownUnderline class="hidden lg:!flex" />
+
                 <BaseLink :href="$useRoute('/newsletter')"
                     class="relative overflow-hidden bg-black !text-background hover:!text-navbar-link py-3 px-6 tracking-widest flex items-center group">
                     <span class="relative z-10 transition-colors duration-500 ease-in-out">{{
@@ -33,7 +23,18 @@
                     @toggle-mobile-menu="toggleMenu" :is-menu-open="menuOpen" />
             </div>
         </nav>
-        <Menu :open="menuOpen" @close="toggleMenu" />
+        <Menu :open="menuOpen" @close="toggleMenu">
+            <template #navBottom>
+                <div class="flex justify-between lg:!hidden items-center">
+                    <BaseLink href="" class="items-center py-3 px-3 tracking-widest relative group hover:text-text">
+                        {{ __('header.navbar.login').toUpperCase() }}
+                        <span
+                            class="absolute left-0 bottom-0 w-full h-[4px] bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+                    </BaseLink>
+                    <LangDropdownUnderline />
+                </div>
+            </template>
+        </Menu>
     </header>
 </template>
 
@@ -41,9 +42,8 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import MenuButton from './MenuButton.vue'
 import Menu from './Menu.vue'
-import NavLinks from './NavLinks.vue'
 import BaseLink from './BaseLink.vue'
-import LangDropdown from './LangDropdown.vue'
+import LangDropdownUnderline from "./LangDropdownUnderline.vue";
 
 import {
     Dialog,

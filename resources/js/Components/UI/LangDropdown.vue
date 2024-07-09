@@ -4,7 +4,7 @@
             <MenuButton id="toggleMenu" @mouseenter="(e) => hoverMenu(e, open)" @mouseleave="closeMenu(close)"
                 :class="mergedButtonClass">
                 <span v-if="!$slots.buttonSlot" class="leading-6">{{ selectedLanguage?.name }}</span>
-                <ChevronDownIcon v-if="!$slots.buttonSlot && open" class="w-5 h-5 ml-2 -mr-1 text-gray-400"
+                <ChevronDownIcon v-if="!$slots.buttonSlot && open" class="w-5 h-5 ml-2 -mr-1 text-navbar-link"
                     aria-hidden="true" />
                 <slot v-if="$slots.buttonSlot" name="buttonSlot" :languageName="selectedLanguage?.name"
                     :menuOpen="open"></slot>
@@ -49,7 +49,7 @@ const props = defineProps({
 });
 
 const mergedClass = computed(() => `text-center items-center py-3 px-2 tracking-widest ${props.class}`)
-const mergedButtonClass = computed(() => `inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-background focus:!ring-0 ${props.buttonClass}`)
+const mergedButtonClass = computed(() => `inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-navbar-link bg-background focus:!ring-0 ${props.buttonClass}`)
 const languages = [
     {
         code: 'en',

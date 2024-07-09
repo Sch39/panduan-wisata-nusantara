@@ -9,7 +9,7 @@
                             <!-- Back Button -->
                             <div v-if="selectedMenu" class="space-y-2">
                                 <div @click.prevent="goBack"
-                                    class="flex justify-start items-center -mx-3 rounded-lg px-3 py-2 text-lg font-semibold leading-7 text-navbar-link hover:bg-gray-50 cursor-pointer">
+                                    class="flex justify-start items-center -mx-3 rounded-lg px-3 py-2 text-lg font-semibold leading-7 text-navbar-link hover:bg-gray-100 cursor-pointer">
                                     <ChevronLeftIcon
                                         class="w-5 h-5 mr-2 text-navbar-link transition-transform transform font-semibold" />
                                     {{ selectedMenuTitle.toUpperCase() }}
@@ -21,7 +21,7 @@
                             <div v-for="menu of menuData" :key="menu.key">
                                 <div v-if="!selectedMenu && menu.type === 'slide'"
                                     @click.prevent="openSubMenu(menu.key)"
-                                    class="flex justify-between items-center -mx-3 rounded-lg px-3 py-2 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-50 cursor-pointer">
+                                    class="flex justify-between items-center -mx-3 rounded-lg px-3 py-2 text-lg font-semibold leading-7 text-gray-900 hover:bg-gray-100 cursor-pointer">
                                     {{ menu.name.toUpperCase() }}
                                     <ChevronRightIcon
                                         class="w-5 h-5 ml-2 -mr-1 text-navbar-link transition-transform transform" />
@@ -30,7 +30,7 @@
                                 <div v-for="subMenu of menu.child" :key="subMenu.key">
                                     <div v-if="selectedMenu === menu.key && subMenu.type === 'dropdown'" class="">
                                         <div @click.prevent="openDropdown(subMenu.key)"
-                                            class="flex justify-between items-center -mx-3 rounded-lg px-3 text-lg leading-7 text-navbar-link hover:bg-gray-50 cursor-pointer"
+                                            class="flex justify-between items-center -mx-3 rounded-lg px-3 text-lg leading-7 text-navbar-link hover:bg-gray-100 cursor-pointer"
                                             :class="{ 'font-semibold': subMenu.key === selectedDropdown }">
                                             {{ subMenu.name.toUpperCase() }}
                                             <ChevronDownIcon v-if="subMenu.key === selectedDropdown"
@@ -49,20 +49,21 @@
                                         <BaseLink
                                             class="inline-block text-sm !font-normal text-navbar-link hover:underline decoration-accent underline-offset-2"
                                             :href="subMenu.href">{{
-        subMenu.name.toUpperCase() }}</BaseLink>
+                                            subMenu.name.toUpperCase() }}</BaseLink>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="py-6" v-if="!selectedMenu">
+                    <!-- <div class="flex justify-between items-center py-6 lg:hidden" v-if="!selectedMenu">
                         <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-lg font-semibold leading-7 text-navbar-link
                              hover:bg-gray-50">{{
                             __('header.navbar.login').toUpperCase() }}</a>
-                    </div>
+                        <slot v-if="$slots.langdropdown" name="langdropdown"></slot>
+                    </div> -->
+                    <slot name="navBottom"></slot>
                 </div>
             </div>
         </DialogPanel>
