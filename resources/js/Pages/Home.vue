@@ -8,24 +8,18 @@
         :description="__('pages.home.jumbotron_description')" :link="$useRoute('/dashboard')"
         :link-text="__('pages.home.jumbotron_button').toUpperCase()" />
 
-    <!-- <div class="w-full mt-10 flex justify-center"> -->
-
-    <!-- </div> -->
-
-
-
     <div class="mx-5 mt-5">
         <h2
-            class="font-serif font-bold text-center text-2xl md:text-3xl leading-6 tracking-wider text-navbar-link mb-10 md:mb-5">
+            class="font-serif font-extrabold text-center text-2xl md:text-3xl leading-6 tracking-wider text-navbar-link mb-10 md:mb-5">
             Recommended</h2>
-        <div class="justify-end space-x-8 hidden md:flex">
-            <button :disabled="currentSlide === 0" :class="{ 'text-gray-400 !border-gray-400': currentSlide === 0 }"
+        <div class="justify-end space-x-8 hidden md:flex mb-5">
+            <button :disabled="currentSlide === 0" :class="{ '!text-gray-400 !border-gray-400': currentSlide === 0 }"
                 class="disabled p-2 border-2 border-navbar-link rounded-full" @click="carousel.prev()">
-                <ChevronLeftIcon class="w-10 h-10" />
+                <ChevronLeftIcon class="w-8 h-8" />
             </button>
-            <button :disabled="currentSlide === 9" :class="{ 'text-gray-400 !border-gray-400': currentSlide === 9 }"
+            <button :disabled="currentSlide === 9" :class="{ '!text-gray-400 !border-gray-400': currentSlide === 9 }"
                 class="p-2 border-2 border-navbar-link rounded-full" @click="carousel.next()">
-                <ChevronRightIcon class="w-10 h-10" />
+                <ChevronRightIcon class="w-8 h-8" />
             </button>
         </div>
         <Carousel v-model="currentSlide" ref="carousel" v-bind="settings" :breakpoints="breakpoints">
@@ -42,18 +36,26 @@
                 <Pagination />
             </template>
         </Carousel>
+        <div class="flex justify-center mt-5">
+            <BaseLink href=""
+                class="inline-block bg-accent text-navbar-link rounded-full px-6 py-2 mt-2 font-semibold tracking-widest text-lg leading-7 hover:bg-secondary">
+                VIEW ALL RECOMMENDED</BaseLink>
+        </div>
     </div>
 </template>
 
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import { Head } from '@inertiajs/vue3';
 import BaseJumbotron from './../Components/UI/BaseJumbotron.vue'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
 import DestinationCard from '../Components/Home/DestinationCard.vue'
-import { ref, defineModel, onMounted } from 'vue'
+import { ref, defineModel } from 'vue'
 
 import { Carousel, Pagination, Slide } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
+import BaseLink from '../Components/UI/BaseLink.vue'
+
+const currentSlide = defineModel({ default: 0 })
 
 const carousel = ref(null)
 const settings = ref({
