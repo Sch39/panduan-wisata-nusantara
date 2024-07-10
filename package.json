@@ -19,6 +19,7 @@
         "@headlessui/tailwindcss": "^0.2.1",
         "@headlessui/vue": "^1.7.22",
         "@heroicons/vue": "^2.1.4",
-        "@inertiajs/vue3": "^1.2.0"
+        "@inertiajs/vue3": "^1.2.0",
+        "vue3-carousel": "^0.3.3"
     }
 }
