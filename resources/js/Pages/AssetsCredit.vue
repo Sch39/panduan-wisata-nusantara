@@ -20,5 +20,12 @@
                 href="https://unsplash.com/photos/a-man-is-holding-up-a-dragon-puppet-Mfehv03-l9c?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
                 target="_blank" rel="noopener noreferrer" class="underline underline-offset-2">Unsplash</a></li>
 
+        <li class="text-lg do"> <a target="_blank" rel="noopener noreferrer" class="underline underline-offset-2"
+                href="https://www.freepik.com/free-photo/group-happy-friends-raised-hands-background-city_3174714.htm#fromView=search&page=1&position=11&uuid=17aae104-7504-47e6-a6fa-91d2eeac2943">Image
+                by jcomp on Freepik</a></li>
+        <li class="text-lg do"><a target="_blank" rel="noopener noreferrer" class="underline underline-offset-2"
+                href="https://www.freepik.com/free-photo/traveler-asian-couple-direction-location-map-beijing-china_4395114.htm#fromView=search&page=1&position=37&uuid=17aae104-7504-47e6-a6fa-91d2eeac2943">Image
+                by tirachardz on Freepik</a></li>
+
     </ul>
 </template>

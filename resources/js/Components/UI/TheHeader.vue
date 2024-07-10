@@ -46,28 +46,7 @@ import Menu from './Menu.vue'
 import BaseLink from './BaseLink.vue'
 import LangDropdownUnderline from "./LangDropdownUnderline.vue";
 
-import {
-    Dialog,
-    DialogPanel,
-    Disclosure,
-    DisclosureButton,
-    DisclosurePanel,
-    Popover,
-    PopoverButton,
-    PopoverGroup,
-    PopoverPanel,
-} from '@headlessui/vue'
-import {
-    ArrowPathIcon,
-    ChartPieIcon,
-    CursorArrowRaysIcon,
-    FingerPrintIcon,
-    SquaresPlusIcon,
-} from '@heroicons/vue/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon, ChevronUpIcon } from '@heroicons/vue/20/solid'
-import { Link } from '@inertiajs/vue3';
 import Logo from './Logo.vue';
-import { getLocale } from '../../Composables/useRoute'
 
 const menuOpen = ref(false)
 
