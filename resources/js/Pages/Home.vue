@@ -19,11 +19,11 @@
             class="font-serif font-bold text-center text-2xl md:text-3xl leading-6 tracking-wider text-navbar-link mb-10 md:mb-5">
             Recommended</h2>
         <div class="justify-end space-x-8 hidden md:flex">
-            <button :disabled="currentSlide === 0" :class="{ 'text-gray-400 border-gray-400': currentSlide === 0 }"
+            <button :disabled="currentSlide === 0" :class="{ 'text-gray-400 !border-gray-400': currentSlide === 0 }"
                 class="disabled p-2 border-2 border-navbar-link rounded-full" @click="carousel.prev()">
                 <ChevronLeftIcon class="w-10 h-10" />
             </button>
-            <button :disabled="currentSlide === 9" :class="{ 'text-gray-400 border-gray-400': currentSlide === 9 }"
+            <button :disabled="currentSlide === 9" :class="{ 'text-gray-400 !border-gray-400': currentSlide === 9 }"
                 class="p-2 border-2 border-navbar-link rounded-full" @click="carousel.next()">
                 <ChevronRightIcon class="w-10 h-10" />
             </button>
@@ -50,12 +50,11 @@ import { Head, Link } from '@inertiajs/vue3';
 import BaseJumbotron from './../Components/UI/BaseJumbotron.vue'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
 import DestinationCard from '../Components/Home/DestinationCard.vue'
-import { ref, defineModel } from 'vue'
+import { ref, defineModel, onMounted } from 'vue'
 
 import { Carousel, Pagination, Slide } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
 
-const currentSlide = defineModel()
 const carousel = ref(null)
 const settings = ref({
     itemsToShow: 1.5,
