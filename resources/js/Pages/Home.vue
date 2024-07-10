@@ -8,7 +8,7 @@
         :title="__('pages.home.jumbotron_title')" :description="__('pages.home.jumbotron_description')"
         :link="$useRoute('/dashboard')" :link-text="__('pages.home.jumbotron_button').toUpperCase()" />
 
-    <div class="mx-5 mt-5">
+    <div class="mx-5 mt-10">
         <h2
             class="font-serif font-extrabold text-center text-2xl md:text-3xl leading-6 tracking-wider text-navbar-link mb-10 md:mb-5">
             Recommended</h2>
@@ -42,20 +42,19 @@
                 VIEW ALL RECOMMENDED</BaseLink>
         </div>
         <BaseJumbotron background-class="bg-accent bg-opacity-[0.08]" image="/assets/images/indonesian-culture.jpg"
-            class="mt-20 ">
+            class="mt-20 mb-10">
             <template #title>
-                <h2 class="text-3xl font-bold mb-4 text-center text-background">Wonders of Indonesian
-                    Culture</h2>
+                <h2 class="text-3xl font-bold mb-4 text-center text-background">{{
+            __('pages.home.culture_tour_jumbotron_title') }}</h2>
             </template>
             <template #description>
                 <p class="text-lg mb-8 max-w-xl text-center text-background">
-                    Explore the unique traditions and customs across different regions of Indonesia. Discover the
-                    enchanting charm of its cultural heritage.</p>
+                    {{ __('pages.home.culture_tour_jumbotron_description') }}</p>
             </template>
             <template #link>
                 <Link href="/vie"
-                    class="px-6 py-3 bg-secondary text-background text-xl border-2 rounded-full transition duration-300 font-semibold hover:text-text hover:bg-accent hover:bg-opacity-75">
-                VIEW ALL</Link>
+                    class="px-6 py-3 bg-secondary bg-opacity-75 text-background text-xl border-2 rounded-full transition duration-300 font-semibold hover:text-text hover:bg-accent hover:bg-opacity-75">
+                {{ __('pages.home.culture_tour_jumbotron_button') }}</Link>
             </template>
         </BaseJumbotron>
 

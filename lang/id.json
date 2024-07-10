@@ -21,7 +21,10 @@
             "meta_description": "Jelajahi keindahan wisata Nusantara dengan panduan lengkap kami. Temukan destinasi wisata terbaik, nikmati pengalaman AR di tempat-tempat wisata, dan hitung jejak karbon perjalanan Anda. Nikmati liburan yang bertanggung jawab dan tak terlupakan di Indonesia.",
             "jumbotron_title": "Jelajahi Keindahan Nusantara",
             "jumbotron_description": "Temukan destinasi wisata terbaik, nikmati pengalaman AR di tempat-tempat wisata, dan hitung jejak karbon perjalanan Anda. Nikmati liburan yang bertanggung jawab dan tak terlupakan di Indonesia.",
-            "jumbotron_button": "Mulai Berwisata!"
+            "jumbotron_button": "Mulai Berwisata!",
+            "culture_tour_jumbotron_title": "Keajaiban Budaya Indonesia",
+            "culture_tour_jumbotron_description": "Jelajahi tradisi dan adat istiadat yang unik di berbagai daerah Indonesia. Temukan pesona kebudayaan yang memikat hati Anda.",
+            "culture_tour_jumbotron_button": "Jelajahi Budaya"
         }
     }
 }
