@@ -1,6 +1,6 @@
 <template>
     <div class="relative bg-cover bg-center h-screen" :style="{ 'background-image': `url(${props.image})` }">
-        <div class="absolute inset-0 bg-gray-900 opacity-50"></div>
+        <div :class="mergedBackgroundClass"></div>
         <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white">
             <h1 v-if="!$slots.title && props.title" class="text-5xl font-bold mb-4">{{ props.title }}</h1>
             <slot v-else name="title"></slot>
@@ -17,12 +17,15 @@
 
 <script setup>
 import { Link } from '@inertiajs/vue3'
-import { defineProps } from "vue";
+import { defineProps, computed } from "vue";
 const props = defineProps({
     title: { type: String, required: false },
     description: { type: String, required: false },
     link: { type: String, required: false },
     linkText: { type: String, required: false },
     image: { type: String, required: true },
+    backgroundClass: { type: String, default: 'bg-gray-900 opacity-50' },
 })
+
+const mergedBackgroundClass = computed(() => `absolute inset-0 ${props.backgroundClass}`)
 </script>

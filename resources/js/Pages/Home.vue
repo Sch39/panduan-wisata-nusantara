@@ -4,9 +4,9 @@
         <title>{{ __('pages.home.title') }}</title>
         <meta head-key="description" name="description" :content="__('pages.home.meta_description')" />
     </Head>
-    <BaseJumbotron image="/assets/images/volcano-with-mist-sunset.jpg" :title="__('pages.home.jumbotron_title')"
-        :description="__('pages.home.jumbotron_description')" :link="$useRoute('/dashboard')"
-        :link-text="__('pages.home.jumbotron_button').toUpperCase()" />
+    <BaseJumbotron background-class="bg-gray-900 bg-opacity-10" image="/assets/images/volcano-with-mist-sunset.jpg"
+        :title="__('pages.home.jumbotron_title')" :description="__('pages.home.jumbotron_description')"
+        :link="$useRoute('/dashboard')" :link-text="__('pages.home.jumbotron_button').toUpperCase()" />
 
     <div class="mx-5 mt-5">
         <h2
@@ -41,11 +41,29 @@
                 class="inline-block bg-accent text-navbar-link rounded-full px-6 py-2 mt-2 font-semibold tracking-widest text-lg leading-7 hover:bg-secondary">
                 VIEW ALL RECOMMENDED</BaseLink>
         </div>
+        <BaseJumbotron background-class="bg-accent bg-opacity-[0.08]" image="/assets/images/indonesian-culture.jpg"
+            class="mt-20 ">
+            <template #title>
+                <h2 class="text-3xl font-bold mb-4 text-center text-background">Wonders of Indonesian
+                    Culture</h2>
+            </template>
+            <template #description>
+                <p class="text-lg mb-8 max-w-xl text-center text-background">
+                    Explore the unique traditions and customs across different regions of Indonesia. Discover the
+                    enchanting charm of its cultural heritage.</p>
+            </template>
+            <template #link>
+                <Link href="/vie"
+                    class="px-6 py-3 bg-secondary text-background text-xl border-2 rounded-full transition duration-300 font-semibold hover:text-text hover:bg-accent hover:bg-opacity-75">
+                VIEW ALL</Link>
+            </template>
+        </BaseJumbotron>
+
     </div>
 </template>
 
 <script setup>
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import BaseJumbotron from './../Components/UI/BaseJumbotron.vue'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
 import DestinationCard from '../Components/Home/DestinationCard.vue'
