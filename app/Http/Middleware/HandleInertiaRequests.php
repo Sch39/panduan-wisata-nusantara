@@ -56,6 +56,7 @@ class HandleInertiaRequests extends Middleware
             'locales' => config('app.available_locales'),
             'translations' => File::exists($file) ? File::json($file) : [],
             'destinations' =>  $destinations->filter(fn ($item) => $item['language_code'] === App::currentLocale())->values(),
+            'grecaptcha_key' => config('captcha.sitekey'),
         ]);
     }
 }

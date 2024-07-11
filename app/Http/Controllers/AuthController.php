@@ -18,8 +18,12 @@ class AuthController extends Controller
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required']
+            'password' => ['required'],
+            'remember' => ['required', 'boolean'],
+            'g-recaptcha-response' => ['required', 'recaptcha'],
         ]);
+
+        dd($credentials);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();

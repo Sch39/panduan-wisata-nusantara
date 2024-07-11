@@ -3,6 +3,7 @@ import { createInertiaApp, usePage } from '@inertiajs/vue3'
 import DefaultLayout from './Layouts/default.vue'
 import translationPlugin from './Plugins/translationPlugin'
 import { useRoute } from './Composables/useRoute'
+import 'boxicons/css/boxicons.min.css';
 
 createInertiaApp({
     resolve: name => {

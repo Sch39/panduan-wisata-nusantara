@@ -40,13 +40,21 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import MenuButton from './MenuButton.vue'
 import Menu from './Menu.vue'
 import BaseLink from './BaseLink.vue'
 import LangDropdownUnderline from "./LangDropdownUnderline.vue";
 
 import Logo from './Logo.vue';
+import { useRecaptcha } from '../../Composables/useRecaptcha';
+
+import { usePage } from '@inertiajs/vue3'
+
+useRecaptcha(usePage().props.locale)
+watch(() => usePage().props.locale, (newLocale) => {
+    useRecaptcha(newLocale)
+})
 
 const menuOpen = ref(false)
 
@@ -82,5 +90,10 @@ onBeforeUnmount(() => {
 <style scoped>
 .header {
     @apply transition-transform duration-300 ease-in-out;
+}
+</style>
+<style>
+.grecaptcha-badge {
+    visibility: hidden !important;
 }
 </style>

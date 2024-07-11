@@ -19,6 +19,7 @@ export default defineConfig({
         }),
         vueDevTools({ appendTo: 'app.js' }),
     ],
+
     resolve: {
         alias: {
             '@': resolve(__dirname, 'resources/js')

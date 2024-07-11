@@ -198,7 +198,6 @@ return [
 
         // Addd by SCh39
         Spatie\Permission\PermissionServiceProvider::class,
-        Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
         // end add by SCh39
     ],
 
@@ -213,8 +212,6 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
-        'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
-    ])->toArray(),
+    'aliases' => Facade::defaultAliases()->merge([])->toArray(),
 
 ];

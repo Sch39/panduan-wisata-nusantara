@@ -16,7 +16,7 @@
                     <BasePopup>
                         <div class="py-1">
                             <MenuItem v-for="language in languages" :key="language.code">
-                            <Link :href="'/' + language.code"
+                            <Link :href="useRouteLangChange(language.code)"
                                 class="flex items-center px-4 py-2 text-sm text-text hover:bg-gray-100 transition duration-150 ease-in-ou">
                             <img :src="language.icon" alt="" class="w-4 h-4 mr-3">
                             {{ language.name }}
@@ -37,6 +37,9 @@ import { Link } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
 import { getLocale } from './../../Composables/useRoute'
 import BasePopup from './BasePopup.vue';
+import { useRouteLangChange } from '../../Composables/useRoute'
+
+
 const props = defineProps({
     class: {
         type: String,

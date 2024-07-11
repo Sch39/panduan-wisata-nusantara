@@ -10,7 +10,6 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
-    {!! NoCaptcha::renderJs(app()->currentLocale()) !!}
     @inertiaHead
 </head>
 
