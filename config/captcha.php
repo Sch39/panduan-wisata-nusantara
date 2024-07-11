@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'secret' => env('NOCAPTCHA_SECRET'),
-    'sitekey' => env('NOCAPTCHA_SITEKEY'),
+    'secret' => env('CAPTCHA_SECRET'),
+    'sitekey' => env('CAPTCHA_SITEKEY'),
 ];

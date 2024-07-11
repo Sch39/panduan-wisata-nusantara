@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Models\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
@@ -14,25 +17,30 @@ class AuthController extends Controller
         return Inertia::render('Auth/Login');
     }
 
-    public function authenticate(Request $request)
+    public function authenticate(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-            'remember' => ['required', 'boolean'],
-            'g-recaptcha-response' => ['required', 'recaptcha'],
-        ]);
+        $credentials = $request->only(['email', 'password']);
+        $remember = $request->boolean('remember');
 
-        dd($credentials);
-
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
+
+            // Simpan sesi ke database
+            $user = Auth::user();
+            Session::create([
+                'id' => $request->session()->getId(), // Pastikan ID sesi diambil dari session
+                'user_id' => $user->id,
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->header('User-Agent'),
+                'payload' => '', // Payload dapat diisi jika diperlukan
+                'last_activity' => now()->getTimestamp()
+            ]);
 
             return to_route('Dashboard');
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => __('auth.failed'),
         ]);
     }
 

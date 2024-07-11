@@ -39,7 +39,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $file = lang_path(App::currentLocale() . ".json");
+        $file = lang_path('Inertia/' . App::currentLocale() . ".json");
         $destinations = Cache::remember('destinations', 30, fn () => DestinationDetail::select('id', 'language_code', 'regency_id')
             ->with(['regency' => function ($query) {
                 $query->select('id', 'name', 'code', 'provinces_code')
@@ -49,7 +49,6 @@ class HandleInertiaRequests extends Middleware
             }])
             ->take(10)
             ->get());
-        // dd($destinations->filter(fn ($item) => $item['language_code'] === App::currentLocale())->values()->toJson());
         return array_merge(parent::share($request), [
             'csrf' => csrf_token(),
             'locale' => App::currentLocale(),
@@ -57,6 +56,7 @@ class HandleInertiaRequests extends Middleware
             'translations' => File::exists($file) ? File::json($file) : [],
             'destinations' =>  $destinations->filter(fn ($item) => $item['language_code'] === App::currentLocale())->values(),
             'grecaptcha_key' => config('captcha.sitekey'),
+            'auth' => $request->user(),
         ]);
     }
 }

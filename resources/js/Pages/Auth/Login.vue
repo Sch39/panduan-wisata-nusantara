@@ -96,7 +96,8 @@ const form = useForm({
 function submitFom() {
     grecaptcha.ready(function() {
         grecaptcha.execute(usePage().props.grecaptcha_key, { action: 'submit' }).then(function(token) {
-            form['g-recaptcha-response'] = token + 'uhuh'
+            form['g-recaptcha-response'] = token
+
             form.post(useRoute('/login'), {
                 onError(errors) {
                     if (errors['g-recaptcha-response']) {

@@ -26,12 +26,18 @@
         <Menu :open="menuOpen" @close="toggleMenu">
             <template #navBottom="{ selectedMenu }">
                 <div v-if="!selectedMenu" class="flex justify-between lg:!hidden items-center">
-                    <BaseLink :href="$useRoute('/login')"
+                    <BaseLink v-if="!$page.props.auth" :href="$useRoute('/login')"
                         class="items-center py-3 px-3 tracking-widest relative group hover:text-text">
                         {{ __('header.navbar.login').toUpperCase() }}
                         <span
                             class="absolute left-0 bottom-0 w-full h-[4px] bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
                     </BaseLink>
+                    <button @click="router.post($useRoute('/logout'))" v-else
+                        class="items-center py-3 px-3 tracking-widest relative group hover:text-text font-semibold">
+                        Log Out
+                        <span
+                            class="absolute left-0 bottom-0 w-full h-[4px] bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
+                    </button>
                     <LangDropdownUnderline />
                 </div>
             </template>
@@ -49,7 +55,7 @@ import LangDropdownUnderline from "./LangDropdownUnderline.vue";
 import Logo from './Logo.vue';
 import { useRecaptcha } from '../../Composables/useRecaptcha';
 
-import { usePage } from '@inertiajs/vue3'
+import { usePage, router } from '@inertiajs/vue3'
 
 useRecaptcha(usePage().props.locale)
 watch(() => usePage().props.locale, (newLocale) => {

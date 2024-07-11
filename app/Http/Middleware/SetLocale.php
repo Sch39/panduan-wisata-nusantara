@@ -18,9 +18,13 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (in_array($request->segment(1), config('app.available_locales')) && $request->segment(1) !== App::currentLocale()) Session::put('locale', $request->segment(1));
+        // if (in_array($request->segment(1), config('app.available_locales')) && $request->segment(1) !== App::currentLocale()) {
+        //     Session::remove('locale');
+        //     Session::put('locale', $request->segment(1));
+        // }
 
-        App::setLocale(Session::get('locale', App::currentLocale()));
+        // App::setLocale(Session::get('locale', App::currentLocale()));
+        App::setLocale(in_array($request->segment(1), config('app.available_locales')) ? $request->segment(1) : App::currentLocale());
 
         URL::defaults(['locale' => App::currentLocale()]);
 

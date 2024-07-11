@@ -11,7 +11,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, useHas;
+    use HasApiTokens, HasFactory, Notifiable;
     use HasRoles;
 
     /**
@@ -43,4 +43,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sessions()
+    {
+        return $this->hasMany(Session::class);
+    }
 }
