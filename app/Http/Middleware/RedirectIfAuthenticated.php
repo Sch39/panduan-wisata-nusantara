@@ -25,6 +25,11 @@ class RedirectIfAuthenticated
             }
         }
 
+        // Simpan URL asal sebelum login
+        if (!$request->session()->has('url.intended')) {
+            $request->session()->put('url.intended', url()->previous());
+        }
+
         return $next($request);
     }
 }

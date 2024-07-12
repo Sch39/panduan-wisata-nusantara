@@ -36,7 +36,13 @@ class AuthController extends Controller
                 'last_activity' => now()->getTimestamp()
             ]);
 
-            return to_route('Dashboard');
+            // return to_route('Dashboard');
+            // return to_route('Dashboard');
+            if (session('url.intended') == route('Home')) {
+                return redirect()->route('Dashboard');
+            }
+
+            return redirect()->intended('/');
         }
 
         return back()->withErrors([
