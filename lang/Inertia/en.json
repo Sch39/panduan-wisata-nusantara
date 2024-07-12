@@ -8,12 +8,16 @@
             "planning": "Planning",
             "travel_inspiration": "Travel Inspiration",
             "travel_styles": "Travel Styles",
-            "menu": "Menu"
+            "menu": "Menu",
+            "dashboard": "Dashboard",
+            "saved_destinations": "Saved Destinations",
+            "logout": "Logout"
         }
     },
     "footer": {
         "credit_asset": "Credit Asset",
-        "privacy_policy": "Privacy Policy"
+        "privacy_policy": "Privacy Policy",
+        "terms_of_service": "Terms of Service"
     },
     "pages": {
         "home": {
@@ -25,6 +29,19 @@
             "culture_tour_jumbotron_title": "Wonders of Indonesian Culture",
             "culture_tour_jumbotron_description": " Explore the unique traditions and customs across different regions of Indonesia. Discover the enchanting charm of its cultural heritage.",
             "culture_tour_jumbotron_button": "Explore Culture"
+        },
+        "login": {
+            "title": "Login Page",
+            "meta_description": "Log in to your account on Nusantara Travel Guide to access exclusive features and your personal travel plans. Explore the beauty of Nusantara with us!",
+            "login_title": "Login",
+            "login_description": "Log in below to access your account",
+            "remember_me": "Remember me",
+            "forgot_password": "Forgot Password",
+            "recaptcha_notice": "This site is protected by reCAPTCHA and the Google :privacy_policy and :terms_of_service apply.",
+            "login": "Login",
+            "login_google": "Continue with Google",
+            "create_account_notice": "No account? :create_account",
+            "create_account": "Create one"
         }
     }
 }

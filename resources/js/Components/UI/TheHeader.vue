@@ -4,12 +4,19 @@
         <nav class="mx-auto flex max-w-7xl items-center justify-between px-2 pb-1 lg:px-1" aria-label="Global">
             <Logo />
             <div class="flex flex-1 h-12 justify-end gap-x-1">
-                <BaseLink :href="$useRoute('/login')"
+                <BaseLink v-if="!$page.props.auth" :href="$useRoute('/login')"
                     class="hidden lg:flex items-center py-3 px-3 tracking-widest relative group hover:text-text">
                     {{ __('header.navbar.login').toUpperCase() }}
                     <span
                         class="absolute left-0 bottom-0 w-full h-[4px] bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
                 </BaseLink>
+
+                <UserDropdown class="hidden lg:flex items-center py-3 px-3" position="right" v-else
+                    :user="{ name: $page.props.auth.name }" :dashboardLink="$useRoute('/dashboard')"
+                    :savedDestinationsLink="$useRoute('/saved-destinations')" :logoutLink="$useRoute('/logout')"
+                    :dashboardText="__('header.navbar.dashboard')"
+                    :savedDestinationsText="__('header.navbar.saved_destinations')"
+                    :logoutText="__('header.navbar.logout')" />
                 <LangDropdownUnderline class="hidden lg:!flex" />
 
                 <BaseLink :href="$useRoute('/newsletter')"
@@ -32,12 +39,12 @@
                         <span
                             class="absolute left-0 bottom-0 w-full h-[4px] bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
                     </BaseLink>
-                    <button @click="router.post($useRoute('/logout'))" v-else
-                        class="items-center py-3 px-3 tracking-widest relative group hover:text-text font-semibold">
-                        Log Out
-                        <span
-                            class="absolute left-0 bottom-0 w-full h-[4px] bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out origin-left"></span>
-                    </button>
+                    <UserDropdown v-else :user="{ name: $page.props.auth.name }"
+                        :dashboardLink="$useRoute('/dashboard')"
+                        :savedDestinationsLink="$useRoute('/saved-destinations')" :logoutLink="$useRoute('/logout')"
+                        :dashboardText="__('header.navbar.dashboard')"
+                        :savedDestinationsText="__('header.navbar.saved_destinations')"
+                        :logoutText="__('header.navbar.logout')" />
                     <LangDropdownUnderline />
                 </div>
             </template>
@@ -51,6 +58,7 @@ import MenuButton from './MenuButton.vue'
 import Menu from './Menu.vue'
 import BaseLink from './BaseLink.vue'
 import LangDropdownUnderline from "./LangDropdownUnderline.vue";
+import UserDropdown from './UserDropdown.vue';
 
 import Logo from './Logo.vue';
 import { useRecaptcha } from '../../Composables/useRecaptcha';

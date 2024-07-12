@@ -8,12 +8,16 @@
             "planning": "Rencana",
             "travel_inspiration": "Inspirasi Perjalanan",
             "travel_styles": "Jenis Perjalanan",
-            "menu": "Menu"
+            "menu": "Menu",
+            "dashboard": "Dashboard",
+            "saved_destinations": "Destinasi Tersimpan",
+            "logout": "Keluar"
         }
     },
     "footer": {
         "credit_asset": "Kredit Asset",
-        "privacy_policy": "Kebijakan Pribadi"
+        "privacy_policy": "Kebijakan Privasi",
+        "terms_of_service": "Ketentuan Layanan"
     },
     "pages": {
         "home": {
@@ -25,6 +29,19 @@
             "culture_tour_jumbotron_title": "Keajaiban Budaya Indonesia",
             "culture_tour_jumbotron_description": "Jelajahi tradisi dan adat istiadat yang unik di berbagai daerah Indonesia. Temukan pesona kebudayaan yang memikat hati Anda.",
             "culture_tour_jumbotron_button": "Jelajahi Budaya"
+        },
+        "login": {
+            "title": "Halaman Login",
+            "meta_description": "Masuk ke akun Anda di Panduan Wisata Nusantara untuk mengakses fitur eksklusif dan rencana perjalanan pribadi Anda. Jelajahi keindahan Nusantara bersama kami!",
+            "login_title": "Login",
+            "login_description": "Silahkan masuk ke akun anda",
+            "remember_me": "Ingat saya",
+            "forgot_password": "Lupa Password",
+            "recaptcha_notice": "Situs ini dilindungi oleh reCAPTCHA dan :privacy_policy serta :terms_of_service Google berlaku.",
+            "login": "Masuk",
+            "login_google": "Lanjutkan dengan Google",
+            "create_account_notice": "Belum punya akun? :create_account",
+            "create_account": "Buat akun"
         }
     }
 }

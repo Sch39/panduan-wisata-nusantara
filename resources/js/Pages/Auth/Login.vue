@@ -1,7 +1,7 @@
 <template>
 
     <Head>
-        <title>Login page</title>
+        <title>{{ __('pages.login.title') }}</title>
         <meta head-key="description" name="description" :content="__('pages.home.meta_description')" />
     </Head>
 
@@ -12,8 +12,10 @@
         @submit.prevent="submitFom">
         <div class="flex w-[30rem] flex-col space-y-10">
             <div>
-                <h2 class="text-center text-4xl font-semibold font-serif mb-5">Log In</h2>
-                <p class="text-center text-xl font-serif ">Log in below to access your account</p>
+                <h2 class="text-center text-4xl font-semibold font-serif mb-5">{{
+            __('pages.login.login_title').toUpperCase()
+        }}</h2>
+                <p class="text-center text-xl font-serif ">{{ __('pages.login.login_description') }}</p>
             </div>
 
             <div>
@@ -40,27 +42,37 @@
                     <input id="remember_me" name="remember" type="checkbox" value="1"
                         class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
                         v-model="form.remember">
-                    <label for="remember_me" class="ml-2 block text-sm leading-5 text-text">Remember me</label>
+                    <label for="remember_me" class="ml-2 block text-sm leading-5 text-text">{{
+            __('pages.login.remember_me') }}</label>
                 </div>
 
                 <div class="text-sm leading-5">
                     <Link :href="$useRoute('/forgot-password')"
                         class="transform text-center font-semibold text-text duration-300 hover:underline-offset-2 hover:underline">
-                    Forgot Password?</Link>
+                    {{ __('pages.login.forgot_password') }}</Link>
                 </div>
             </div>
             <div class="text-text">
-                <span>This site is protected by reCAPTCHA and the Google </span>
-                <a class="text-indigo-500 underline-offset-4 hover:underline" href="https://policies.google.com/privacy"
-                    target="_blank">Privacy Policy</a> and
-                <a class="text-indigo-500 underline-offset-4 hover:underline" href="https://policies.google.com/terms"
-                    target="_blank">Terms of Service</a> apply.
+
+                <TranslateWithLinks tKey="pages.login.recaptcha_notice" :replaces="{
+            privacy_policy: { text: __('footer.privacy_policy'), href: 'https://policies.google.com/privacy' },
+            terms_of_service: { text: __('footer.terms_of_service'), href: 'https://policies.google.com/terms' },
+        }
+            ">
+                    <template #text="{ value }">
+                        <span>{{ value }}</span>
+                    </template>
+                    <template #link="{ href, value }">
+                        <a target="_blank" class="text-indigo-500 underline-offset-4 hover:underline" :href="href">{{
+            value }}</a>
+                    </template>
+                </TranslateWithLinks>
             </div>
 
             <div class="flex justify-center">
                 <button type="submit" :disabled="form.processing"
-                    class="transform bg-primary py-2 font-bold duration-300 text-background rounded-full px-8 text-lg hover:bg-accent hover:bg-opacity-50 hover:text-navbar-link">LOG
-                    IN
+                    class="transform bg-primary py-2 font-bold duration-300 text-background rounded-full px-8 text-lg hover:bg-accent hover:bg-opacity-50 hover:text-navbar-link">{{
+            __('pages.login.login').toUpperCase() }}
                     <i v-if="form.processing" class='bx bx-loader-alt bx-spin'></i>
                 </button>
             </div>
@@ -70,14 +82,21 @@
                 <button
                     class="flex items-center bg-white border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                     <img class="w-5 h-5 mr-2" src="/assets/icons/social-media/google.svg" alt="">
-                    <span>Continue with Google</span>
+                    <span>{{ __('pages.login.login_google') }}</span>
                 </button>
             </div>
 
             <p class="text-center text-lg">
-                No account?
-                <Link :href="$useRoute('/register')"
-                    class="font-medium text-indigo-500 underline-offset-4 hover:underline">Create One</Link>
+                <TranslateWithLinks tKey="pages.login.create_account_notice" :replaces="{
+            create_account: { text: __('pages.login.create_account'), href: $useRoute('/register') }
+        }">
+                    <template #text="{ value }">
+                        <span>{{ value }}</span>
+                    </template>
+                    <template #link="{ href, value}">
+                        <Link class="text-indigo-500 underline-offset-4 hover:underline" :href="href">{{ value }}</Link>
+                    </template>
+                </TranslateWithLinks>
             </p>
         </div>
     </form>
@@ -86,6 +105,9 @@
 <script setup>
 import { Head, Link, usePage, useForm } from '@inertiajs/vue3'
 import { useRoute } from '../../Composables/useRoute'
+import { ref, onMounted } from 'vue'
+import TranslateWithLinks from './../../Components/UI/TranslateWithLink.vue'
+
 const form = useForm({
     email: null,
     password: null,
@@ -108,4 +130,5 @@ function submitFom() {
         });
     });
 }
+
 </script>
