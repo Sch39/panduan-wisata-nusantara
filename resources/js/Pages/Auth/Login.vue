@@ -20,7 +20,7 @@
 
             <div>
                 <div class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-accent">
-                    <Field name="email" rules="email|required" type="text" placeholder="Email"
+                    <Field name="email" rules="email|required" type="text" :placeholder="__('utils.email_placeholder')"
                         class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
                         v-model="form.email" />
                 </div>
@@ -31,7 +31,7 @@
             <div>
                 <div class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-accent">
                     <Field name="password" rules="required" :type="showPassword ? 'text' : 'password'"
-                        placeholder="Password"
+                        :placeholder="__('utils.password_placeholder')"
                         class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
                         v-model="form.password" />
 
@@ -62,9 +62,9 @@
             </div>
             <div class="text-text">
 
-                <TranslateWithLinks tKey="pages.login.recaptcha_notice" :replaces="{
-            privacy_policy: { text: __('footer.privacy_policy'), href: 'https://policies.google.com/privacy' },
-            terms_of_service: { text: __('footer.terms_of_service'), href: 'https://policies.google.com/terms' },
+                <TranslateWithLinks tKey="utils.recaptcha_notice" :replaces="{
+            privacy_policy: { text: __('utils.privacy_policy'), href: 'https://policies.google.com/privacy' },
+            terms_of_service: { text: __('utils.terms_of_service'), href: 'https://policies.google.com/terms' },
         }
             ">
                     <template #text="{ value }">

@@ -5,7 +5,7 @@
                     Nusantara</a>. All Rights Reserved.</span>
             <ul class="flex flex-wrap justify-center items-center mt-3 text-sm font-medium text-gray-500 md:mt-0">
                 <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">{{ __("footer.privacy_policy") }}</a>
+                    <a href="#" class="hover:underline me-4 md:me-6">{{ __("utils.privacy_policy") }}</a>
                 </li>
                 <li>
                     <a target="_blank" :href="$useRoute('/assets-credit')" class="hover:underline me-4 md:me-6">{{

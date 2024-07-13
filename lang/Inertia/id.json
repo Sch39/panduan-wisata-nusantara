@@ -15,9 +15,15 @@
         }
     },
     "footer": {
-        "credit_asset": "Kredit Asset",
+        "credit_asset": "Kredit Asset"
+    },
+    "utils": {
+        "recaptcha_notice": "Situs ini dilindungi oleh reCAPTCHA dan :privacy_policy serta :terms_of_service Google berlaku.",
         "privacy_policy": "Kebijakan Privasi",
-        "terms_of_service": "Ketentuan Layanan"
+        "terms_of_service": "Ketentuan Layanan",
+        "name_placeholder": "Nama",
+        "email_placeholder": "Email",
+        "password_placeholder": "Kata Sandi"
     },
     "pages": {
         "home": {
@@ -37,7 +43,6 @@
             "login_description": "Silahkan masuk ke akun anda",
             "remember_me": "Ingat saya",
             "forgot_password": "Lupa Password",
-            "recaptcha_notice": "Situs ini dilindungi oleh reCAPTCHA dan :privacy_policy serta :terms_of_service Google berlaku.",
             "login": "Masuk",
             "login_google": "Lanjutkan dengan Google",
             "create_account_notice": "Belum punya akun? :create_account",
