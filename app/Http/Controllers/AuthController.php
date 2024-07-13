@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -64,13 +65,10 @@ class AuthController extends Controller
         return Inertia::render('Auth/Register');
     }
 
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255', 'min:4'],
-            'email' => ['required', 'string', 'email', 'max:255', 'min:5', 'unique:users,email'],
-            'password' => ['required', 'strng', 'confirmed', Password::default()]
-        ]);
+        $credentials = $request->only(['email', 'password']);
+        dd($credentials);
     }
 
     public function showForgotPasswordForm()

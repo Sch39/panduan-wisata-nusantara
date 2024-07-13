@@ -103,13 +103,13 @@ return [
     'url'                  => 'Format isian :attribute tidak valid.',
 
     // added by sch39
-'password'=>[
-    'letters' => 'Isian :attribute harus mengandung setidaknya satu huruf.',
-    'mixed' => 'Isian :attribute harus mengandung setidaknya satu huruf besar dan satu huruf kecil.',
-    'numbers' => 'Isian :attribute harus mengandung setidaknya satu angka.',
-    'symbols' => 'Isian password harus mengandung setidaknya satu simbol.',
-    'uncompromised' => ':attribute yang diberikan telah muncul dalam kebocoran data. Silakan pilih :attribute yang berbeda.',
-]
+    'password' => [
+        'letters' => 'Isian :attribute harus mengandung setidaknya satu huruf.',
+        'mixed' => 'Isian :attribute harus mengandung setidaknya satu huruf besar dan satu huruf kecil.',
+        'numbers' => 'Isian :attribute harus mengandung setidaknya satu angka.',
+        'symbols' => 'Isian password harus mengandung setidaknya satu simbol.',
+        'uncompromised' => ':attribute yang diberikan telah muncul dalam kebocoran data. Silakan pilih :attribute yang berbeda.',
+    ],
     //end added
 
     /*
@@ -162,5 +162,7 @@ return [
         'title' => 'Judul',
         'content' => 'Konten',
         'body' => 'Isi',
+        "terms_of_service_and_privacy_policy" => "Ketentuan Layanan dan Kebijakan Privasi"
+
     ],
 ];

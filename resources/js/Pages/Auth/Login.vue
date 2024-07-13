@@ -10,7 +10,7 @@
 
     <Form class="mx-auto flex min-h-screen w-full items-center justify-center bg-white text-text pt-10"
         @submit="submitFom">
-        <div class="flex w-[30rem] flex-col space-y-10">
+        <div class="flex mx-5 sm:w-[35rem] flex-col space-y-10">
             <div>
                 <h2 class="text-center text-4xl font-semibold font-serif mb-5">{{
             __('pages.login.login_title').toUpperCase()
@@ -124,9 +124,9 @@ const showPassword = ref(false)
 
 useVeeValidateI18n()
 
-watch(() => usePage().props.locale, (newLocale) => {
-    setLocale(newLocale)
-})
+// watch(() => usePage().props.locale, (newLocale) => {
+//     setLocale(newLocale)
+// })
 
 const form = useForm({
     email: null,

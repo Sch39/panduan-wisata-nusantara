@@ -33,7 +33,8 @@
             "mixed": "The {field} field must contain at least one uppercase and one lowercase letter.",
             "numbers": "The {field} field must contain at least one number.",
             "symbols": "The {field} field must contain at least one symbol."
-        }
+        },
+        "accepted": "The {field} field must be accepted."
     },
     "fields": {
         "email": "Email",
@@ -41,6 +42,7 @@
         "name": "Name",
         "password_confirmation": "Password Confirmation",
         "current_password": "Current Password",
-        "new_password": "New Password"
+        "new_password": "New Password",
+        "terms_of_service_and_privacy_policy": "Terms of Service and Privacy Policy"
     }
 }

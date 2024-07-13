@@ -18,7 +18,10 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->group(function ()
         // Start Auth
         Route::get('/login', [AuthController::class, 'login'])->name('Auth.Login');
         Route::post('/login', [AuthController::class, 'authenticate'])->name('Auth.authenticate');
+
         Route::get('/register', [AuthController::class, 'register'])->name('Auth.register');
+        Route::post('/register', [AuthController::class, 'store'])->name('Auth.store');
+
         Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('Auth.password.request');
         Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('Auth.password.email');
         // End Auth

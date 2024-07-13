@@ -23,7 +23,9 @@
         "terms_of_service": "Terms of Service",
         "name_placeholder": "Name",
         "email_placeholder": "Email",
-        "password_placeholder": "Name"
+        "password_placeholder": "Password",
+        "password_confirmation_placeholder": "Password Confirmation",
+        "terms_notice": "I agree to the :terms_of_service and :privacy_policy"
     },
     "pages": {
         "home": {
@@ -47,6 +49,14 @@
             "login_google": "Continue with Google",
             "create_account_notice": "No account? :create_account",
             "create_account": "Create one"
+        },
+        "register": {
+            "title": "Register Page",
+            "meta_description": "Register now on the Nusantara travel guide website to get the latest information on the best tourist destinations in Indonesia, travel tips, and exclusive offers. Join our community of travelers and discover the beauty of Nusantara.",
+            "register_title": "Register",
+            "register_description": "Please register by filling out the form below",
+            "register": "Register",
+            "login_notice": "Already have account? :login"
         }
     }
 }

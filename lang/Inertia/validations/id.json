@@ -31,7 +31,8 @@
             "mixed": "Isian {field} harus mengandung setidaknya satu huruf besar dan satu huruf kecil.",
             "numbers": "Isian {field} harus mengandung setidaknya satu angka.",
             "symbols": "Isian {field} harus mengandung setidaknya satu simbol."
-        }
+        },
+        "accepted": "Isian {field} harus disetujui."
     },
     "fields": {
         "email": "Email",
@@ -39,6 +40,7 @@
         "name": "Nama",
         "password_confirmation": "Konfirmasi Kata Sandi",
         "current_password": "Kata Sandi Saat Ini",
-        "new_password": "Kata Sandi Baru"
+        "new_password": "Kata Sandi Baru",
+        "terms_of_service_and_privacy_policy": "Ketentuan Layanan dan Kebijakan Privasi"
     }
 }

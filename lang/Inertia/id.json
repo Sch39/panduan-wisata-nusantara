@@ -23,7 +23,9 @@
         "terms_of_service": "Ketentuan Layanan",
         "name_placeholder": "Nama",
         "email_placeholder": "Email",
-        "password_placeholder": "Kata Sandi"
+        "password_placeholder": "Kata Sandi",
+        "password_confirmation_placeholder": "Konfirmasi Kata Sandi",
+        "terms_notice": "Saya setuju dengan :terms_of_service dan :privacy_policy"
     },
     "pages": {
         "home": {
@@ -47,6 +49,14 @@
             "login_google": "Lanjutkan dengan Google",
             "create_account_notice": "Belum punya akun? :create_account",
             "create_account": "Buat akun"
+        },
+        "register": {
+            "title": "Halaman Registrasi",
+            "meta_description": "Daftar sekarang di situs web panduan wisata Nusantara untuk mendapatkan informasi terbaru tentang destinasi wisata terbaik di Indonesia dan tips perjalanan. Bergabunglah dengan komunitas wisatawan kami dan temukan keindahan Nusantara.",
+            "register_title": "Registrasi",
+            "register_description": "Silahkan registrasi dengan mengisi form dibawah",
+            "register": "Registrasi",
+            "login_notice": "Sudah punya akun? :login"
         }
     }
 }

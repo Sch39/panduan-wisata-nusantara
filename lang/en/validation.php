@@ -198,6 +198,7 @@ return [
         'title' => 'Title',
         'content' => 'Content',
         'body' => 'Body',
+        "terms_of_service_and_privacy_policy" => "Terms of Service and Privacy Policy"
     ],
 
 ];
