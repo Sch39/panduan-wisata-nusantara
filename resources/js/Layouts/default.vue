@@ -11,3 +11,10 @@ import TheFooter from '../Components/UI/TheFooter.vue'
     </main>
     <TheFooter />
 </template>
+
+<style>
+input::-ms-reveal,
+input::-ms-clear {
+    display: none;
+}
+</style>

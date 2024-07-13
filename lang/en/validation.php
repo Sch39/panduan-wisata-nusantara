@@ -178,7 +178,7 @@ return [
 
     'attributes' => [
         'name' => 'Name',
-        'email' => 'Email Address',
+        'email' => 'Email',
         'password' => 'Password',
         'password_confirmation' => 'Password Confirmation',
         'current_password' => 'Current Password',

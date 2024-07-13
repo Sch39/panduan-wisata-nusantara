@@ -8,8 +8,8 @@
     <img src="/assets/images/group-happy-friends-raised-hands-background-city.jpg" alt="Login Banner"
         class="w-full h-48 object-cover">
 
-    <form class="mx-auto flex min-h-screen w-full items-center justify-center bg-white text-text pt-10"
-        @submit.prevent="submitFom">
+    <Form class="mx-auto flex min-h-screen w-full items-center justify-center bg-white text-text pt-10"
+        @submit="submitFom">
         <div class="flex w-[30rem] flex-col space-y-10">
             <div>
                 <h2 class="text-center text-4xl font-semibold font-serif mb-5">{{
@@ -20,21 +20,29 @@
 
             <div>
                 <div class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-accent">
-                    <input type="text" placeholder="Email"
+                    <Field name="email" rules="email|required" type="text" placeholder="Email"
                         class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
                         v-model="form.email" />
                 </div>
                 <p class="text-red-500" v-if="form.errors.email">{{ form.errors.email }}</p>
+                <ErrorMessage v-else class="text-red-500" name="email" />
             </div>
 
             <div>
                 <div class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-accent">
-                    <input type="password" placeholder="Password"
+                    <Field name="password" rules="required" :type="showPassword ? 'text' : 'password'"
+                        placeholder="Password"
                         class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
                         v-model="form.password" />
+
+                    <button type="button" @click="toggleShowPassword"
+                        class="absolute right-0 top-0 mt-2 mr-2 focus:outline-none">
+                        <component :is="showPassword? EyeIcon: EyeSlashIcon" class="w-5 h-5"></component>
+                    </button>
                 </div>
 
                 <p class="text-red-500" v-if="form.errors.email">{{ form.errors.password }}</p>
+                <ErrorMessage v-else class="text-red-500" name="password" />
             </div>
 
             <div class="mt-6 flex items-center justify-between">
@@ -78,13 +86,13 @@
             </div>
 
 
-            <div class="w-full flex justify-center">
+            <!-- <div class="w-full flex justify-center">
                 <button
                     class="flex items-center bg-white border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                     <img class="w-5 h-5 mr-2" src="/assets/icons/social-media/google.svg" alt="">
                     <span>{{ __('pages.login.login_google') }}</span>
                 </button>
-            </div>
+            </div> -->
 
             <p class="text-center text-lg">
                 <TranslateWithLinks tKey="pages.login.create_account_notice" :replaces="{
@@ -105,8 +113,20 @@
 <script setup>
 import { Head, Link, usePage, useForm } from '@inertiajs/vue3'
 import { useRoute } from '../../Composables/useRoute'
-import { ref, onMounted } from 'vue'
+import { ref, watch } from 'vue'
 import TranslateWithLinks from './../../Components/UI/TranslateWithLink.vue'
+import { useVeeValidateI18n } from '../../Composables/useVeeValidateI18n'
+import { Form, Field, ErrorMessage } from 'vee-validate'
+import { setLocale } from "@vee-validate/i18n";
+import { EyeIcon, EyeSlashIcon } from '@heroicons/vue/20/solid'
+
+const showPassword = ref(false)
+
+useVeeValidateI18n()
+
+watch(() => usePage().props.locale, (newLocale) => {
+    setLocale(newLocale)
+})
 
 const form = useForm({
     email: null,
@@ -129,6 +149,10 @@ function submitFom() {
             });
         });
     });
+}
+
+function toggleShowPassword() {
+    showPassword.value = !showPassword.value
 }
 
 </script>

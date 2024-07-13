@@ -27,7 +27,7 @@ return [
     'digits_between'       => 'Isian :attribute harus antara angka :min dan :max.',
     'dimensions'           => 'Bidang :attribute tidak memiliki dimensi gambar yang valid.',
     'distinct'             => 'Bidang isian :attribute memiliki nilai yang duplikat.',
-    'email'                => 'Isian :attribute harus berupa alamat surel yang valid.',
+    'email'                => 'Isian :attribute harus berupa alamat surel yang benar.',
     'exists'               => 'Isian :attribute yang dipilih tidak valid.',
     'file'                 => 'Bidang :attribute harus berupa sebuah berkas.',
     'filled'               => 'Isian :attribute harus memiliki nilai.',
@@ -102,6 +102,16 @@ return [
     'uploaded'             => 'Isian :attribute gagal diunggah.',
     'url'                  => 'Format isian :attribute tidak valid.',
 
+    // added by sch39
+'password'=>[
+    'letters' => 'Isian :attribute harus mengandung setidaknya satu huruf.',
+    'mixed' => 'Isian :attribute harus mengandung setidaknya satu huruf besar dan satu huruf kecil.',
+    'numbers' => 'Isian :attribute harus mengandung setidaknya satu angka.',
+    'symbols' => 'Isian password harus mengandung setidaknya satu simbol.',
+    'uncompromised' => ':attribute yang diberikan telah muncul dalam kebocoran data. Silakan pilih :attribute yang berbeda.',
+]
+    //end added
+
     /*
     |---------------------------------------------------------------------------------------
     | Baris Bahasa untuk Validasi Kustom
@@ -132,7 +142,7 @@ return [
 
     'attributes' => [
         'name' => 'Nama',
-        'email' => 'Alamat Email',
+        'email' => 'Email',
         'password' => 'Kata Sandi',
         'password_confirmation' => 'Konfirmasi Kata Sandi',
         'current_password' => 'Kata Sandi Saat Ini',
