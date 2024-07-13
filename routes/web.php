@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -8,7 +10,6 @@ use Inertia\Inertia;
 Route::get('/', fn () => redirect()->route('Home', ['locale' => App::currentLocale()]));
 
 Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->group(function () {
-    Route::get('', fn () => redirect()->route(Route::getRoutes()->match(Request::create(URL::previous()))->getName()) ?? 'Home');
 
     Route::get('/', function () {
         return Inertia::render('Home');
@@ -30,7 +31,7 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->group(function ()
     Route::get('/assets-credit', fn () => Inertia::render('AssetsCredit'))->name('assets-credit');
 
 
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/dashboard', function () {
             return Inertia::render('dashboard/index');
         })->name('Dashboard');
@@ -38,3 +39,17 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->group(function ()
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     });
 });
+
+Route::get('email/confirmation', fn () => Inertia::render('Auth/VerifyEmail', ['userEmail' => 'sukron@sch39.dev']))->middleware(['auth', 'ensure.email.not.verified'])->name('verification.notice');
+
+Route::get('/email/confirmation/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return to_route('Dashboard');
+})->middleware(['auth', 'ensure.email.not.verified', 'signed'])->name('verification.verify');
+
+Route::post('email/confirmation-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('status', 'success');
+})->middleware(['auth', 'ensure.email.not.verified', 'throttle:1,1'])->name('verification.send');

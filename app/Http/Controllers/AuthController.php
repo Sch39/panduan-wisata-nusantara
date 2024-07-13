@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RolesEnum;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Session;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
 
@@ -67,8 +70,15 @@ class AuthController extends Controller
 
     public function store(RegisterRequest $request)
     {
-        $credentials = $request->only(['email', 'password']);
-        dd($credentials);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ])->assignRole(RolesEnum::USER->value);
+
+        Auth::login($user);
+
+        return to_route('verification.notice');
     }
 
     public function showForgotPasswordForm()
