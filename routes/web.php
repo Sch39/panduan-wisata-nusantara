@@ -55,3 +55,10 @@ Route::post('email/confirmation-notification', function (Request $request) {
 
     return back()->with('status', 'success');
 })->middleware(['auth', 'ensure.email.not.verified', 'throttle:2,1'])->name('verification.send');
+
+
+Route::fallback(function () {
+    return Inertia::render('Error/404', [
+        'home' => route('Home'),
+    ]);
+});

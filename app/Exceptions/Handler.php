@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Inertia\Inertia;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -44,5 +45,40 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    protected $errorMessages = [
+        400 => 'Bad Request',
+        401 => 'Unauthorized',
+        403 => 'Forbidden',
+        404 => 'Not Found',
+        405 => 'Method Not Allowed',
+        408 => 'Request Timeout',
+        422 => 'Unprocessable Entity',
+        429 => 'Too Many Requests',
+        500 => 'Internal Server Error',
+        502 => 'Bad Gateway',
+        503 => 'Service Unavailable',
+        504 => 'Gateway Timeout',
+    ];
+
+    public function render($request, Throwable $exception)
+    {
+        $response = parent::render($request, $exception);
+
+        $statusCode = $response->getStatusCode();
+        $message = $exception->getMessage();
+
+        if (!array_key_exists($statusCode, $this->errorMessages)) {
+            $message = $this->errorMessages[$statusCode];
+        }
+
+        if (!$request->isMethod('GET')) {
+            return back()
+                ->setStatusCode($statusCode)
+                ->with('error', $message);
+        }
+
+        return parent::render($request, $exception);
     }
 }

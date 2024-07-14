@@ -9,8 +9,11 @@
                     Please
                     check your inbox and click on the verification link.
                 </p>
-                <p v-if="isButtonDisabled" class="mt-2 text-sm text-green-600">
+                <p v-if="isEmailSended" class="mt-2 text-sm text-green-600">
                     Verification email has been resent.
+                </p>
+                <p v-if="isEmailSendError" class="mt-2 text-sm text-red-600">
+                    Get error when send email, please try again.
                 </p>
             </div>
             <div>
@@ -19,7 +22,7 @@
                     class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     Resend Email
                 </button>
-                <p v-if="isButtonDisabled" class="mt-2 text-sm text-gray-600 text-center text-red-600">
+                <p v-if="isEmailSended" class="mt-2 text-sm text-gray-600 text-center text-red-600">
                     Please wait {{ formattedTime }} before resending the email.
                 </p>
             </div>
@@ -34,18 +37,32 @@ import { useForm } from '@inertiajs/vue3'
 
 const props = defineProps({ userEmail: { type: String, required: true } });
 
-const isButtonDisabled = ref(false)
+const isButtonDisabled = ref(false),
+    isEmailSended = ref(false),
+    isEmailSendError = ref(false)
 const remainingTime = ref(0)
 const form = useForm({})
 
 
 const resendEmail = async () => {
     try {
-        form.post('/email/confirmation-notification')
-        // console.log(form.recentlySuccessful);
         isButtonDisabled.value = true
-        remainingTime.value = 60
-        startTimer()
+        form.post('/email/confirmation-notification', {
+            onSuccess(page) {
+                isEmailSended.value = true
+                remainingTime.value = 60
+                startTimer()
+            },
+            onError(error) {
+                isEmailSendError.value = true
+                setTimeout(() => {
+                    isEmailSendError.value = false
+                    isButtonDisabled.value = false
+                }, 1000);
+            },
+
+        })
+
     } catch (error) {
         console.error('Error resending email:', error)
     }
@@ -57,6 +74,7 @@ const startTimer = () => {
         if (remainingTime.value <= 0) {
             clearInterval(interval)
             isButtonDisabled.value = false
+            isEmailSended.value = false
         }
     }, 1000)
 }
