@@ -57,6 +57,13 @@
             "register_description": "Please register by filling out the form below",
             "register": "Register",
             "login_notice": "Already have account? :login"
+        },
+        "email_confirmation": {
+            "title": "Email Confirmation",
+            "content_title": "Verify your email address",
+            "content_description": "We have sent an email to :email. Please check your inbox and click on the verification link.",
+            "resend_email": "Resend Email",
+            "waiting_message": "Please wait :time s before resending the email."
         }
     }
 }

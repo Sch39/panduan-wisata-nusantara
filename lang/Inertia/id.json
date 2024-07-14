@@ -57,6 +57,13 @@
             "register_description": "Silahkan registrasi dengan mengisi form dibawah",
             "register": "Registrasi",
             "login_notice": "Sudah punya akun? :login"
+        },
+        "email_confirmation": {
+            "title": "Konfirmasi Email",
+            "content_title": "Konfirmasi alamat email mu",
+            "content_description": "Kami telah mengirim email ke :email. Tolong cek kotak masuk email anda dan klik link verifikasi.",
+            "resend_email": "Kirim Ulang Email",
+            "waiting_message": "Silahkan tunggu :time detik sebelum mengirim ulang email."
         }
     }
 }

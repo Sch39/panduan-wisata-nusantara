@@ -69,14 +69,15 @@ class Handler extends ExceptionHandler
         $response = parent::render($request, $exception);
 
         $statusCode = $response->getStatusCode();
+        $locale = $request->input('locale', App::currentLocale());
 
         $status = $this->isHttpException($exception) ? $response->getStatusCode() : 500;
 
         if (!$request->isMethod('GET')) {
             return back()
                 ->withErrors([
-                    'errorMessage' => $this->getErrorMessage($status),
-                    'locale' => App::currentLocale(),
+                    'errorMessage' => $this->getErrorMessage($status, $locale),
+                    'locale' => $locale,
                     'errorCode' => $statusCode,
                 ]);
         }
@@ -84,8 +85,8 @@ class Handler extends ExceptionHandler
         return parent::render($request, $exception);
     }
 
-    protected function getErrorMessage($status)
+    protected function getErrorMessage($status, $locale)
     {
-        return Lang::get("http.{$status}", [], App::currentLocale());
+        return Lang::get("http.{$status}", [], $locale);
     }
 }
