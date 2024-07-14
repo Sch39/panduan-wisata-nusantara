@@ -7,6 +7,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Session;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -77,6 +78,7 @@ class AuthController extends Controller
         ])->assignRole(RolesEnum::USER->value);
 
         Auth::login($user);
+        event(new Registered($user));
 
         return to_route('verification.notice');
     }

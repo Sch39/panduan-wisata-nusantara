@@ -78,7 +78,9 @@
             </div>
 
             <div class="flex justify-center">
-                <button type="submit" :disabled="form.processing"
+                <button type="submit"
+                    :class="{ '!bg-accent !text-navbar-link opacity-75 cursor-not-allowed': form.processing }"
+                    :disabled="form.processing"
                     class="transform bg-primary py-2 font-bold duration-300 text-background rounded-full px-8 text-lg hover:bg-accent hover:bg-opacity-50 hover:text-navbar-link">{{
             __('pages.login.login').toUpperCase() }}
                     <i v-if="form.processing" class='bx bx-loader-alt bx-spin'></i>
@@ -145,7 +147,9 @@ function submitFom() {
                     if (errors['g-recaptcha-response']) {
                         alert(errors['g-recaptcha-response'])
                     }
-                }
+                },
+                preserveScroll: true,
+
             });
         });
     });

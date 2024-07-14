@@ -39,7 +39,7 @@
 
             <div>
                 <div class="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-accent">
-                    <Field v-model="form.password" rules="required|password" name="password"
+                    <Field v-model="form.password" rules="required|password|min:8" name="password"
                         :type="showPassword ? 'text' : 'password'" :placeholder="__('utils.password_placeholder')"
                         class="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none" />
 
@@ -97,9 +97,14 @@
             </div>
 
             <div class="flex justify-center">
-                <button
+                <button :class="{ '!bg-accent !text-navbar-link opacity-75 cursor-not-allowed': form.processing }"
+                    :disabled="form.processing"
                     class="transform bg-primary py-2 font-bold duration-300 text-background rounded-full px-8 text-lg hover:bg-accent hover:bg-opacity-50 hover:text-navbar-link">{{
-            __('pages.register.register').toUpperCase() }}</button>
+            __('pages.register.register').toUpperCase() }}
+
+                    <i v-if="form.processing" class='bx bx-loader-alt bx-spin'></i>
+                </button>
+
             </div>
 
             <!-- <div class="w-full flex justify-center">
@@ -169,12 +174,13 @@ function submitFom() {
         grecaptcha.execute(usePage().props.grecaptcha_key, { action: 'submit' }).then(function(token) {
             form['g-recaptcha-response'] = token
 
-            form.post(useRoute('/register'), {
+            form.transform((data) => ({ ...data, terms_of_service_and_privacy_policy: 'on' })).post(useRoute('/register'), {
                 onError(errors) {
                     if (errors['g-recaptcha-response']) {
                         alert(errors['g-recaptcha-response'])
                     }
-                }
+                },
+                preserveScroll: true,
             });
         });
     });

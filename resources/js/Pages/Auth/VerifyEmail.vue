@@ -42,7 +42,7 @@ const form = useForm({})
 const resendEmail = async () => {
     try {
         form.post('/email/confirmation-notification')
-        console.log(form.recentlySuccessful);
+        // console.log(form.recentlySuccessful);
         isButtonDisabled.value = true
         remainingTime.value = 60
         startTimer()

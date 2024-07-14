@@ -29,18 +29,20 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])->group(function ()
     });
 
     Route::get('/assets-credit', fn () => Inertia::render('AssetsCredit'))->name('assets-credit');
+    Route::get('email/confirmation', fn () => Inertia::render('Auth/VerifyEmail', ['userEmail' => auth()->user()->email]))->middleware(['auth', 'ensure.email.not.verified'])->name('verification.notice');
 
 
-    Route::middleware(['auth', 'verified'])->group(function () {
-        Route::get('/dashboard', function () {
-            return Inertia::render('dashboard/index');
-        })->name('Dashboard');
+    Route::middleware(['auth',])->group(function () {
+        Route::middleware('verified')->group(function () {
+            Route::get('/dashboard', function () {
+                return Inertia::render('dashboard/index');
+            })->name('Dashboard');
+        });
 
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     });
 });
 
-Route::get('email/confirmation', fn () => Inertia::render('Auth/VerifyEmail', ['userEmail' => 'sukron@sch39.dev']))->middleware(['auth', 'ensure.email.not.verified'])->name('verification.notice');
 
 Route::get('/email/confirmation/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
@@ -52,4 +54,4 @@ Route::post('email/confirmation-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
 
     return back()->with('status', 'success');
-})->middleware(['auth', 'ensure.email.not.verified', 'throttle:1,1'])->name('verification.send');
+})->middleware(['auth', 'ensure.email.not.verified', 'throttle:2,1'])->name('verification.send');
