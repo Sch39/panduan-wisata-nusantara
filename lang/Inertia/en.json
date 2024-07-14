@@ -64,6 +64,12 @@
             "content_description": "We have sent an email to :email. Please check your inbox and click on the verification link.",
             "resend_email": "Resend Email",
             "waiting_message": "Please wait :time s before resending the email."
+        },
+        "404": {
+            "title": "Page not found",
+            "content_title": "Something's missing.",
+            "content_description": "Sorry, we can't find that page. You'll find lots to explore on the home page.",
+            "to_home": "Back to Home Page"
         }
     }
 }
