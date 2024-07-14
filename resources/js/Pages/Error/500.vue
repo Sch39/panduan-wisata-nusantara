@@ -3,11 +3,12 @@
     <div class="error-page">
         <h1>{{ errorCode }}</h1>
         <p>{{ errorMessage }}</p>
-        <router-link to="/">Go back to Home</router-link>
+        <Link href="/">Go back to Home</Link>
     </div>
 </template>
 
 <script>
+import { Link } from '@inertiajs/vue3'
 export default {
     props: {
         errorCode: {

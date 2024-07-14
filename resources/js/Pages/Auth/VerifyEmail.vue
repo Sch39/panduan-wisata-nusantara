@@ -19,8 +19,9 @@
             <div>
                 <button :disabled="isButtonDisabled" @click="resendEmail"
                     :class="{ '!bg-blue-300 cursor-not-allowed': isButtonDisabled }"
-                    class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    class="group relative w-full flex items-center justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     Resend Email
+                    <i v-if="form.processing" class="bx bx-loader-alt bx-spin ml-2"></i>
                 </button>
                 <p v-if="isEmailSended" class="mt-2 text-sm text-gray-600 text-center text-red-600">
                     Please wait {{ formattedTime }} before resending the email.
@@ -34,15 +35,15 @@
 
 import { ref, defineProps, computed } from 'vue'
 import { useForm } from '@inertiajs/vue3'
-
+import { useToast, TYPE } from 'vue-toastification'
 const props = defineProps({ userEmail: { type: String, required: true } });
+const toast = useToast()
 
 const isButtonDisabled = ref(false),
     isEmailSended = ref(false),
     isEmailSendError = ref(false)
 const remainingTime = ref(0)
 const form = useForm({})
-
 
 const resendEmail = async () => {
     try {
@@ -54,11 +55,15 @@ const resendEmail = async () => {
                 startTimer()
             },
             onError(error) {
+                toast.error(error.errorMessage, {
+                    icon: 'bx bx-error',
+                    toastClassName: 'toast-error',
+                });
                 isEmailSendError.value = true
                 setTimeout(() => {
                     isEmailSendError.value = false
                     isButtonDisabled.value = false
-                }, 1000);
+                }, 2000);
             },
 
         })

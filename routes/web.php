@@ -54,7 +54,7 @@ Route::post('email/confirmation-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
 
     return back()->with('status', 'success');
-})->middleware(['auth', 'ensure.email.not.verified', 'throttle:2,1'])->name('verification.send');
+})->middleware(['auth', 'ensure.email.not.verified', 'throttle:0,1'])->name('verification.send');
 
 
 Route::fallback(function () {

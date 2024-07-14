@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Lang;
 use Inertia\Inertia;
 use Throwable;
 
@@ -67,18 +69,23 @@ class Handler extends ExceptionHandler
         $response = parent::render($request, $exception);
 
         $statusCode = $response->getStatusCode();
-        $message = $exception->getMessage();
 
-        if (!array_key_exists($statusCode, $this->errorMessages)) {
-            $message = $this->errorMessages[$statusCode];
-        }
+        $status = $this->isHttpException($exception) ? $response->getStatusCode() : 500;
 
         if (!$request->isMethod('GET')) {
             return back()
-                ->setStatusCode($statusCode)
-                ->with('error', $message);
+                ->withErrors([
+                    'errorMessage' => $this->getErrorMessage($status),
+                    'locale' => App::currentLocale(),
+                    'errorCode' => $statusCode,
+                ]);
         }
 
         return parent::render($request, $exception);
+    }
+
+    protected function getErrorMessage($status)
+    {
+        return Lang::get("http.{$status}", [], App::currentLocale());
     }
 }
