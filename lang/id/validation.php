@@ -28,7 +28,7 @@ return [
     'dimensions'           => 'Bidang :attribute tidak memiliki dimensi gambar yang valid.',
     'distinct'             => 'Bidang isian :attribute memiliki nilai yang duplikat.',
     'email'                => 'Isian :attribute harus berupa alamat surel yang benar.',
-    'exists'               => 'Isian :attribute yang dipilih tidak valid.',
+    'exists'               => ':attribute yang anda masukkan tidak terdaftar di sistem kami.',
     'file'                 => 'Bidang :attribute harus berupa sebuah berkas.',
     'filled'               => 'Isian :attribute harus memiliki nilai.',
     'gt'                   => [

@@ -37,7 +37,7 @@
                     <i v-if="form.processing" class="bx bx-loader-alt bx-spin ml-2"></i>
                 </button>
                 <p v-if="isEmailSended" class="mt-2 text-s text-center text-red-600">
-                    {{ __('pages.email_confirmation.waiting_message', { time: remainingTime }) }}
+                    {{ __('pages.email_confirmation.waiting_message', { time: formattedTime }) }}
                 </p>
             </div>
         </div>
@@ -48,7 +48,7 @@
 
 import { ref, defineProps, computed } from 'vue'
 import { useForm, Head, usePage } from '@inertiajs/vue3'
-import { useToast, TYPE } from 'vue-toastification'
+import { useToast } from 'vue-toastification'
 const props = defineProps({ userEmail: { type: String, required: true } });
 import TranslateWithLinks from './../../Components/UI/TranslateWithLink.vue'
 import { useRoute } from '../../Composables/useRoute'
@@ -68,16 +68,17 @@ const resendEmail = async () => {
         isButtonDisabled.value = true
         form.post(useRoute('/email/confirmation-notification'), {
             onSuccess(page) {
-                toast.error(page.props.successMessage, {
+                toast.success(page.props.flash.message, {
                     icon: 'bx bx-check',
                     toastClassName: 'toast-success',
                 });
                 isEmailSended.value = true
-                remainingTime.value = 60
+                remainingTime.value = 90
                 startTimer()
             },
             onError(error) {
-                toast.error(error.errorMessage, {
+
+                toast.error(error.message, {
                     icon: 'bx bx-error',
                     toastClassName: 'toast-error',
                 });
@@ -87,6 +88,7 @@ const resendEmail = async () => {
                     isButtonDisabled.value = false
                 }, 2000);
             },
+            preserveScroll: true,
 
         })
 

@@ -140,7 +140,9 @@ import { useRoute } from '../../Composables/useRoute'
 import { ref, watch } from 'vue'
 import { setLocale } from "@vee-validate/i18n";
 import { EyeIcon, EyeSlashIcon } from '@heroicons/vue/20/solid'
+import { useToast } from 'vue-toastification'
 
+const toast = useToast()
 
 
 const form = useForm({
@@ -153,10 +155,6 @@ const form = useForm({
 })
 
 useVeeValidateI18n()
-
-// watch(() => usePage().props.locale, (newLocale) => {
-//     setLocale(newLocale)
-// })
 
 const showPassword = ref(false),
     showPasswordConfirmation = ref(false)
@@ -177,8 +175,19 @@ function submitFom() {
             form.transform((data) => ({ ...data, terms_of_service_and_privacy_policy: 'on' })).post(useRoute('/register'), {
                 onError(errors) {
                     if (errors['g-recaptcha-response']) {
-                        alert(errors['g-recaptcha-response'])
+                        toast.error(errors['g-recaptcha-response'], {
+                            icon: 'bx bx-error',
+                            toastClassName: 'toast-error',
+                        });
+
                     }
+                    setTimeout(() => {
+                        form.errors.name = null
+                        form.errors.email = null
+                        form.errors.password = null
+                        form.errors.password_confirmation = null
+                        form.errors.terms_of_service_and_privacy_policy = null
+                    }, 3000);
                 },
                 preserveScroll: true,
             });

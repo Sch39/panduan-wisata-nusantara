@@ -41,6 +41,7 @@
         "password_confirmation": "Konfirmasi Kata Sandi",
         "current_password": "Kata Sandi Saat Ini",
         "new_password": "Kata Sandi Baru",
+        "new_password_confirmation": "Konfirmasi Kata Sandi Baru",
         "terms_of_service_and_privacy_policy": "Ketentuan Layanan dan Kebijakan Privasi"
     }
 }

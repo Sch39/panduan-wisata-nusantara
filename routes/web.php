@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -21,14 +22,20 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
 
         Route::middleware(['guest'])->group(function () {
             // Start Auth
-            Route::get('/login', [AuthController::class, 'login'])->name('Auth.Login');
+            Route::get('/login', [AuthController::class, 'login'])->name('Auth.login');
             Route::post('/login', [AuthController::class, 'authenticate'])->name('Auth.authenticate');
 
             Route::get('/register', [AuthController::class, 'register'])->name('Auth.register');
             Route::post('/register', [AuthController::class, 'store'])->name('Auth.store');
 
-            Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->name('Auth.password.request');
-            Route::post('/forgot-password', [AuthController::class, 'sendResetLinkEmail'])->name('Auth.password.email');
+            Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('Auth.password.request');
+
+            Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('password.reset');
+
+            Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('Auth.password.email');
+
+
+            Route::post('/reset-password', [ForgotPasswordController::class, 'updatePassword'])->name('Auth.password.update');
             // End Auth
         });
 
@@ -40,13 +47,8 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
             Route::get(
                 'email/confirmation',
                 function () {
-
-                    session()->reflash();
-                    // dd(App::currentLocale());
-
                     return Inertia::render('Auth/VerifyEmail', [
                         'userEmail' => auth()->user()->email,
-                        'successMessage' => session('successMessage')
                     ]);
                 }
             )->middleware(['ensure.email.not.verified'])->name('verification.notice');
@@ -56,8 +58,8 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
 
                 $request->user()->sendEmailVerificationNotification();
 
-                return back()->with(['successMessage' => Lang::get('succesMessage.send_email', [], $locale)]);
-            })->middleware(['ensure.email.not.verified', 'throttle:1,1'])->name('verification.send');
+                return back()->with('flash', ['message' => Lang::get('succesMessage.send_email', [], $locale), 'status' => 'success', 'status_code' => 202]);
+            })->middleware(['ensure.email.not.verified', 'throttle:2,1'])->name('verification.send');
 
             Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 

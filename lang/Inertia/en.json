@@ -70,6 +70,24 @@
             "content_title": "Something's missing.",
             "content_description": "Sorry, we can't find that page. You'll find lots to explore on the home page.",
             "to_home": "Back to Home Page"
+        },
+        "reset_password": {
+            "title": "Password Reset Page",
+            "content_title": "Reset Password",
+            "content_description": "Fill in the following reset form to reset your password",
+            "form_label": "Email Address",
+            "form_submit_button": "Reset Password",
+            "email_sended": "We have sent a password reset email to :email. Please check your inbox and click the link."
+        },
+        "new_password": {
+            "title": "New Password Page",
+            "content_title": "New Password",
+            "content_description": "Fill up the form to change password",
+            "new_password_label": "New password",
+            "new_password_placeholder": "Enter New Password",
+            "new_password_confirmation_label": "New password confirmation",
+            "new_password_confirmation_placeholder": "Enter New Password Confirmation",
+            "change_password_button": "Change Password"
         }
     }
 }

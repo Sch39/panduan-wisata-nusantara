@@ -80,13 +80,4 @@ class AuthController extends Controller
 
         return to_route('verification.notice');
     }
-
-    public function showForgotPasswordForm()
-    {
-        return Inertia::render('Auth/ForgotPassword');
-    }
-
-    public function sendResetLinkEmail(Request $request)
-    {
-    }
 }

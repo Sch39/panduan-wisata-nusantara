@@ -1,42 +1,132 @@
 <template>
-    <main id="content" role="main" class="w-full  max-w-md mx-auto p-6">
-        <div class="mt-7 bg-white  rounded-xl shadow-lg border-2 border-indigo-300">
-            <div class="p-4 sm:p-7">
-                <div class="text-center">
-                    <h1 class="block text-2xl font-bold text-gray-800 ">Forgot password?</h1>
-                    <p class="mt-2 text-sm text-gray-600 ">
-                        Remember your password?
-                        <Link class="text-blue-600 decoration-2 hover:underline font-medium"
-                            :href="$useRoute('/login')">
-                        Login here
-                        </Link>
-                    </p>
-                </div>
 
-                <div class="mt-5">
-                    <form>
-                        <div class="grid gap-y-4">
-                            <div>
-                                <label for="email" class="block text-sm font-bold ml-1 mb-2">Email
-                                    address</label>
-                                <div class="relative">
-                                    <input type="email" id="email" name="email"
-                                        class="py-3 px-4 block w-full border-2 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 shadow-sm"
-                                        required aria-describedby="email-error">
-                                </div>
-                                <p class="hidden text-xs text-red-600 mt-2" id="email-error">Please include a valid
-                                    email address so we can get back to you</p>
-                            </div>
-                            <button type="submit"
-                                class="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm">Reset
-                                password</button>
-                        </div>
-                    </form>
-                </div>
+    <Head>
+        <title>{{ __('pages.reset_password.title') }}</title>
+    </Head>
+    <div class="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300">
+        <h1 class="text-4xl font-medium">{{ __('pages.reset_password.content_title') }}</h1>
+        <p class="text-slate-500">{{ __('pages.reset_password.content_description') }}</p>
+        <p v-if="isEmailSended" class="mt-2 text-sm text-gray-600">
+            <TranslateWithLinks tKey="pages.email_confirmation.content_description" :replaces="{
+            email: { text: form.email, href: '' }
+        }">
+                <template #text="{ value }">
+                    <span>{{ value }}</span>
+                </template>
+                <template #link="{ value }">
+                    <span class="font-bold">{{ value }}</span>
+                </template>
+            </TranslateWithLinks>
+        </p>
+
+        <Form @submit="submitForm" class="my-10">
+            <div class="flex flex-col space-y-5">
+                <label for="email">
+                    <p class="font-medium text-slate-700 pb-2">{{ __('pages.reset_password.form_label') }}</p>
+                    <Field v-model="form.email" id="email" name="email" rules="email|required" type="email"
+                        class="w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow"
+                        :placeholder="__('utils.email_placeholder')" />
+
+                    <p class="text-red-600" v-if="form.errors.email">{{ form.errors.email }}</p>
+                    <ErrorMessage v-else class="text-red-500" name="email" />
+                </label>
+
+                <button :class="{ '!bg-blue-300 cursor-not-allowed': isButtonDisabled }" :disabled="isButtonDisabled"
+                    type="submit"
+                    class="w-full py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
+                    </svg>
+
+                    <span>{{ __('pages.reset_password.form_submit_button') }}</span>
+                    <i v-if="form.processing" class="bx bx-loader-alt bx-spin ml-2"></i>
+                </button>
+                <p class="text-center">
+                    <TranslateWithLinks tKey="pages.login.create_account_notice" :replaces="{
+            create_account: { text: __('pages.login.create_account'), href: $useRoute('/register') }
+        }">
+                        <template #text="{ value }">
+                            <span>{{ value }}</span>
+                        </template>
+                        <template #link="{ href, value }">
+                            <Link class="text-indigo-500 underline-offset-4 hover:underline" :href="href">{{ value }}
+                            </Link>
+                        </template>
+                    </TranslateWithLinks>
+                </p>
+                <p v-if="isEmailSended" class="mt-2 text-s text-center text-red-600">
+                    {{ __('pages.email_confirmation.waiting_message', { time: formattedTime }) }}
+                </p>
             </div>
-        </div>
-    </main>
+        </Form>
+    </div>
 </template>
 <script setup>
-import { Link } from '@inertiajs/vue3'
+import { Head, Link, usePage, useForm } from '@inertiajs/vue3'
+import { useRoute } from '../../Composables/useRoute'
+import { Form, Field, ErrorMessage } from 'vee-validate'
+import { useVeeValidateI18n } from '../../Composables/useVeeValidateI18n'
+import { useToast } from 'vue-toastification'
+import { ref, computed } from 'vue'
+import TranslateWithLinks from './../../Components/UI/TranslateWithLink.vue'
+
+
+const toast = useToast()
+const isButtonDisabled = ref(false),
+    isEmailSended = ref(false),
+    remainingTime = ref(0)
+
+useVeeValidateI18n()
+
+const form = useForm({
+    email: null,
+    locale: usePage().props.locale
+})
+
+function submitForm() {
+    isButtonDisabled.value = true
+    form.post(useRoute('/forgot-password'), {
+        onError(errors) {
+            if (errors.message) {
+                toast.error(errors.message, {
+                    icon: 'bx bx-error',
+                    toastClassName: 'toast-error',
+                });
+            }
+            setTimeout(() => {
+                form.errors.email = null
+                isButtonDisabled.value = false
+            }, 2000);
+        },
+        onSuccess(page) {
+            isEmailSended.value = true
+            remainingTime.value = 90
+            startTimer()
+
+            toast.success(page.props.flash.message, {
+                icon: 'bx bx-check',
+                toastClassName: 'toast-succes',
+            });
+        }
+    })
+}
+
+const startTimer = () => {
+    const interval = setInterval(() => {
+        remainingTime.value -= 1
+        if (remainingTime.value <= 0) {
+            clearInterval(interval)
+            isButtonDisabled.value = false
+            isEmailSended.value = false
+        }
+    }, 1000)
+}
+
+const formattedTime = computed(() => {
+    const minutes = Math.floor(remainingTime.value / 60)
+    const seconds = remainingTime.value % 60
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
+})
 </script>

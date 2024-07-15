@@ -109,18 +109,20 @@
                 </TranslateWithLinks>
             </p>
         </div>
-    </form>
+    </Form>
 </template>
 
 <script setup>
 import { Head, Link, usePage, useForm } from '@inertiajs/vue3'
 import { useRoute } from '../../Composables/useRoute'
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import TranslateWithLinks from './../../Components/UI/TranslateWithLink.vue'
 import { useVeeValidateI18n } from '../../Composables/useVeeValidateI18n'
 import { Form, Field, ErrorMessage } from 'vee-validate'
-import { setLocale } from "@vee-validate/i18n";
 import { EyeIcon, EyeSlashIcon } from '@heroicons/vue/20/solid'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 const showPassword = ref(false)
 
@@ -145,8 +147,17 @@ function submitFom() {
             form.post(useRoute('/login'), {
                 onError(errors) {
                     if (errors['g-recaptcha-response']) {
-                        alert(errors['g-recaptcha-response'])
+                        // alert(errors['g-recaptcha-response'])
+                        toast.error(errors['g-recaptcha-response'], {
+                            icon: 'bx bx-error',
+                            toastClassName: 'toast-error',
+                        });
+
                     }
+                    setTimeout(() => {
+                        form.errors.email = null
+                        form.errors.password = null
+                    }, 3000);
                 },
                 preserveScroll: true,
 

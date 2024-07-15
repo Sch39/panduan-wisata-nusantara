@@ -70,6 +70,24 @@
             "content_title": "Ada kesalahan.",
             "content_description": "Maaf, kami tidak dapat menemukan halaman tersebut. Kamu akan menemukan banyak utnuk eksplorasi di halaman home.",
             "to_home": "Kembali ke Halaman Home"
+        },
+        "reset_password": {
+            "title": "Halaman Mengatur Ulang Kata Sandi",
+            "content_title": "Mengatur ulang kata sandi",
+            "content_description": "Isi form reset berikut untuk mengatur ulang kata sandi",
+            "form_label": "Alamat Email",
+            "form_submit_button": "Atur ulang Kata Sandi",
+            "email_sended": "Kami telah mengirim email pengaturrarn ulang kata sandi ke :email. Tolong cek kotak masuk email anda dan klik link tersebut."
+        },
+        "new_password": {
+            "title": "Halaman Kata Sandi Baru",
+            "content_title": "Kata Sandi Baru",
+            "content_description": "Isi formulir untuk mengubah kata sandi",
+            "new_password_label": "Kata sandi baru",
+            "new_password_placeholder": "Masukkan Kata Sandi Baru",
+            "new_password_confirmation_label": "Konfirmasi kata sandi baru",
+            "new_password_confirmation_placeholder": "Masukkan Konfirmasi Kata Sandi Baru",
+            "change_password_button": "Ubah Kata Sandi"
         }
     }
 }
