@@ -40,14 +40,15 @@
                                         <div v-if="selectedDropdown === subMenu.key" class="flex flex-col gap-y-2">
                                             <BaseLink
                                                 class="inline-block text-sm !font-normal text-navbar-link hover:underline decoration-accent underline-offset-2"
-                                                v-for="link of subMenu.child" :key="link.key" :href="link.href">{{
+                                                v-for="link of subMenu.child" :key="link.key"
+                                                :href="$useRoute(`/${link.href}`)">{{
         link.name }}</BaseLink>
                                         </div>
                                     </div>
                                     <div v-else-if="selectedMenu === menu.key && subMenu.type === 'link'">
                                         <BaseLink
                                             class="inline-block text-sm !font-normal text-navbar-link hover:underline decoration-accent underline-offset-2"
-                                            :href="subMenu.href">{{
+                                            :href="$useRoute(`/${subMenu.href}`)">{{
         subMenu.name.toUpperCase() }}</BaseLink>
                                     </div>
                                 </div>
