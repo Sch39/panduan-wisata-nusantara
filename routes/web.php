@@ -69,8 +69,10 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
              */
             Route::middleware('verified')->group(function () {
                 Route::get('/dashboard', function () {
-                    return Inertia::render('dashboard/index');
+                    return Inertia::render('Dashboard/Dashboard');
                 })->name('Dashboard');
+
+                Route::get('/saved-destinations', fn () => Inertia::render('Dashboard/SavedDestinations'))->name('Destinations.Saved');
             });
         });
     });
