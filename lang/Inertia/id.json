@@ -88,6 +88,16 @@
             "new_password_confirmation_label": "Konfirmasi kata sandi baru",
             "new_password_confirmation_placeholder": "Masukkan Konfirmasi Kata Sandi Baru",
             "change_password_button": "Ubah Kata Sandi"
+        },
+        "dashboard": {
+            "links": {
+                "dashboard": "Dashboard",
+                "carbon_calculator": "Kalkulator Karbon",
+                "augmentation_reality": "Augmentasi Realita(AR)",
+                "quiz": "Kuis",
+                "exchange_point": "Tukar Point",
+                "saved_destinations": "Destinasi Tersimpan"
+            }
         }
     }
 }

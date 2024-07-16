@@ -61,7 +61,7 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
                 return back()->with('flash', ['message' => Lang::get('succesMessage.send_email', [], $locale), 'status' => 'success', 'status_code' => 202]);
             })->middleware(['ensure.email.not.verified', 'throttle:2,1'])->name('verification.send');
 
-            Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+            Route::post('/logout', [AuthController::class, 'logout'])->name('Logout');
 
 
             /**
@@ -72,7 +72,7 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
                     return Inertia::render('Dashboard/Dashboard');
                 })->name('Dashboard');
 
-                Route::get('/saved-destinations', fn () => Inertia::render('Dashboard/SavedDestinations'))->name('Destinations.Saved');
+                Route::get('/saved-destinations', fn () => Inertia::render('Dashboard/SavedDestinations'))->name('Destinations.saved');
             });
         });
     });

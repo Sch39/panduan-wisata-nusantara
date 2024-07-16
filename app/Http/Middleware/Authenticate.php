@@ -13,6 +13,6 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        return $request->expectsJson() ? null : route('Auth.Login', App::currentLocale());
+        return $request->expectsJson() ? null : route('Auth.login', App::currentLocale());
     }
 }

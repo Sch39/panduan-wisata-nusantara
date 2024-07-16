@@ -88,6 +88,16 @@
             "new_password_confirmation_label": "New password confirmation",
             "new_password_confirmation_placeholder": "Enter New Password Confirmation",
             "change_password_button": "Change Password"
+        },
+        "dashboard": {
+            "links": {
+                "dashboard": "Dashboard",
+                "carbon_calculator": "Carbon Calculator",
+                "augmentation_reality": "Augmented Reality (AR)",
+                "quiz": "Quiz",
+                "exchange_point": "Exchange Points",
+                "saved_destinations": "Saved Destinations"
+            }
         }
     }
 }
