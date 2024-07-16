@@ -5,7 +5,7 @@
             <SideBarButton @click.prevent="toggle()" class="" />
 
             <Transition enter-active-class="transition-opacity ease-linear duration-300">
-                <div class="transition-all overflow-hidden flex items-center justify-center bg-white border-r"
+                <div class="transition-all overflow-hidden flex justify-center bg-white border-r pt-14"
                     :class="[open ? 'max-w-lg' : 'max-w-0']">
                     <SideBar />
                 </div>
