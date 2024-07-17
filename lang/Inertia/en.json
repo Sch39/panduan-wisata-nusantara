@@ -113,7 +113,8 @@
                 "vehicle_type_label": "Vehicle Type:",
                 "vehicle_add_button": "Add Vehicle",
                 "vehicle_types": {
-                    "car": "Car",
+                    "car_petrol": "Petrol Car",
+                    "car_diesel": "Diesel Car",
                     "bus": "Bus",
                     "bike": "Bike",
                     "motorcycle": "Motorcycle",

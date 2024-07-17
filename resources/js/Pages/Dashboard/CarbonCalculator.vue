@@ -15,7 +15,10 @@
                             }}</label>
                         <select v-model="leg.vehicleType"
                             class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                            <option value="car">{{ __('pages.dashboard.carbon_calculator.vehicle_types.car') }}</option>
+                            <option value="car_petrol">{{
+        __('pages.dashboard.carbon_calculator.vehicle_types.car_petrol') }}</option>
+                            <option value="car_diesel">{{
+        __('pages.dashboard.carbon_calculator.vehicle_types.car_diesel') }}</option>
                             <option value="bus">{{ __('pages.dashboard.carbon_calculator.vehicle_types.bus') }}</option>
                             <option value="motorcycle">{{
         __('pages.dashboard.carbon_calculator.vehicle_types.motorcycle') }}</option>
@@ -151,9 +154,9 @@ const calculateCarbonFootprint = () => {
         totalCarbonFootprint += legEmission;
     });
 
-    // Calculate carbon footprint from ledgings (accommodation)
+
     ledgings.value.forEach((ledging) => {
-        let accommodationFactor = (ledging.type === 'homestay') ? 10 : 20; // Example factors for homestay and hotel
+        let accommodationFactor = (ledging.type === 'homestay') ? 10 : 20;
         let ledgingEmission = accommodationFactor * ledging.days * numberOfUsers.value;
         totalCarbonFootprint += ledgingEmission;
     });
@@ -166,14 +169,16 @@ const calculateCarbonFootprint = () => {
 // Function to get emission factor based on vehicle type (example implementation)
 const getEmissionFactor = (vehicleType) => {
     switch (vehicleType) {
-        case 'car':
-            return 0.2;
+        case 'car_petrol':
+            return 0.22;
+        case 'car_diesel':
+            return 0.26;
         case 'bus':
-            return 0.1;
+            return 0.17;
         case 'bike':
-            return 0.05;
+            return 0;
         case 'motorcycle':
-            return 0.1;
+            return 0.12;
         case 'walk':
             return 0;
         default:

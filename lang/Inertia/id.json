@@ -113,7 +113,8 @@
                 "vehicle_type_label": "Jenis Kendaraan:",
                 "vehicle_add_button": "Tambah Kendaraan",
                 "vehicle_types": {
-                    "car": "Mobil",
+                    "car_petrol": "Mobil Bensin",
+                    "car_diesel": "Mobil Disel",
                     "bus": "Bus",
                     "bike": "Sepeda",
                     "motorcycle": "Sepeda Motor",
