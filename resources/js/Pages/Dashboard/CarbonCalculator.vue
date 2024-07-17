@@ -1,28 +1,33 @@
 <template>
-    <h2 class="text-xl font-bold mb-4 text-center">Carbon Footprint Calculator</h2>
+    <h2 class="text-xl font-bold mb-4 text-center">{{ __('pages.dashboard.carbon_calculator.content_title') }}</h2>
     <div class="p-4">
         <div class="space-y-2">
-            <p class="text-lg font-semibold">Perjalanan</p>
+            <p class="text-lg font-semibold">{{ __('pages.dashboard.carbon_calculator.travel_legs') }}</p>
             <div v-for="(leg, index) in legs" :key="index" class="mb-4 p-2 bg-gray-50 shadow-sm border rounded-lg">
                 <div class="flex items-center space-x-4">
                     <div class="flex-grow">
-                        <label class="block mb-1">Distance (km) to destination:</label>
+                        <label class="block mb-1">{{ __('pages.dashboard.carbon_calculator.distance_label') }}</label>
                         <input type="number" v-model="leg.distance"
                             class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" min="0">
                     </div>
                     <div class="flex-grow">
-                        <label class="block mb-1">Vehicle Type:</label>
+                        <label class="block mb-1">{{ __('pages.dashboard.carbon_calculator.vehicle_type_label')
+                            }}</label>
                         <select v-model="leg.vehicleType"
                             class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                            <option value="car">Car</option>
-                            <option value="bus">Bus</option>
-                            <option value="bike">Bike</option>
-                            <option value="walk">Walk</option>
+                            <option value="car">{{ __('pages.dashboard.carbon_calculator.vehicle_types.car') }}</option>
+                            <option value="bus">{{ __('pages.dashboard.carbon_calculator.vehicle_types.bus') }}</option>
+                            <option value="motorcycle">{{
+        __('pages.dashboard.carbon_calculator.vehicle_types.motorcycle') }}</option>
+                            <option value="bike">{{ __('pages.dashboard.carbon_calculator.vehicle_types.bike') }}
+                            </option>
+                            <option value="walk">{{ __('pages.dashboard.carbon_calculator.vehicle_types.walk') }}
+                            </option>
                         </select>
                     </div>
                     <div v-if="index > 0" class="flex items-center">
                         <button @click="removeLeg(index)"
-                            class="p-2 ml-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none"><i
+                            class="px-2 py-1 ml-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none"><i
                                 class="bx bx-trash"></i></button>
                     </div>
                 </div>
@@ -32,13 +37,13 @@
             <div class="mt-4">
                 <button @click="addLeg" class="w-full border p-1 rounded-md hover:bg-gray-100"><i
                         class="bg-green-500 text-white rounded-full hover:bg-green-600 focus:outline-none bx bx-plus text-lg p-1"></i>
-                    <span class="ml-2">Add Vehicle</span>
+                    <span class="ml-2">{{ __('pages.dashboard.carbon_calculator.vehicle_add_button') }}</span>
                 </button>
             </div>
         </div>
 
         <div class="mt-4 flex items-center space-x-2">
-            <label class="block mb-1">Number of Users:</label>
+            <label class="block mb-1">{{ __('pages.dashboard.carbon_calculator.user_label') }}</label>
             <div class="relative">
                 <input type="number" v-model="numberOfUsers"
                     class="w-30 px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" min="1">
@@ -47,26 +52,30 @@
         </div>
 
         <div class="space-y-2">
-            <p class="text-lg font-semibold">Penginapan</p>
+            <p class="text-lg font-semibold">{{ __('pages.dashboard.carbon_calculator.ledgings') }}</p>
             <div v-for="(ledging, index) in ledgings" :key="index"
                 class="mb-4 p-2 bg-gray-50 shadow-sm border rounded-lg">
                 <div class="flex items-center space-x-4">
                     <div class="flex-grow">
-                        <label class="block mb-1">Days:</label>
+                        <label class="block mb-1">{{ __('pages.dashboard.carbon_calculator.ledging_days_label')
+                            }}</label>
                         <input type="number" v-model="ledging.days"
                             class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" min="0">
                     </div>
                     <div class="flex-grow">
-                        <label class="block mb-1">Type:</label>
+                        <label class="block mb-1">{{ __('pages.dashboard.carbon_calculator.ledging_type_label')
+                            }}</label>
                         <select v-model="ledging.type"
                             class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
-                            <option value="homestay">Homestay</option>
-                            <option value="hotel">Hotel</option>
+                            <option value="homestay">{{ __('pages.dashboard.carbon_calculator.ledging_types.homestay')
+                                }}</option>
+                            <option value="hotel">{{ __('pages.dashboard.carbon_calculator.ledging_types.hotel') }}
+                            </option>
                         </select>
                     </div>
                     <div v-if="index > 0" class="flex items-center">
                         <button @click="removeLedgings(index)"
-                            class="p-2 ml-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none"><i
+                            class="px-2 py-1 ml-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none"><i
                                 class="bx bx-trash"></i></button>
                     </div>
                 </div>
@@ -76,19 +85,20 @@
             <div class="mt-4">
                 <button @click="addLedgings" class="w-full border p-1 rounded-md hover:bg-gray-100"><i
                         class="bg-green-500 text-white rounded-full hover:bg-green-600 focus:outline-none bx bx-plus text-lg p-1"></i>
-                    <span class="ml-2">Add Ledging</span>
+                    <span class="ml-2">{{ __('pages.dashboard.carbon_calculator.ledging_add_button') }}</span>
                 </button>
             </div>
         </div>
 
         <div class="mt-5 flex justify-center">
             <button @click="calculateCarbonFootprint"
-                class="w-1/2 bg-indigo-400 text-lg hover:bg-indigo-600 text-white px-5 py-2 rounded-md">Calculate</button>
+                class="w-1/2 bg-indigo-400 text-lg hover:bg-indigo-600 text-white px-5 py-2 rounded-md">{{
+        __('pages.dashboard.carbon_calculator.calculate_button') }}</button>
         </div>
 
         <!-- Result section -->
         <div v-if="showResult" class="mt-5">
-            <p class="text-lg font-semibold">Carbon Footprint Result:</p>
+            <p class="text-lg font-semibold">{{ __('pages.dashboard.carbon_calculator.result_label') }}</p>
             <p class="text-xl font-bold">{{ carbonFootprintResult }} kg CO2</p>
         </div>
     </div>
@@ -157,13 +167,15 @@ const calculateCarbonFootprint = () => {
 const getEmissionFactor = (vehicleType) => {
     switch (vehicleType) {
         case 'car':
-            return 0.2; // Example emission factor for car in kg CO2 per km
+            return 0.2;
         case 'bus':
-            return 0.1; // Example emission factor for bus in kg CO2 per km
+            return 0.1;
         case 'bike':
-            return 0.05; // Example emission factor for bike in kg CO2 per km
+            return 0.05;
+        case 'motorcycle':
+            return 0.1;
         case 'walk':
-            return 0; // Walking typically has negligible carbon footprint
+            return 0;
         default:
             return 0;
     }

@@ -103,6 +103,33 @@
             },
             "user": {
                 "title": "Profil - :user"
+            },
+            "carbon_calculator": {
+                "title": "Kalkulator Jejak Karbon",
+                "meta_description": "Hitung jejak karbon perjalanan dan penginapan Anda menggunakan kalkulator jejak karbon kami. Tentukan dampak lingkungan perjalanan Anda dengan memasukkan jarak, jenis kendaraan, tempat menginap, dan jumlah pengguna.",
+                "content_title": "Kalkulator Jejak Karbon",
+                "travel_legs": "Perjalanan",
+                "distance_label": "Jarak (km) ke tujuan:",
+                "vehicle_type_label": "Jenis Kendaraan:",
+                "vehicle_add_button": "Tambah Kendaraan",
+                "vehicle_types": {
+                    "car": "Mobil",
+                    "bus": "Bus",
+                    "bike": "Sepeda",
+                    "motorcycle": "Sepeda Motor",
+                    "walk": "Berjalan Kaki"
+                },
+                "user_label": "Jumlah Pengguna",
+                "ledgings": "Penginapan",
+                "ledging_days_label": "Hari:",
+                "ledging_type_label": "Tipe:",
+                "ledging_types": {
+                    "hotel": "Hotel",
+                    "homestay": "Homestay"
+                },
+                "ledging_add_button": "Tambah Penginapan",
+                "calculate_button": "Hitung",
+                "result_label": "Hasil Jejak Karbon:"
             }
         }
     }

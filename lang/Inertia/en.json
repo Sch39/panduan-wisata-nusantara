@@ -103,6 +103,33 @@
             },
             "user": {
                 "title": "Profile - :user"
+            },
+            "carbon_calculator": {
+                "title": "Carbon Footprint Calculator",
+                "meta_description": "Calculate your travel and accommodation carbon footprint using our carbon footprint calculator. Determine the environmental impact of your journey by inputting distance, vehicle type, lodging, and number of users.",
+                "content_title": "Carbon Footprint Calculator",
+                "travel_legs": "Travel Legs",
+                "distance_label": "Distance (km) to destination:",
+                "vehicle_type_label": "Vehicle Type:",
+                "vehicle_add_button": "Add Vehicle",
+                "vehicle_types": {
+                    "car": "Car",
+                    "bus": "Bus",
+                    "bike": "Bike",
+                    "motorcycle": "Motorcycle",
+                    "walk": "Walk"
+                },
+                "user_label": "Number of Users",
+                "ledgings": "Penginapan",
+                "ledging_days_label": "Days:",
+                "ledging_type_label": "Type:",
+                "ledging_add_button": "Add Ledging",
+                "ledging_types": {
+                    "hotel": "Hotel",
+                    "homestay": "Homestay"
+                },
+                "calculate_button": "Calculate",
+                "result_label": "Carbon Footprint Result:"
             }
         }
     }
