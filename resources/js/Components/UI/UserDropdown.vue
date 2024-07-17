@@ -5,7 +5,7 @@
                 class="flex items-center bg-gray-800 text-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                 <span
                     class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-indigo-600 text-white text-xl">
-                    {{ initials }}
+                    {{ useNameInitials(props.user.name) }}
                 </span>
             </MenuButton>
 
@@ -15,21 +15,22 @@
                 <MenuItems :class="[`origin-top-${position}`, `${position}-0`]"
                     class="absolute mt-2 w-56 rounded-lg shadow-lg bg-white focus:outline-none">
                     <div class="py-1">
-                        <MenuItem>
-                        <Link :href="props.dashboardLink"
-                            class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">{{ props.dashboardText }}
-                        </Link>
-                        </MenuItem>
-                        <MenuItem>
-                        <Link :href="props.savedDestinationsLink"
-                            class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">{{
-                        props.savedDestinationsText }}</Link>
-                        </MenuItem>
-                        <MenuItem>
-                        <button @click="router.post(props.logoutLink)" type="button"
-                            class="block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">{{
-                        props.logoutText }}</button>
-                        </MenuItem>
+
+
+                        <template v-for="nav of navLinks">
+                            <MenuItem v-if="nav.type === 'link'">
+                            <Link :href="$useRoute(nav.href)"
+                                :class="{ '!font-semibold bg-gray-100 !cursor-default disabled': usePage().url === $useRoute(nav.href) }"
+                                class="block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">{{ __(nav.textKey) }}
+                            </Link>
+                            </MenuItem>
+
+                            <MenuItem v-if="nav.type === 'button'">
+                            <button v-if="nav.method === 'post'" @click="router.post($useRoute(nav.href))" type="button"
+                                class="block w-full text-left px-4 py-2 text-sm text-gray-800 hover:bg-gray-100">{{
+                        __(nav.textKey) }}</button>
+                            </MenuItem>
+                        </template>
                     </div>
                 </MenuItems>
             </transition>
@@ -38,8 +39,10 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import { usePage } from '@inertiajs/vue3'
+import { useNameInitials } from '../../Composables/useNameInitials'
+
 
 import { router, Link } from '@inertiajs/vue3'
 
@@ -55,18 +58,31 @@ const props = defineProps({
             return ['left', 'right'].includes(value)
         }
     },
-    dashboardLink: { type: String, required: true },
-    dashboardText: { type: String, required: true },
-    savedDestinationsLink: { type: String, required: true },
-    savedDestinationsText: { type: String, required: true },
-    logoutLink: { type: String, required: true },
-    logoutText: { type: String, required: true },
 })
 
-const initials = computed(() => {
-    const names = props.user.name.split(' ')
-    return names.map(name => name.charAt(0)).join('').toUpperCase()
-})
+const navLinks = [
+    {
+        type: 'link',
+        href: '/user/profile',
+        textKey: 'header.navbar.profile',
+    },
+    // {
+    //     type: 'link',
+    //     href: '/dashboard',
+    //     textKey: 'header.navbar.dashboard',
+    // },
+    {
+        type: 'link',
+        href: '/saved-destinations',
+        textKey: 'header.navbar.saved_destinations',
+    },
+    {
+        type: 'button',
+        method: 'post',
+        href: '/logout',
+        textKey: 'header.navbar.logout',
+    },
+]
 </script>
 
 <style scoped>

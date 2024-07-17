@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed inset-0 flex z-40">
+    <div class="fixed inset-0 flex z-10">
         <aside class="absolute flex h-screen overflow-y-auto"
             :class="[right ? 'right-0 flex-row' : 'left-0 flex-row-reverse']">
             <SideBarButton @click.prevent="toggle()" class="" />
@@ -14,7 +14,7 @@
 
     </div>
 
-    <div class="m-5 ml-12">
+    <div class="m-5 ml-12 relative" :class="{ '!z-20': !open }">
         <slot />
 
     </div>

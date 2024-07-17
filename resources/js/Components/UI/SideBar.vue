@@ -85,5 +85,12 @@ const navLinks = [
         textKey: 'saved_destinations',
         status: statuses.none,
     },
+    {
+        type: 'link',
+        icon: 'bx bxs-help-circle',
+        link: '/help',
+        textKey: 'help',
+        status: statuses.none,
+    },
 ]
 </script>

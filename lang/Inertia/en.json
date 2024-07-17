@@ -11,7 +11,8 @@
             "menu": "Menu",
             "dashboard": "Dashboard",
             "saved_destinations": "Saved Destinations",
-            "logout": "Logout"
+            "logout": "Logout",
+            "profile": "Profile"
         }
     },
     "footer": {
@@ -25,7 +26,8 @@
         "email_placeholder": "Email",
         "password_placeholder": "Password",
         "password_confirmation_placeholder": "Password Confirmation",
-        "terms_notice": "I agree to the :terms_of_service and :privacy_policy"
+        "terms_notice": "I agree to the :terms_of_service and :privacy_policy",
+        "save": "Save"
     },
     "pages": {
         "home": {
@@ -96,7 +98,11 @@
                 "augmentation_reality": "Augmented Reality (AR)",
                 "quiz": "Quiz",
                 "exchange_point": "Exchange Points",
-                "saved_destinations": "Saved Destinations"
+                "saved_destinations": "Saved Destinations",
+                "help": "Help"
+            },
+            "user": {
+                "title": "Profile - :user"
             }
         }
     }

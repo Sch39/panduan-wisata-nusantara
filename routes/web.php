@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -68,8 +69,13 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
              * Verified Group
              */
             Route::middleware('verified')->group(function () {
+
+                Route::get('/user/profile', [UserController::class, 'showProfile'])->name('User.show');
+                Route::post('/user/profile', [UserController::class, 'updateProfile'])->name('User.update');
+
                 Route::get('/dashboard', function () {
-                    return Inertia::render('Dashboard/Dashboard');
+                    return to_route('Destinations.saved');
+                    // return Inertia::render('Dashboard/Dashboard');
                 })->name('Dashboard');
 
                 Route::get('/saved-destinations', fn () => Inertia::render('Dashboard/SavedDestinations'))->name('Destinations.saved');

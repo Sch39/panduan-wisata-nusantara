@@ -1,7 +1,7 @@
 <template>
     <Dialog :open="props.open" @close="closeMenu" class="">
-        <div class="fixed inset-y-12 right-0 z-10 w-full h-full bg-black bg-opacity-10" />
-        <DialogPanel class="fixed inset-y-12 right-0 z-10 w-full h-full overflow-y-auto bg-background px-6 sm:max-w-sm">
+        <div class="fixed inset-y-12 right-0 w-full h-full bg-black bg-opacity-10 z-50" />
+        <DialogPanel class="fixed inset-y-12 right-0 z-50 w-full h-full overflow-y-auto bg-white px-6 sm:max-w-sm">
             <div class="flow-root">
                 <div class="-my-6 divide-y divide-gray-500/20">
                     <div class="space-y-2 py-6">

@@ -11,7 +11,8 @@
             "menu": "Menu",
             "dashboard": "Dashboard",
             "saved_destinations": "Destinasi Tersimpan",
-            "logout": "Keluar"
+            "logout": "Keluar",
+            "profile": "Profil"
         }
     },
     "footer": {
@@ -25,7 +26,8 @@
         "email_placeholder": "Email",
         "password_placeholder": "Kata Sandi",
         "password_confirmation_placeholder": "Konfirmasi Kata Sandi",
-        "terms_notice": "Saya setuju dengan :terms_of_service dan :privacy_policy"
+        "terms_notice": "Saya setuju dengan :terms_of_service dan :privacy_policy",
+        "save": "Simpan"
     },
     "pages": {
         "home": {
@@ -96,7 +98,11 @@
                 "augmentation_reality": "Augmentasi Realita(AR)",
                 "quiz": "Kuis",
                 "exchange_point": "Tukar Point",
-                "saved_destinations": "Destinasi Tersimpan"
+                "saved_destinations": "Destinasi Tersimpan",
+                "help": "Bantuan"
+            },
+            "user": {
+                "title": "Profil - :user"
             }
         }
     }
