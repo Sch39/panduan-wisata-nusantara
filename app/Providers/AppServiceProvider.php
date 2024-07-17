@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\Rules\Password;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,5 +22,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Validator::extend('recaptcha', 'App\\Validators\\ReCaptcha@validate', 'reCAPTCHA validation failed. Please try again.');
+
+        Password::defaults(function () {
+            return Password::min(8)
+                ->mixedCase()
+                ->uncompromised()
+                ->numbers()
+                ->symbols();
+        });
     }
 }
