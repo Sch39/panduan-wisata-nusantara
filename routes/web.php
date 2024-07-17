@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CarbonCalculatorController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -74,11 +75,14 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
                 Route::post('/user/profile', [UserController::class, 'updateProfile'])->name('User.update');
 
                 Route::get('/dashboard', function () {
-                    return to_route('Destinations.saved');
+                    return to_route('Carbon.calculator');
                     // return Inertia::render('Dashboard/Dashboard');
                 })->name('Dashboard');
 
                 Route::get('/saved-destinations', fn () => Inertia::render('Dashboard/SavedDestinations'))->name('Destinations.saved');
+
+                //Carbon Calculator
+                Route::get('/carbon-calculator', [CarbonCalculatorController::class, 'show'])->name('Carbon.calculator');
             });
         });
     });
