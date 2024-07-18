@@ -24,6 +24,9 @@ class DestinationDetail extends Model
         static::saved(function () {
             Cache::forget('destinations');
         });
+        static::updated(function () {
+            Cache::forget('destinations');
+        });
 
         static::deleted(function () {
             Cache::forget('destinations');

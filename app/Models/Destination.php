@@ -12,4 +12,19 @@ class Destination extends Model
     protected $fillable = [
         'slug',
     ];
+
+    public function travelStyles()
+    {
+        return $this->belongsToMany(TravelStyle::class, 'destination_travel_style');
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(DestinationVote::class);
+    }
+
+    public function rating()
+    {
+        return $this->hasOne(DestinationRating::class);
+    }
 }

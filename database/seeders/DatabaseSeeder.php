@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\DestinationTravelStyle;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ProvincesSeeder::class);
         $this->call(DestinationsSeeder::class);
         $this->call(DestinationDetailsSeeder::class);
+
+        $this->call(TravelStyleSeeder::class);
+        $this->call(DestinationTravelStyleSeeder::class);
     }
 }

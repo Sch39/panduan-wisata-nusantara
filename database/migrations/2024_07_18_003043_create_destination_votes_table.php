@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('destination_details', function (Blueprint $table) {
+        Schema::create('destination_votes', function (Blueprint $table) {
             $table->id();
-            $table->string('language_code');
-            $table->string('title');
-            $table->longText('html_content');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('destination_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('regency_id')->constrained()->cascadeOnDelete();
+            $table->float('rating');
             $table->timestamps();
-            $table->unique(['destination_id', 'language_code']);
+            $table->unique(['user_id', 'destination_id']);
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('destination_details');
+        Schema::dropIfExists('destination_votes');
     }
 };

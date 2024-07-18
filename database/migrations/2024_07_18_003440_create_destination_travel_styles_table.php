@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('destination_details', function (Blueprint $table) {
-            $table->id();
-            $table->string('language_code');
-            $table->string('title');
-            $table->longText('html_content');
+        Schema::create('destination_travel_styles', function (Blueprint $table) {
             $table->foreignId('destination_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('regency_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('travel_style_id')->constrained()->cascadeOnDelete();
+
+            $table->primary(['destination_id', 'travel_style_id']);
             $table->timestamps();
-            $table->unique(['destination_id', 'language_code']);
         });
     }
 
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('destination_details');
+        Schema::dropIfExists('destination_travel_styles');
     }
 };

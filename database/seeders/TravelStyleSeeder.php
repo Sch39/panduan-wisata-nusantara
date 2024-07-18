@@ -2,27 +2,27 @@
 
 namespace Database\Seeders;
 
-use App\Models\Destination;
+use App\Models\TravelStyle;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DestinationsSeeder extends Seeder
+class TravelStyleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $data = [
+        TravelStyle::insert([
             [
-                'id' => 1,
-                'slug' => 'prambanan',
+                'name' => 'Museum',
             ],
             [
-                'id' => 2,
-                'slug' => 'borobudor',
+                'name' => 'Adventure',
             ],
-        ];
-        Destination::insert($data);
+            [
+                'name' => 'Mountain',
+            ],
+        ]);
     }
 }
