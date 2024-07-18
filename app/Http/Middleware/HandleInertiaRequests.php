@@ -47,8 +47,8 @@ class HandleInertiaRequests extends Middleware
                         $query->select('id', 'code', 'name');
                     }]);
             }])
-            ->take(10)
-            ->get());
+            // ->take(10)
+            ->get())->unique('regency.id');
         return array_merge(parent::share($request), [
             'csrf' => csrf_token(),
             'locale' => App::currentLocale(),

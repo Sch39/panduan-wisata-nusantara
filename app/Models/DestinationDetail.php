@@ -12,6 +12,8 @@ class DestinationDetail extends Model
     protected $fillable = [
         'language_code',
         'title',
+        'image_url',
+        'description',
         'html_content',
         'destination_id',
         'regency_id',
@@ -38,7 +40,7 @@ class DestinationDetail extends Model
 
     public function destination()
     {
-        return $this->belongsTo(Destinations::class);
+        return $this->belongsTo(Destination::class);
     }
 
     public function regency()

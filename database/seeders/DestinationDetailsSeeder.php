@@ -44,6 +44,6 @@ class DestinationDetailsSeeder extends Seeder
             ],
         ];
 
-        DestinationDetail::insert($data);
+        // DestinationDetail::insert($data);
     }
 }

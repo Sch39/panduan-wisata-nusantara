@@ -36,4 +36,9 @@ class Destination extends Model
     {
         return $this->hasOne(DestinationRating::class);
     }
+
+    public function destinationDetails()
+    {
+        return $this->hasMany(DestinationDetail::class);
+    }
 }

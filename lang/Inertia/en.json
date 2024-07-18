@@ -27,7 +27,8 @@
         "password_placeholder": "Password",
         "password_confirmation_placeholder": "Password Confirmation",
         "terms_notice": "I agree to the :terms_of_service and :privacy_policy",
-        "save": "Save"
+        "save": "Save",
+        "visit": "Visit"
     },
     "pages": {
         "home": {

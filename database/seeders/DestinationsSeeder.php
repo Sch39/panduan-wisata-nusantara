@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Destination;
+use App\Models\DestinationDetail;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class DestinationsSeeder extends Seeder
 {
@@ -13,19 +15,120 @@ class DestinationsSeeder extends Seeder
      */
     public function run(): void
     {
-        $data = [
-            [
-                'id' => 1,
-                'slug' => 'prambanan',
-            ],
-            [
-                'id' => 2,
-                'slug' => 'borobudor',
-            ],
-        ];
-        // Destination::insert($data);
-        foreach ($data as $destination) {
-            Destination::create($destination);
+        // $data = [
+        //     [
+        //         'slug' => 'prambanan',
+        //     ],
+        //     [
+        //         'slug' => 'borobudor',
+        //     ],
+        // ];
+        // // Destination::insert($data);
+        // foreach ($data as $destination) {
+        //     Destination::create($destination);
+        // }
+
+        $faker = Faker::create();
+
+        for ($i = 0; $i < 20; $i++) {
+            $destination = Destination::create([
+                'slug' => $faker->slug,
+            ]);
+
+            DestinationDetail::create([
+                'language_code' => 'id',
+                'title' => $faker->sentence,
+                'image_url' => '/image/' . $faker->slug,
+                'description' => $faker->paragraph,
+                'html_content' => $faker->paragraph,
+                'destination_id' => $destination->id,
+                'regency_id' => 1,
+            ]);
+            DestinationDetail::create([
+                'language_code' => 'en',
+                'title' => $faker->sentence,
+                'image_url' => '/image/' . $faker->slug,
+                'description' => $faker->paragraph,
+                'html_content' => $faker->paragraph,
+                'destination_id' => $destination->id,
+                'regency_id' => 514,
+            ]);
+        }
+
+
+        for ($i = 0; $i < 20; $i++) {
+            $destination = Destination::create([
+                'slug' => $faker->slug,
+            ]);
+
+            DestinationDetail::create([
+                'language_code' => 'id',
+                'title' => $faker->sentence,
+                'image_url' => '/image/' . $faker->slug,
+                'description' => $faker->paragraph,
+                'html_content' => $faker->paragraph,
+                'destination_id' => $destination->id,
+                'regency_id' => 3,
+            ]);
+            DestinationDetail::create([
+                'language_code' => 'en',
+                'title' => $faker->sentence,
+                'image_url' => '/image/' . $faker->slug,
+                'description' => $faker->paragraph,
+                'html_content' => $faker->paragraph,
+                'destination_id' => $destination->id,
+                'regency_id' => 516,
+            ]);
+        }
+
+        for ($i = 0; $i < 20; $i++) {
+            $destination = Destination::create([
+                'slug' => $faker->slug,
+            ]);
+
+            DestinationDetail::create([
+                'language_code' => 'id',
+                'title' => $faker->sentence,
+                'image_url' => '/image/' . $faker->slug,
+                'description' => $faker->paragraph,
+                'html_content' => $faker->paragraph,
+                'destination_id' => $destination->id,
+                'regency_id' => 30,
+            ]);
+            DestinationDetail::create([
+                'language_code' => 'en',
+                'title' => $faker->sentence,
+                'image_url' => '/image/' . $faker->slug,
+                'description' => $faker->paragraph,
+                'html_content' => $faker->paragraph,
+                'destination_id' => $destination->id,
+                'regency_id' => 544,
+            ]);
+        }
+
+        for ($i = 0; $i < 20; $i++) {
+            $destination = Destination::create([
+                'slug' => $faker->slug,
+            ]);
+
+            DestinationDetail::create([
+                'language_code' => 'id',
+                'title' => $faker->sentence,
+                'image_url' => '/image/' . $faker->slug,
+                'description' => $faker->paragraph,
+                'html_content' => $faker->paragraph,
+                'destination_id' => $destination->id,
+                'regency_id' => 33,
+            ]);
+            DestinationDetail::create([
+                'language_code' => 'en',
+                'title' => $faker->sentence,
+                'image_url' => '/image/' . $faker->slug,
+                'description' => $faker->paragraph,
+                'html_content' => $faker->paragraph,
+                'destination_id' => $destination->id,
+                'regency_id' => 547,
+            ]);
         }
     }
 }

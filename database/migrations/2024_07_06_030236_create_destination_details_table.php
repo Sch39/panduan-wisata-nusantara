@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('language_code');
             $table->string('title');
+            $table->string('image_url');
+            $table->text('description');
             $table->longText('html_content');
             $table->foreignId('destination_id')->constrained()->cascadeOnDelete();
             $table->foreignId('regency_id')->constrained()->cascadeOnDelete();

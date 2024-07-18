@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarbonCalculatorController;
+use App\Http\Controllers\DestinationListController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\UserController;
 use App\Models\DestinationDetail;
@@ -50,46 +51,49 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
             Route::post('/reset-password', [ForgotPasswordController::class, 'updatePassword'])->name('Auth.password.update');
             // End Auth
 
-            Route::get('/destinations', function () {
-                $destinationProvinces = Cache::remember('destination_provinces', 30, function () {
-                    $data = DestinationDetail::select('id', 'language_code', 'regency_id')
-                        ->where('language_code', App::currentLocale())
-                        ->with(['regency:id,provinces_code'])
-                        ->get();
-                    $provincesCode = $data->unique('regency.provinces_code')->pluck('regency.provinces_code')->toArray();
+            // Route::get('/destinations', function () {
+            //     $destinationProvinces = Cache::remember('destination_provinces', 30, function () {
+            //         $data = DestinationDetail::select('id', 'language_code', 'regency_id')
+            //             ->where('language_code', App::currentLocale())
+            //             ->with(['regency:id,provinces_code'])
+            //             ->get();
+            //         $provincesCode = $data->unique('regency.provinces_code')->pluck('regency.provinces_code')->toArray();
 
-                    $provinces = Province::whereIn('code', $provincesCode)->orderBy('name', 'asc')->get();
-                    return $provinces;
-                });
+            //         $provinces = Province::whereIn('code', $provincesCode)->orderBy('name', 'asc')->get();
+            //         return $provinces;
+            //     });
 
-                return Inertia::render('Provinces', [
-                    'provinces' => $destinationProvinces->filter(fn ($item) => $item['language_code'] === App::currentLocale())->values(),
-                ]);
-            });
+            //     return Inertia::render('Provinces', [
+            //         'provinces' => $destinationProvinces->filter(fn ($item) => $item['language_code'] === App::currentLocale())->values(),
+            //     ]);
+            // });
 
-            Route::get('/destinations/{provinces_code}', function ($locale, $provinces_code) {
+            // Route::get('/destinations/{provinces_code}', function ($locale, $provinces_code) {
 
-                $regencies = Cache::remember('destination_regencies', 30, function () use ($provinces_code) {
-                    $data = DestinationDetail::select('id', 'language_code', 'regency_id')
-                        ->with(['regency'])
-                        ->get();
-                    $regencies = $data->where('regency.provinces_code', $provinces_code)->pluck('regency');
+            //     $regencies = Cache::remember('destination_regencies', 30, function () use ($provinces_code) {
+            //         $data = DestinationDetail::select('id', 'language_code', 'regency_id')
+            //             ->with(['regency'])
+            //             ->get();
+            //         $regencies = $data->where('regency.provinces_code', $provinces_code)->unique('regency_id')->pluck('regency');
 
-                    return $regencies;
-                });
+            //         return $regencies;
+            //     });
 
-                if ($regencies->isEmpty()) {
-                    return to_route('Error.404');
-                }
+            //     if ($regencies->isEmpty()) {
+            //         return to_route('Error.404');
+            //     }
 
-                return Inertia::render(
-                    'Regencies',
-                    [
-                        'provinces_code' => $provinces_code,
-                        'regencies' => $regencies->filter(fn ($item) => $item['language_code'] === App::currentLocale())->values(),
-                    ]
-                );
-            });
+            //     return Inertia::render(
+            //         'Regencies',
+            //         [
+            //             'provinces_code' => $provinces_code,
+            //             'regencies' => $regencies->filter(fn ($item) => $item['language_code'] === App::currentLocale())->values(),
+            //         ]
+            //     );
+            // });
+
+
+            Route::get('/destinations/{postal_code}', [DestinationListController::class, 'show'])->name('Destination.list');
         });
 
         /**
