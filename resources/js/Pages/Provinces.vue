@@ -6,12 +6,11 @@
     </Head>
 
     <div class="p-4 mt-2 min-h-screen">
-        <div class="flex items-center mb-5">
-            <button class="focus:outline-none">
-                <i class='bx bx-arrow-back text-2xl'></i>
-            </button>
-            <h2 class="text-2xl font-bold item ml-4">{{ __('pages.provinces.content_title') }}</h2>
-        </div>
+        <Link :href="$useRoute('/')" class="focus:outline-none flex items-center mb-2">
+        <i class='bx bx-arrow-back text-xl'></i>
+        <h3 class="text-xl text-center font-bold item ml-2">{{ __('pages.home.title') }}</h3>
+        </Link>
+        <h2 class="text-2xl text-center font-bold mb-5">{{ __('pages.provinces.content_title') }}</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             <Link v-for="province in props.provinces" :key="province.code"
                 :href="$useRoute(`/provinces/${province.code}`)"
