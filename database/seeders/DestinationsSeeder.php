@@ -23,6 +23,9 @@ class DestinationsSeeder extends Seeder
                 'slug' => 'borobudor',
             ],
         ];
-        Destination::insert($data);
+        // Destination::insert($data);
+        foreach ($data as $destination) {
+            Destination::create($destination);
+        }
     }
 }

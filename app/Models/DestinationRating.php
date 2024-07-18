@@ -10,12 +10,11 @@ class DestinationRating extends Model
     use HasFactory;
     protected $fillable = [
         'destination_id',
-        'destination_vote_id',
         'avg_rating'
     ];
 
     public function votes()
     {
-        return $this->belongsTo(DestinationVote::class);
+        return $this->hasMany(DestinationVote::class, 'destination_id', 'destination_id');
     }
 }

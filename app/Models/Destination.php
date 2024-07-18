@@ -13,6 +13,15 @@ class Destination extends Model
         'slug',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($destination) {
+            $destination->rating()->create(['destination_id' => $destination->id]);
+        });
+    }
+
     public function travelStyles()
     {
         return $this->belongsToMany(TravelStyle::class, 'destination_travel_style');

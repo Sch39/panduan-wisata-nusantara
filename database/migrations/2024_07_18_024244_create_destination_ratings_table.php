@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('destination_ratings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('destination_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('destination_vote_id')->constrained()->cascadeOnDelete();
-            $table->float('avg_rating');
-            $table->unique(['destination_vote_id', 'destination_id']);
+            $table->float('avg_rating')->default(0.0);
             $table->timestamps();
         });
     }

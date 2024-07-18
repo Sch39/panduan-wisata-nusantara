@@ -13,11 +13,17 @@ class DestinationVoteSeeder extends Seeder
      */
     public function run(): void
     {
-        // DestinationVote::insert([
-        //     [
-        //         'user_id'=>2,
-        //         'destination_id'=>1,
-        //     ]
-        // ])
+        DestinationVote::insert([
+            [
+                'user_id' => 2,
+                'destination_id' => 1,
+                'rating' => 4.7,
+            ],
+            [
+                'user_id' => 2,
+                'destination_id' => 2,
+                'rating' => 4.2,
+            ],
+        ]);
     }
 }
