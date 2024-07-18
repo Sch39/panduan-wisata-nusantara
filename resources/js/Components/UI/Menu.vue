@@ -142,27 +142,40 @@ const menuData = computed(() => {
             name: propsMenu.planning,
             key: 'planning',
             type: 'slide',
-            child: [],
-        },
-        {
-            name: 'Travel Styles',
-            key: 'travel_styles',
-            type: 'slide',
             child: [
                 {
-                    name: 'Museum',
-                    key: 'museum',
+                    name: page.props.translations.pages.dashboard.links.carbon_calculator,
+                    key: 'carbon_calculator',
                     type: 'link',
-                    href: 'travel-styles/museum',
+                    href: 'carbon-calculator'
                 },
                 {
-                    name: 'Adventure',
-                    key: 'adventure',
+                    name: page.props.translations.pages.dashboard.links.augmentation_reality,
+                    key: 'augmentatin_reality',
                     type: 'link',
-                    href: 'travel-styles/adventure',
-                },
-            ]
-        }
+                    href: 'augmentatin-reality'
+                }
+            ],
+        },
+        // {
+        //     name: 'Travel Styles',
+        //     key: 'travel_styles',
+        //     type: 'slide',
+        //     child: [
+        //         {
+        //             name: 'Museum',
+        //             key: 'museum',
+        //             type: 'link',
+        //             href: 'travel-styles/museum',
+        //         },
+        //         {
+        //             name: 'Adventure',
+        //             key: 'adventure',
+        //             type: 'link',
+        //             href: 'travel-styles/adventure',
+        //         },
+        //     ]
+        // }
     ];
 });
 
