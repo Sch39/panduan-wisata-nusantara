@@ -26,7 +26,7 @@
                                         class="w-5 h-5 ml-2 -mr-1 text-navbar-link transition-transform transform" />
                                 </div>
 
-                                <div v-for="subMenu of menu.child" :key="subMenu.key">
+                                <div v-for="(subMenu, index) in menu.child" :key="subMenu.key">
                                     <div v-if="selectedMenu === menu.key && subMenu.type === 'dropdown'" class="">
                                         <div @click.prevent="openDropdown(subMenu.key)"
                                             class="flex justify-between items-center -mx-3 rounded-lg px-3 text-lg leading-7 text-navbar-link hover:bg-gray-100 cursor-pointer"
@@ -45,11 +45,23 @@
         link.name }}</BaseLink>
                                         </div>
                                     </div>
+
                                     <div v-else-if="selectedMenu === menu.key && subMenu.type === 'link'">
                                         <BaseLink
                                             class="inline-block text-sm !font-normal text-navbar-link hover:underline decoration-accent underline-offset-2"
                                             :href="$useRoute(`/${subMenu.href}`)">{{
         subMenu.name.toUpperCase() }}</BaseLink>
+                                    </div>
+
+                                    <div v-else-if="selectedMenu === menu.key && subMenu.type === 'card'">
+                                        <Link :href="subMenu.link" class="my-5 card-link rounded-md">
+                                        <img class="card-image" :src="subMenu.img_link" alt="Card Image">
+                                        </Link>
+
+                                        <BaseLink v-if="index === menu.child.length - 1"
+                                            class="inline-block !text-lg !font-normal text-navbar-link hover:underline decoration-accent underline-offset-2 mb-10 !mx-auto"
+                                            :href="$useRoute(`/travel-inspirations`)">{{
+                                            'view more'.toUpperCase() }}</BaseLink>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +87,7 @@ import {
     Dialog,
 } from '@headlessui/vue'
 import { computed, ref } from 'vue'
-import { usePage } from '@inertiajs/vue3';
+import { usePage, Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     open: {
@@ -136,7 +148,16 @@ const menuData = computed(() => {
             name: propsMenu.travel_inspiration,
             key: 'travel_inspiration',
             type: 'slide',
-            child: [],
+            child: [
+                {
+                    type: 'card',
+                    img_link: '/assets/images/volcano-with-mist-sunset.jpg'
+                },
+                {
+                    type: 'card',
+                    img_link: '/assets/images/volcano-with-mist-sunset.jpg'
+                },
+            ],
         },
         {
             name: propsMenu.planning,
@@ -211,3 +232,21 @@ const closeMenu = () => {
     emits('close');
 };
 </script>
+<style scoped>
+.card-link {
+    display: block;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image {
+    transition: transform 0.3s ease, filter 0.3s ease;
+    width: 100%;
+    height: auto;
+}
+
+.card-link:hover .card-image {
+    transform: scale(1.05);
+    filter: brightness(50%);
+}
+</style>
