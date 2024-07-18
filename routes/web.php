@@ -18,6 +18,13 @@ Route::get('/', fn () => redirect()->route('Home', ['locale' => App::currentLoca
 
 Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
     ->group(function () {
+        // Error
+        Route::get('/error/404', function () {
+            return Inertia::render('Error/404', [
+                'home' => route('Home'),
+            ]);
+        })->name('Error.404');
+        // Error End
 
         Route::get('/', function () {
             return Inertia::render('Home');
@@ -58,6 +65,30 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
                 return Inertia::render('Provinces', [
                     'provinces' => $destinationProvinces->filter(fn ($item) => $item['language_code'] === App::currentLocale())->values(),
                 ]);
+            });
+
+            Route::get('/destinations/{provinces_code}', function ($locale, $provinces_code) {
+
+                $regencies = Cache::remember('destination_regencies', 30, function () use ($provinces_code) {
+                    $data = DestinationDetail::select('id', 'language_code', 'regency_id')
+                        ->with(['regency'])
+                        ->get();
+                    $regencies = $data->where('regency.provinces_code', $provinces_code)->pluck('regency');
+
+                    return $regencies;
+                });
+
+                if ($regencies->isEmpty()) {
+                    return to_route('Error.404');
+                }
+
+                return Inertia::render(
+                    'Regencies',
+                    [
+                        'provinces_code' => $provinces_code,
+                        'regencies' => $regencies->filter(fn ($item) => $item['language_code'] === App::currentLocale())->values(),
+                    ]
+                );
             });
         });
 

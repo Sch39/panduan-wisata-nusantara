@@ -137,6 +137,11 @@
             "title": "List of Provinces",
             "meta_description": "This page showcases a list of provinces in Indonesia that are popular tourist destinations. Explore various provinces known for their natural beauty and unique culture, and discover travel destinations that enrich your journey experience.",
             "content_title": "List of Provinces for Tourism"
+        },
+        "regencies": {
+            "title": "List of Regencies/Cities",
+            "meta_description": "This page presents a list of regencies/cities in Indonesia that are popular tourist destinations. Explore various regions known for their natural beauty and unique culture, and discover travel destinations that enrich your journey experience.",
+            "content_title": "List of Regencies/Cities for Tourism"
         }
     }
 }

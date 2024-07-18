@@ -137,6 +137,11 @@
             "title": "Daftar Provinsi",
             "meta_description": "Halaman ini menyajikan daftar provinsi di Indonesia yang menjadi tujuan wisata menarik. Jelajahi berbagai provinsi dengan keindahan alam dan budayanya yang khas, serta temukan destinasi wisata yang dapat memperkaya pengalaman perjalanan Anda.",
             "content_title": "Daftar Provinsi untuk Wisata"
+        },
+        "regencies": {
+            "title": "Daftar Kabupaten/Kota",
+            "meta_description": "Halaman ini menyajikan daftar kabupaten/kota di Indonesia yang menjadi tujuan wisata menarik. Jelajahi berbagai daerah dengan keindahan alam dan budayanya yang khas, serta temukan destinasi wisata yang dapat memperkaya pengalaman perjalanan Anda.",
+            "content_title": "Daftar Kabupaten/Kota untuk Wisata"
         }
     }
 }
