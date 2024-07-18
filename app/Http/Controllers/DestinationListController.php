@@ -21,7 +21,7 @@ class DestinationListController extends Controller
             // ->with(['destination.rating:id,destination_id,avg_rating', 'regency.province:id,name,code'])
             ->paginate(8);
         return Inertia::render('Destinations/DestinationList', [
-            'destinations' => $destinations,
+            'destinations_pagination' => $destinations,
         ]);
     }
 }

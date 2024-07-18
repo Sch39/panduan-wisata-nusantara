@@ -37,7 +37,7 @@ import { Link } from '@inertiajs/vue3'
 
 const props = defineProps({
     title: { type: String, required: true },
-    rating: { type: Number, required: true },
+    rating: { required: true },
     address: { type: String, required: true, },
     description: { type: String, required: true },
     buttonLink: { type: String, required: true },

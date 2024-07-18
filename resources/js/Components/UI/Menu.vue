@@ -84,7 +84,6 @@ const props = defineProps({
     },
 });
 
-// Watch for changes in usePage().props
 const page = usePage();
 
 // Compute menu data

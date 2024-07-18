@@ -38,7 +38,6 @@ const props = defineProps({
         default: 5,
     },
     rating: {
-        type: Number,
         required: true,
     },
     size: {
