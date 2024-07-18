@@ -23,13 +23,16 @@ class DestinationDetail extends Model
 
         static::saved(function () {
             Cache::forget('destinations');
+            Cache::forget('destination_provinces');
         });
         static::updated(function () {
             Cache::forget('destinations');
+            Cache::forget('destination_provinces');
         });
 
         static::deleted(function () {
             Cache::forget('destinations');
+            Cache::forget('destination_provinces');
         });
     }
 

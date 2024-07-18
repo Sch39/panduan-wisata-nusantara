@@ -4,9 +4,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarbonCalculatorController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\UserController;
+use App\Models\DestinationDetail;
+use App\Models\Province;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -39,6 +42,23 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
 
             Route::post('/reset-password', [ForgotPasswordController::class, 'updatePassword'])->name('Auth.password.update');
             // End Auth
+
+            Route::get('/destinations', function () {
+                $destinationProvinces = Cache::remember('destination_provinces', 30, function () {
+                    $data = DestinationDetail::select('id', 'language_code', 'regency_id')
+                        ->where('language_code', App::currentLocale())
+                        ->with(['regency:id,provinces_code'])
+                        ->get();
+                    $provincesCode = $data->unique('regency.provinces_code')->pluck('regency.provinces_code')->toArray();
+
+                    $provinces = Province::whereIn('code', $provincesCode)->orderBy('name', 'asc')->get();
+                    return $provinces;
+                });
+
+                return Inertia::render('Provinces', [
+                    'provinces' => $destinationProvinces->filter(fn ($item) => $item['language_code'] === App::currentLocale())->values(),
+                ]);
+            });
         });
 
         /**
