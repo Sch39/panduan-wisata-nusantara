@@ -19,7 +19,7 @@ class TravelInspirationSeeder extends Seeder
         for ($i = 0; $i < 5; $i++) {
             $travelInspirationSlug = TravelInspirationSlug::create(['slug' => $faker->slug]);
 
-            $destination = DestinationDetail::findOrFail(i + 1);
+            $destination = DestinationDetail::findOrFail($i + 1);
 
             TravelInspiration::create([
                 'language_code' => 'id',

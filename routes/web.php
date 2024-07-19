@@ -7,6 +7,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\UserController;
 use App\Models\DestinationDetail;
 use App\Models\Province;
+use App\Models\TravelInspiration;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -32,6 +33,20 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
         })->name('Home');
 
         Route::get('/assets-credit', fn () => Inertia::render('AssetsCredit'))->name('assets-credit');
+
+        Route::get('/destinations/{postal_code}', [DestinationListController::class, 'show'])->name('Destination.list');
+
+        Route::get('/travel-inspirations', function ($locale) {
+            $travelInspirations = TravelInspiration::where('language_code', $locale)
+                ->select(['id', 'language_code', 'image_url', 'travel_inspiration_slug_id', 'title'])
+                ->with('slug:id,slug')
+                ->paginate(10);
+
+            // return $travelInspirations;
+            return Inertia::render('TravelInspirations/TravelInspirationsList', [
+                'travel_inspirations' => $travelInspirations,
+            ]);
+        });
 
         Route::middleware(['guest'])->group(function () {
             // Start Auth
@@ -91,9 +106,6 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
             //         ]
             //     );
             // });
-
-
-            Route::get('/destinations/{postal_code}', [DestinationListController::class, 'show'])->name('Destination.list');
         });
 
         /**

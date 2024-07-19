@@ -23,6 +23,6 @@ class TravelInspiration extends Model
     }
     public function slug()
     {
-        return $this->belongsTo(TravelInspirationSlug::class);
+        return $this->belongsTo(TravelInspirationSlug::class, 'travel_inspiration_slug_id', 'id');
     }
 }
