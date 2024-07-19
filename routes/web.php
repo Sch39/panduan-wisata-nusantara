@@ -48,16 +48,18 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
             ]);
         });
 
-        Route::get('/travel-inspirations/{slug}', function ($locale) {
-            $travelInspirations = TravelInspiration::where('language_code', $locale)
-                ->select(['id', 'language_code', 'image_url', 'travel_inspiration_slug_id', 'title'])
-                ->with('slug:id,slug')
-                ->paginate(10);
+        Route::get('/travel-inspirations/{slug}', function ($locale, $slug) {
+            $travelInspirationsDetail = TravelInspiration::where('language_code', $locale)
+                ->whereHas('slug', function ($q) use ($slug) {
+                    $q->where('slug', $slug);
+                })
+                ->with('destination:id,slug')
+                ->first();
 
-            return $travelInspirations;
-            // return Inertia::render('TravelInspirations/TravelInspirationsList', [
-            //     'travel_inspirations' => $travelInspirations,
-            // ]);
+            // return $travelInspirationsDetail;
+            return Inertia::render('TravelInspirations/TravelInspirationsDetail', [
+                'travel_inspirations_detail' => $travelInspirationsDetail,
+            ]);
         });
 
 

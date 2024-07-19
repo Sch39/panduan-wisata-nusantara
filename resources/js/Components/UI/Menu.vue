@@ -62,7 +62,7 @@
                                         <BaseLink v-if="index === menu.child.length - 1"
                                             class="inline-block !text-lg !font-normal text-navbar-link hover:underline decoration-accent underline-offset-2 mb-10 !mx-auto"
                                             :href="$useRoute(`/travel-inspirations`)">{{
-        __('utils.view_more').toUpperCase() }}</BaseLink>
+                                            __('utils.view_more').toUpperCase() }}</BaseLink>
                                     </div>
                                 </div>
                             </div>
@@ -145,8 +145,6 @@ const menuData = computed(() => {
         title: destination.title,
         href: destination.slug.slug
     }));
-
-    console.log(travelInspirationsFormatted);
 
 
     return [

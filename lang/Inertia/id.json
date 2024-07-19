@@ -29,7 +29,8 @@
         "terms_notice": "Saya setuju dengan :terms_of_service dan :privacy_policy",
         "save": "Simpan",
         "visit": "Kunjungi",
-        "view_more": "Lihat Semua"
+        "view_more": "Lihat Semua",
+        "view_destination": "Lihat Selengkapnya di Destinasi"
     },
     "pages": {
         "home": {
@@ -153,6 +154,11 @@
             "title": "Wisata di :regency",
             "meta_description": "Temukan tempat wisata terbaik di :regency. Jelajahi destinasi menarik dan aktivitas seru di daerah ini untuk merencanakan liburan Anda berikutnya dengan informasi terkini dan rekomendasi terbaik.",
             "content_title": "Daftar Tempat Wisata di :regency"
+        },
+        "travel_inspiration_detail": {
+            "title": "Inspirasi Perjalanan - :title",
+            "meta_description": "Jelajahi foto perjalanan menakjubkan berjudul ':title' yang difoto oleh :author. Temukan konten yang memukau dan dapatkan inspirasi untuk petualangan Anda berikutnya.",
+            "picture_by": "Difoto oleh :author"
         }
     }
 }

@@ -29,7 +29,8 @@
         "terms_notice": "I agree to the :terms_of_service and :privacy_policy",
         "save": "Save",
         "visit": "Visit",
-        "view_more": "View More"
+        "view_more": "View More",
+        "view_destination": "View More on Destination"
     },
     "pages": {
         "home": {
@@ -153,6 +154,11 @@
             "title": "Tourism in :regency",
             "meta_description": "Discover the best tourist spots in :regency. Explore exciting destinations and activities in this area to plan your next vacation with up-to-date information and top recommendations.",
             "content_title": "List of Tourist Attractions in :regency"
+        },
+        "travel_inspiration_detail": {
+            "title": "Travel Inspirasition - :title",
+            "meta_description": "Explore the stunning travel photo titled ':title' photographed by :author. Discover captivating content and get inspired for your next adventure.",
+            "picture_by": "Photographed by :author"
         }
     }
 }
