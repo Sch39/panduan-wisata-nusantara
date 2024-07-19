@@ -31,6 +31,8 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
         })->name('Error.404');
         // Error End
 
+        Route::get('help', fn () => Inertia::render('Help'))->name('Help');
+
         Route::get('/', function ($locale) {
             $regency_code = "01";
 
