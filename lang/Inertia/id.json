@@ -32,7 +32,8 @@
         "view_more": "Lihat Semua",
         "view_destination": "Lihat Selengkapnya di Destinasi",
         "back": "Kembali",
-        "login_for_rating": "Silahkan :login untuk memberikan rating"
+        "login_for_rating": "Silahkan :login untuk memberikan rating",
+        "view_recommended": "Lihat semua direkomendasikan"
     },
     "pages": {
         "home": {

@@ -32,7 +32,8 @@
         "view_more": "View More",
         "view_destination": "View More on Destination",
         "back": "Back",
-        "login_for_rating": "Please :login to provide rating"
+        "login_for_rating": "Please :login to provide rating",
+        "view_recommended": "View All Recommended"
     },
     "pages": {
         "home": {

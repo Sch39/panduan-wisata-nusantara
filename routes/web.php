@@ -9,6 +9,7 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\UserController;
 use App\Models\DestinationDetail;
 use App\Models\Province;
+use App\Models\Regency;
 use App\Models\TravelInspiration;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -30,8 +31,22 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
         })->name('Error.404');
         // Error End
 
-        Route::get('/', function () {
-            return Inertia::render('Home');
+        Route::get('/', function ($locale) {
+            $regency_code = "01";
+
+            $destinations = DestinationDetail::where('language_code', $locale)
+                ->with(['destination:id,slug', 'regency', 'destination.rating:id,destination_id,avg_rating', 'regency.province' => function ($q) use ($locale) {
+                    $q->where('language_code', $locale);
+                }])
+                ->whereHas('regency', function ($query) use ($regency_code) {
+                    $query->where('code', $regency_code);
+                })
+                ->take(6)
+                ->get();
+
+            return Inertia::render('Home', [
+                'destination_slider' => $destinations
+            ]);
         })->name('Home');
 
         Route::get('/assets-credit', fn () => Inertia::render('AssetsCredit'))->name('assets-credit');

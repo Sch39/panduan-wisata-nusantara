@@ -24,11 +24,13 @@
         </div>
         <Carousel v-model="currentSlide" ref="carousel" v-bind="settings" :breakpoints="breakpoints">
             <template #slides>
-                <Slide v-for="slide in 10" :key="slide">
+                <Slide v-for="destination in props.destination_slider" :key="destination.id">
                     <div class="flex justify-center items-center h-full">
-                        <DestinationCard class="w-full " :title="'Title ' + slide" address="place" :rating="2.5"
-                            description="lorem50 ifhirh ghrgi ihgirgiorh hduhud suhd uh duhsd husd usihd ushduhdsu hsufhufiruegfurgfugruif urgfur fguigr"
-                            buttonLink="link" buttonText="VISIT" />
+                        <DestinationCard class="w-full " :title="destination.title"
+                            :address="`${toTitleCase(destination.regency.name)}, ${toTitleCase(destination.regency.province.name)}`"
+                            :rating="destination.destination.rating.avg_rating" :description="destination.description"
+                            :buttonLink="$useRoute(`/tour/${destination.destination.slug}`)"
+                            :buttonText="__('utils.visit').toUpperCase()" />
                     </div>
                 </Slide>
             </template>
@@ -37,9 +39,9 @@
             </template>
         </Carousel>
         <div class="flex justify-center mt-5">
-            <BaseLink href=""
+            <BaseLink :href="$useRoute('/travel-inspirations')"
                 class="inline-block bg-accent text-navbar-link rounded-full px-6 py-2 mt-2 font-semibold tracking-widest text-lg leading-7 hover:bg-secondary">
-                VIEW ALL RECOMMENDED</BaseLink>
+                {{ __('utils.view_recommended').toUpperCase() }}</BaseLink>
         </div>
         <BaseJumbotron background-class="bg-accent bg-opacity-[0.08]" image="/assets/images/indonesian-culture.jpg"
             class="mt-20 mb-10">
@@ -52,7 +54,7 @@
                     {{ __('pages.home.culture_tour_jumbotron_description') }}</p>
             </template>
             <template #link>
-                <Link href="/vie"
+                <Link :href="$useRoute('/travel-inspirations')"
                     class="px-6 py-3 bg-secondary bg-opacity-75 text-background text-xl border-2 rounded-full transition duration-300 font-semibold hover:text-text hover:bg-accent hover:bg-opacity-75">
                 {{ __('pages.home.culture_tour_jumbotron_button') }}</Link>
             </template>
@@ -71,8 +73,15 @@ import { ref, defineModel } from 'vue'
 import { Carousel, Pagination, Slide } from 'vue3-carousel'
 import 'vue3-carousel/dist/carousel.css'
 import BaseLink from '../Components/UI/BaseLink.vue'
+import { toTitleCase } from '../Helper/toTitlecase'
 
 const currentSlide = defineModel({ default: 0 })
+const props = defineProps({
+    destination_slider: {
+        required: true,
+        type: Object,
+    }
+})
 
 const carousel = ref(null)
 const settings = ref({
