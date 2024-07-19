@@ -60,6 +60,32 @@
             </template>
         </BaseJumbotron>
 
+        <section class="w-full mx-auto lg:px-0">
+            <div
+                class="bg-gray-800 p-6 md:p-10 rounded-sm mx-auto flex flex-col gap-y-5 justify-center items-center relative">
+                <svg class="absolute right-0 top-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" width="227"
+                    height="223" viewBox="0 0 227 223" fill="none">
+                    <path opacity="0.21"
+                        d="M163.766 -28.3772C163.766 -31.8935 161.662 -35.0699 158.422 -36.4473C155.181 -37.8247 151.429 -37.1368 148.891 -34.6996L117.649 -4.71041C71.1338 39.9411 31.8296 91.5182 1.13522 148.185C0.412538 149.459 0 150.932 0 152.501C0 157.345 3.9335 161.271 8.78571 161.271H84.5186V287.378C84.5186 290.852 86.5716 293.998 89.754 295.401C92.9365 296.805 96.6487 296.201 99.2207 293.862L113.199 281.15C162.13 236.652 203.656 184.662 236.217 127.133L244.863 111.856C246.4 109.141 246.377 105.814 244.802 103.121C243.228 100.427 240.339 98.7703 237.214 98.7703H163.766V-28.3772Z"
+                        fill="#F2F9FB" fill-opacity="0.4" />
+                </svg>
+                <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white text-center">{{
+            __('utils.newsletter_title') }}
+                </h3>
+                <div
+                    class="input-form max-w-2xl mx-auto w-full flex flex-col md:flex-row gap-y-2 items-center justify-center lg:justify-start gap-x-5 lg:gap-x-5 mt-5">
+                    <div class="w-full">
+                        <input type="text" :placeholder="__('utils.email_placeholder')"
+                            class="py-2.5 px-5 placeholder:text-sm rounded-lg bg-white/20 border border-zinc-400/40 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500/50 ring-offset-2 ring-offset-white transition duration-200">
+                    </div>
+                    <button
+                        class="bg-white w-full md:w-1/3 hover:shadow-md focus:ring-2 focus:ring-indigo-500/50 ring-offset-2 ring-offset-[#EAE8FF] hover:drop-shadow transition duration-200 lg:w-1/3 text-zinc-800 text-sm rounded-lg px-5 py-2.5 shadow-md group font-clash font-[500]">
+                        {{ __('header.navbar.subscribe') }}
+                    </button>
+                </div>
+            </div>
+        </section>
+
     </div>
 </template>
 
