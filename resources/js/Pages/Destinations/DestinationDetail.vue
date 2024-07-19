@@ -1,4 +1,14 @@
 <template>
+
+    <Head>
+        <title>{{ __('pages.destination_detail.title', {
+            name: props.destination_detail.destination_details[0].title
+        })
+            }}</title>
+        <meta head-key="description" name="description"
+            :content="props.destination_detail.destination_details[0].description" />
+    </Head>
+
     <div class="m-5">
         <Link :href="$useRoute(props.previous_url)" class="focus:outline-none flex w-fit items-center mb-2 p-2">
         <i class='bx bx-arrow-back text-xl'></i>
@@ -13,13 +23,13 @@
                             :class="{ 'border-b-2 border-accent text-text': activeTab === 'destination', 'text-navbar-link': activeTab !== 'destination' }"
                             @click="activeTab = 'destination'"
                             class="py-2 px-4 text-lg font-semibold focus:outline-none">
-                            Destination
+                            {{ __('pages.destination_detail.destination') }}
                         </button>
 
                         <button
                             :class="{ 'border-b-2 border-accent text-text': activeTab === 'reviews', 'text-navbar-link': activeTab !== 'reviews' }"
                             @click="activeTab = 'reviews'" class="py-2 px-4 text-lg font-semibold focus:outline-none">
-                            Reviews
+                            {{ __('pages.destination_detail.reviews') }}
                         </button>
                     </nav>
                 </div>
@@ -48,7 +58,8 @@
                         <span class="font-semibold ml-2 text-sm">{{
             parseFloat(props.destination_detail.rating.avg_rating).toFixed(1)
         }}</span>
-                        <span class="text-sm text-gray-600">({{ props.destination_detail.votes.length }} votes)</span>
+                        <span class="text-sm text-gray-600">({{ props.destination_detail.votes.length }} {{
+            __('pages.destination_detail.votes') }})</span>
                     </div>
                 </div>
 

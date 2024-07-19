@@ -161,6 +161,13 @@
             "title": "Travel Inspirasition - :title",
             "meta_description": "Explore the stunning travel photo titled ':title' photographed by :author. Discover captivating content and get inspired for your next adventure.",
             "picture_by": "Photographed by :author"
+        },
+        "destination_detail": {
+            "title": "Destination - :name",
+            "destination": "Destination",
+            "votes": "Votes",
+            "reviews": "Reviews",
+            "no_review": "No review"
         }
     }
 }

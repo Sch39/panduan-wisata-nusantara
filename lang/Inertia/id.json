@@ -161,6 +161,13 @@
             "title": "Inspirasi Perjalanan - :title",
             "meta_description": "Jelajahi foto perjalanan menakjubkan berjudul ':title' yang difoto oleh :author. Temukan konten yang memukau dan dapatkan inspirasi untuk petualangan Anda berikutnya.",
             "picture_by": "Difoto oleh :author"
+        },
+        "destination_detail": {
+            "title": "Destinasi - :name",
+            "destination": "Destinasi",
+            "votes": "Suara",
+            "reviews": "Ulasan",
+            "no_review": "Tidak ada review"
         }
     }
 }
