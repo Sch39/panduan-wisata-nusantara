@@ -51,10 +51,10 @@ class HandleInertiaRequests extends Middleware
             // ->take(10)
             ->get())->unique('regency.id');
 
-        $travelInspirations = TravelInspiration::select(['id', 'language_code', 'image_url', 'travel_inspiration_slug_id', 'title'])
+        $travelInspirations = Cache::remember('travel_inspirations', 30, fn () => TravelInspiration::select(['id', 'language_code', 'image_url', 'travel_inspiration_slug_id', 'title'])
             ->with('slug:id,slug')
             ->take(5)
-            ->get();
+            ->get());
 
         return array_merge(parent::share($request), [
             'csrf' => csrf_token(),

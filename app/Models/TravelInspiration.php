@@ -17,6 +17,22 @@ class TravelInspiration extends Model
         'travel_inspiration_slug_id',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saved(function () {
+            Cache::forget('travel_inspirations');
+        });
+        static::updated(function () {
+            Cache::forget('travel_inspirations');
+        });
+
+        static::deleted(function () {
+            Cache::forget('travel_inspirations');
+        });
+    }
+
     public function destination()
     {
         return $this->belongsTo(Destination::class);

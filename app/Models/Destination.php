@@ -20,6 +20,20 @@ class Destination extends Model
         static::created(function ($destination) {
             $destination->rating()->create(['destination_id' => $destination->id]);
         });
+
+        static::saved(function () {
+            Cache::forget('destinations');
+            Cache::forget('travel_inspirations');
+        });
+        static::updated(function () {
+            Cache::forget('destinations');
+            Cache::forget('travel_inspirations');
+        });
+
+        static::deleted(function () {
+            Cache::forget('destinations');
+            Cache::forget('travel_inspirations');
+        });
     }
 
     public function travelStyles()

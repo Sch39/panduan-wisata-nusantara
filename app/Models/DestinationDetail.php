@@ -26,15 +26,18 @@ class DestinationDetail extends Model
         static::saved(function () {
             Cache::forget('destinations');
             Cache::forget('destination_provinces');
+            Cache::forget('travel_inspirations');
         });
         static::updated(function () {
             Cache::forget('destinations');
             Cache::forget('destination_provinces');
+            Cache::forget('travel_inspirations');
         });
 
         static::deleted(function () {
             Cache::forget('destinations');
             Cache::forget('destination_provinces');
+            Cache::forget('travel_inspirations');
         });
     }
 
