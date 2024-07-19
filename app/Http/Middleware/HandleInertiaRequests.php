@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\DestinationDetail;
+use App\Models\TravelInspiration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
@@ -49,12 +50,19 @@ class HandleInertiaRequests extends Middleware
             }])
             // ->take(10)
             ->get())->unique('regency.id');
+
+        $travelInspirations = TravelInspiration::select(['id', 'language_code', 'image_url', 'travel_inspiration_slug_id', 'title'])
+            ->with('slug:id,slug')
+            ->take(5)
+            ->get();
+
         return array_merge(parent::share($request), [
             'csrf' => csrf_token(),
             'locale' => App::currentLocale(),
             'locales' => config('app.available_locales'),
             'translations' => File::exists($file) ? File::json($file) : [],
             'destinations' =>  $destinations->filter(fn ($item) => $item['language_code'] === App::currentLocale())->values(),
+            'travel_inspirations' =>  $travelInspirations->filter(fn ($item) => $item['language_code'] === App::currentLocale())->values(),
             'grecaptcha_key' => config('captcha.sitekey'),
             'auth' => $request->user(),
             'flash' => session('flash'),

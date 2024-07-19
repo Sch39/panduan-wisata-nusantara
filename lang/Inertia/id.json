@@ -28,7 +28,8 @@
         "password_confirmation_placeholder": "Konfirmasi Kata Sandi",
         "terms_notice": "Saya setuju dengan :terms_of_service dan :privacy_policy",
         "save": "Simpan",
-        "visit": "Kunjungi"
+        "visit": "Kunjungi",
+        "view_more": "Lihat Semua"
     },
     "pages": {
         "home": {

@@ -15,22 +15,25 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Menggunakan grid untuk responsivitas -->
-            <Link v-for="(destination, index) in props.travel_inspirations.data" :key="`${index}-${destination.id}`"
-                :href="$useRoute(`/travel-inspirations/${destination.slug.slug}`)" class="card-link rounded-md">
+            <Link v-for="(destination, index) in props.travel_inspirations_pagination.data"
+                :key="`${index}-${destination.id}`" :href="$useRoute(`/travel-inspirations/${destination.slug.slug}`)"
+                class="card-link rounded-md">
             <img class="card-image" :src="destination.image_url" :alt="destination.title">
             </Link>
         </div>
 
         <!-- Pagination -->
         <div class="mt-8 flex items-center justify-center space-x-4">
-            <Link v-if="props.travel_inspirations.prev_page_url" :href="props.travel_inspirations.prev_page_url"
+            <Link v-if="props.travel_inspirations_pagination.prev_page_url"
+                :href="props.travel_inspirations_pagination.prev_page_url"
                 class="px-4 py-2 bg-accent text-navbar-link rounded-lg hover:bg-secondary transition-colors duration-300">
             <i class="bx bxs-chevron-left font-semibold text-lg"></i>
             </Link>
             <span class="px-4 py-2 bg-accent opacity-50 text-navbar-link rounded-lg font-semibold text-lg">{{
-            props.travel_inspirations.current_page
+            props.travel_inspirations_pagination.current_page
         }}</span>
-            <Link v-if="props.travel_inspirations.next_page_url" :href="props.travel_inspirations.next_page_url"
+            <Link v-if="props.travel_inspirations_pagination.next_page_url"
+                :href="props.travel_inspirations_pagination.next_page_url"
                 class="px-4 py-2 bg-accent text-navbar-link rounded-lg hover:bg-secondary transition-colors duration-300">
             <i class="bx bxs-chevron-right font-semibold text-lg"></i>
 
@@ -42,7 +45,7 @@
 <script setup>
 import { Link, Head } from '@inertiajs/vue3'
 const props = defineProps({
-    travel_inspirations: {
+    travel_inspirations_pagination: {
         type: Object,
         required: true,
     },

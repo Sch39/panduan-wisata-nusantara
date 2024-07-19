@@ -54,14 +54,15 @@
                                     </div>
 
                                     <div v-else-if="selectedMenu === menu.key && subMenu.type === 'card'">
-                                        <Link :href="subMenu.link" class="my-5 card-link rounded-md">
-                                        <img class="card-image" :src="subMenu.img_link" alt="Card Image">
+                                        <Link :href="$useRoute(`/travel-inspirations/${subMenu.href}`)"
+                                            class="my-5 card-link rounded-md">
+                                        <img class="card-image" :src="subMenu.img_link" :alt="subMenu.title">
                                         </Link>
 
                                         <BaseLink v-if="index === menu.child.length - 1"
                                             class="inline-block !text-lg !font-normal text-navbar-link hover:underline decoration-accent underline-offset-2 mb-10 !mx-auto"
                                             :href="$useRoute(`/travel-inspirations`)">{{
-                                            'view more'.toUpperCase() }}</BaseLink>
+        __('utils.view_more').toUpperCase() }}</BaseLink>
                                     </div>
                                 </div>
                             </div>
@@ -137,6 +138,17 @@ const menuData = computed(() => {
         }))
     }));
 
+    const travelInspirationsFormatted = page.props.travel_inspirations.map(destination => ({
+        id: destination.id,
+        type: 'card',
+        img_link: destination.image_url,
+        title: destination.title,
+        href: destination.slug.slug
+    }));
+
+    console.log(travelInspirationsFormatted);
+
+
     return [
         {
             name: propsMenu.destinations,
@@ -148,16 +160,7 @@ const menuData = computed(() => {
             name: propsMenu.travel_inspiration,
             key: 'travel_inspiration',
             type: 'slide',
-            child: [
-                {
-                    type: 'card',
-                    img_link: '/assets/images/volcano-with-mist-sunset.jpg'
-                },
-                {
-                    type: 'card',
-                    img_link: '/assets/images/volcano-with-mist-sunset.jpg'
-                },
-            ],
+            child: travelInspirationsFormatted,
         },
         {
             name: propsMenu.planning,
