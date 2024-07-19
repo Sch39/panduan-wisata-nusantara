@@ -30,7 +30,8 @@
         "save": "Simpan",
         "visit": "Kunjungi",
         "view_more": "Lihat Semua",
-        "view_destination": "Lihat Selengkapnya di Destinasi"
+        "view_destination": "Lihat Selengkapnya di Destinasi",
+        "back": "Kembali"
     },
     "pages": {
         "home": {

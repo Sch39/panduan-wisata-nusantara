@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CarbonCalculatorController;
+use App\Http\Controllers\DestinationDetailController;
 use App\Http\Controllers\DestinationListController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\UserController;
@@ -36,7 +37,7 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
 
         Route::get('/destinations/{postal_code}', [DestinationListController::class, 'show'])->name('Destination.list');
 
-        // Route::get('/destinations/{postal_code}', [DestinationListController::class, 'show'])->name('Destination.list');
+        Route::get('/tour/{slug}', [DestinationDetailController::class, 'show'])->name('Destination.detail');
 
         Route::get('/travel-inspirations', function ($locale) {
             $travelInspirations = TravelInspiration::where('language_code', $locale)

@@ -30,7 +30,8 @@
         "save": "Save",
         "visit": "Visit",
         "view_more": "View More",
-        "view_destination": "View More on Destination"
+        "view_destination": "View More on Destination",
+        "back": "Back"
     },
     "pages": {
         "home": {

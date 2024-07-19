@@ -38,18 +38,18 @@ class DestinationsSeeder extends Seeder
             DestinationDetail::create([
                 'language_code' => 'id',
                 'title' => $faker->sentence,
-                'image_url' => '/image/' . $faker->slug,
+                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
                 'description' => $faker->paragraph,
-                'html_content' => $faker->paragraph,
+                'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
                 'regency_id' => 1,
             ]);
             DestinationDetail::create([
                 'language_code' => 'en',
                 'title' => $faker->sentence,
-                'image_url' => '/image/' . $faker->slug,
+                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
                 'description' => $faker->paragraph,
-                'html_content' => $faker->paragraph,
+                'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
                 'regency_id' => 515,
             ]);
@@ -64,18 +64,18 @@ class DestinationsSeeder extends Seeder
             DestinationDetail::create([
                 'language_code' => 'id',
                 'title' => $faker->sentence,
-                'image_url' => '/image/' . $faker->slug,
+                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
                 'description' => $faker->paragraph,
-                'html_content' => $faker->paragraph,
+                'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
                 'regency_id' => 3,
             ]);
             DestinationDetail::create([
                 'language_code' => 'en',
                 'title' => $faker->sentence,
-                'image_url' => '/image/' . $faker->slug,
+                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
                 'description' => $faker->paragraph,
-                'html_content' => $faker->paragraph,
+                'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
                 'regency_id' => 517,
             ]);
@@ -89,18 +89,18 @@ class DestinationsSeeder extends Seeder
             DestinationDetail::create([
                 'language_code' => 'id',
                 'title' => $faker->sentence,
-                'image_url' => '/image/' . $faker->slug,
+                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
                 'description' => $faker->paragraph,
-                'html_content' => $faker->paragraph,
+                'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
                 'regency_id' => 30,
             ]);
             DestinationDetail::create([
                 'language_code' => 'en',
                 'title' => $faker->sentence,
-                'image_url' => '/image/' . $faker->slug,
+                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
                 'description' => $faker->paragraph,
-                'html_content' => $faker->paragraph,
+                'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
                 'regency_id' => 544,
             ]);
@@ -114,18 +114,18 @@ class DestinationsSeeder extends Seeder
             DestinationDetail::create([
                 'language_code' => 'id',
                 'title' => $faker->sentence,
-                'image_url' => '/image/' . $faker->slug,
+                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
                 'description' => $faker->paragraph,
-                'html_content' => $faker->paragraph,
+                'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
                 'regency_id' => 33,
             ]);
             DestinationDetail::create([
                 'language_code' => 'en',
                 'title' => $faker->sentence,
-                'image_url' => '/image/' . $faker->slug,
+                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
                 'description' => $faker->paragraph,
-                'html_content' => $faker->paragraph,
+                'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
                 'regency_id' => 547,
             ]);
