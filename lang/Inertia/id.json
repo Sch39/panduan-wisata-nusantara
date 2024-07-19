@@ -143,6 +143,15 @@
             "title": "Daftar Kabupaten/Kota",
             "meta_description": "Halaman ini menyajikan daftar kabupaten/kota di Indonesia yang menjadi tujuan wisata menarik. Jelajahi berbagai daerah dengan keindahan alam dan budayanya yang khas, serta temukan destinasi wisata yang dapat memperkaya pengalaman perjalanan Anda.",
             "content_title": "Daftar Kabupaten/Kota untuk Wisata"
+        },
+        "travel_inspiration_list": {
+            "title": "Inspirasi Perjalanan Nusantara: Foto-Foto Menakjubkan dari Destinasi Wisata",
+            "meta_description": "Jelajahi koleksi foto inspirasi perjalanan Nusantara yang menakjubkan. Temukan keindahan destinasi wisata di Indonesia melalui galeri foto kami dan rencanakan petualangan Anda berikutnya."
+        },
+        "destination_lists": {
+            "title": "Wisata di :regency",
+            "meta_description": "Temukan tempat wisata terbaik di :regency. Jelajahi destinasi menarik dan aktivitas seru di daerah ini untuk merencanakan liburan Anda berikutnya dengan informasi terkini dan rekomendasi terbaik.",
+            "content_title": "Daftar Tempat Wisata di :regency"
         }
     }
 }

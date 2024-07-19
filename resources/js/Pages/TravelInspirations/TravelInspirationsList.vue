@@ -1,12 +1,17 @@
 <template>
 
+    <Head>
+        <title>{{ __('pages.travel_inspiration_list.title') }}</title>
+        <meta head-key="description" name="description"
+            :content="__('pages.travel_inspiration_list.meta_description')" />
+    </Head>
 
     <div class="m-5">
         <Link :href="$useRoute('/')" class="focus:outline-none flex w-fit items-center mb-5">
         <i class='bx bx-arrow-back text-xl'></i>
         <h3 class="text-xl text-center font-bold item ml-2">{{ __('pages.home.title') }}</h3>
         </Link>
-        <h2 class="text-center text-3xl font-semibold mb-5">Travel Inspirations</h2>
+        <h2 class="text-center text-3xl font-semibold mb-5">{{ __('header.navbar.travel_inspiration') }}</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Menggunakan grid untuk responsivitas -->
@@ -35,7 +40,6 @@
 </template>
 
 <script setup>
-import DestinationCard from '../../Components/Home/DestinationCard.vue'
 import { Link, Head } from '@inertiajs/vue3'
 const props = defineProps({
     travel_inspirations: {

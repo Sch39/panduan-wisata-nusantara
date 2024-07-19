@@ -143,6 +143,15 @@
             "title": "List of Regencies/Cities",
             "meta_description": "This page presents a list of regencies/cities in Indonesia that are popular tourist destinations. Explore various regions known for their natural beauty and unique culture, and discover travel destinations that enrich your journey experience.",
             "content_title": "List of Regencies/Cities for Tourism"
+        },
+        "travel_inspiration_list": {
+            "title": "Nusantara Travel Inspiration: Stunning Photos from Tourist Destinations",
+            "meta_description": "Explore a collection of stunning travel inspiration photos from Nusantara. Discover the beauty of Indonesian tourist destinations through our photo gallery and plan your next adventure."
+        },
+        "destination_lists": {
+            "title": "Tourism in :regency",
+            "meta_description": "Discover the best tourist spots in :regency. Explore exciting destinations and activities in this area to plan your next vacation with up-to-date information and top recommendations.",
+            "content_title": "List of Tourist Attractions in :regency"
         }
     }
 }

@@ -1,11 +1,27 @@
 <template>
 
+    <Head>
+        <title>{{ __('pages.destination_lists.title', {
+            regency:
+                toTitleCase(props.destinations_pagination.data[0]['regency']['name'])
+        })
+            }}</title>
+        <meta head-key="description" name="description" :content="__('pages.destination_lists.meta_description', {
+            regency:
+                toTitleCase(props.destinations_pagination.data[0]['regency']['name'])
+        })" />
+    </Head>
 
     <div class="m-5">
         <Link :href="$useRoute('/')" class="focus:outline-none flex w-fit items-center mb-5">
         <i class='bx bx-arrow-back text-xl'></i>
         <h3 class="text-xl text-center font-bold item ml-2">{{ __('pages.home.title') }}</h3>
         </Link>
+
+        <h2 class="text-center text-3xl font-semibold mb-5">{{ __('pages.destination_lists.content_title', {
+            regency:
+                toTitleCase(props.destinations_pagination.data[0]['regency']['name'])
+        }) }}</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <!-- Menggunakan grid untuk responsivitas -->
@@ -39,6 +55,7 @@
 <script setup>
 import DestinationCard from '../../Components/Home/DestinationCard.vue'
 import { Link, Head } from '@inertiajs/vue3'
+import { toTitleCase } from '../../Helper/toTitlecase'
 const props = defineProps({
     destinations_pagination: {
         type: Object,
