@@ -1,5 +1,5 @@
 <template>
-    <BaseCard class="w-full h-full" link="/huhu" image="/assets/images/volcano-with-mist-sunset.jpg">
+    <BaseCard class="w-full h-full" link="/huhu" :image="props.image">
         <template #content>
             <div class="px-6 py-4 flex-grow">
                 <div class="mb-2 flex items-center">
@@ -21,8 +21,8 @@
                 <Link :href="buttonLink"
                     class="inline-block bg-accent text-navbar-link rounded-full px-6 py-2 mt-2 font-semibold tracking-widest text-lg leading-6 hover:bg-secondary">
                 {{
-                        buttonText
-                    }}</Link>
+        buttonText
+    }}</Link>
             </div>
         </template>
     </BaseCard>
@@ -41,7 +41,8 @@ const props = defineProps({
     address: { type: String, required: true, },
     description: { type: String, required: true },
     buttonLink: { type: String, required: true },
-    buttonText: { type: String, required: true }
+    buttonText: { type: String, required: true },
+    image: { required: true, type: String }
 })
 
 // const formatedRating = computed(() => (props.rating || 0).toFixed(1))

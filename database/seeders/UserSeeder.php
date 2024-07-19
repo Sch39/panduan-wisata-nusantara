@@ -15,16 +15,35 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'Admin 1',
-            'email' => 'admin@sch39.dev',
-            'password' => Hash::make('admin12345')
-        ])->assignRole(RolesEnum::ADMIN->value);
+        $users = [
+            [
+                'name' => 'John Doe',
+                'email' => 'john@sch39.dev',
+                'password' => Hash::make('JohnDoe12345'),
+                'email_verified_at' => now(),
+            ],
+            [
+                'name' => 'Jane Smith',
+                'email' => 'jane@sch39.dev',
+                'password' => Hash::make('JaneSmith12345'),
+                'email_verified_at' => now(),
+            ],
+            [
+                'name' => 'Alice Johnson',
+                'email' => 'alice@sch39.dev',
+                'password' => Hash::make('AliceJohnson12345'),
+                'email_verified_at' => now(),
+            ],
+            [
+                'name' => 'Bob Brown',
+                'email' => 'bob@sch39.dev',
+                'password' => Hash::make('BobBrown12345'),
+                'email_verified_at' => now(),
+            ],
+        ];
 
-        User::create([
-            'name' => 'user 1',
-            'email' => 'user@sch39.dev',
-            'password' => Hash::make('user12345')
-        ])->assignRole(RolesEnum::USER->value);
+        foreach ($users as $user) {
+            User::create($user)->assignRole(RolesEnum::USER->value);
+        }
     }
 }

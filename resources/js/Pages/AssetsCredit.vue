@@ -27,5 +27,17 @@
                 href="https://www.freepik.com/free-photo/traveler-asian-couple-direction-location-map-beijing-china_4395114.htm#fromView=search&page=1&position=37&uuid=17aae104-7504-47e6-a6fa-91d2eeac2943">Image
                 by tirachardz on Freepik</a></li>
 
+
+        <li class="text-lg do"><a target="_blank" rel="noopener noreferrer" class="underline underline-offset-2"
+                href="https://www.freepik.com/free-photo/landmark-camera-architecture-view-woman_1088888.htm#fromView=search&page=1&position=18&uuid=fd7613ac-d59e-4828-9f8d-f36d71be53c7">Image
+                by jcomp on Freepik</a></li>
+
+        <li class="text-lg do"><a target="_blank" rel="noopener noreferrer" class="underline underline-offset-2"
+                href="https://www.freepik.com/free-photo/woman-walking-kelingking-beach-nusa-penida-island-bali-indonesia_11306456.htm#fromView=search&page=1&position=38&uuid=fd7613ac-d59e-4828-9f8d-f36d71be53c7">Image
+                by tawatchai07 on Freepik</a></li>
+
+        <li class="text-lg do"><a target="_blank" rel="noopener noreferrer" class="underline underline-offset-2"
+                href="https://www.freepik.com/free-ai-image/architecture-ancient-monument-world-heritage-day-celebration_152572674.htm#fromView=search&page=1&position=2&uuid=deff12c9-efa7-4493-b0cc-cfb08ee04af8">Image
+                by freepik</a></li>
     </ul>
 </template>

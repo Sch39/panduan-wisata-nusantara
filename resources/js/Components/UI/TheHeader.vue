@@ -15,7 +15,7 @@
                     :user="{ name: $page.props.auth.name }" />
                 <LangDropdownUnderline class="hidden lg:!flex" />
 
-                <BaseLink :href="$useRoute('/newsletter')"
+                <BaseLink :href="$useRoute('#inputNewsletter')"
                     class="relative overflow-hidden bg-black !text-background hover:!text-navbar-link py-3 px-6 tracking-widest flex items-center group">
                     <span class="relative z-10 transition-colors duration-500 ease-in-out">{{
                     __('header.navbar.newsletter').toUpperCase() }}</span>

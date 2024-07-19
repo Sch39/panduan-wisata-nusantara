@@ -27,6 +27,10 @@ class DestinationsSeeder extends Seeder
         // foreach ($data as $destination) {
         //     Destination::create($destination);
         // }
+        function getRandImage()
+        {
+            return '/assets/images/destinations/' . rand(1, 4) . '.jpg';
+        }
 
         $faker = Faker::create();
 
@@ -34,11 +38,12 @@ class DestinationsSeeder extends Seeder
             $destination = Destination::create([
                 'slug' => $faker->slug,
             ]);
+            $imageUrl = getRandImage();
 
             DestinationDetail::create([
                 'language_code' => 'id',
                 'title' => $faker->sentence,
-                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
+                'image_url' => $imageUrl,
                 'description' => $faker->paragraph,
                 'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
@@ -47,7 +52,7 @@ class DestinationsSeeder extends Seeder
             DestinationDetail::create([
                 'language_code' => 'en',
                 'title' => $faker->sentence,
-                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
+                'image_url' => $imageUrl,
                 'description' => $faker->paragraph,
                 'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
@@ -60,11 +65,12 @@ class DestinationsSeeder extends Seeder
             $destination = Destination::create([
                 'slug' => $faker->slug,
             ]);
+            $imageUrl = getRandImage();
 
             DestinationDetail::create([
                 'language_code' => 'id',
                 'title' => $faker->sentence,
-                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
+                'image_url' => $imageUrl,
                 'description' => $faker->paragraph,
                 'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
@@ -73,7 +79,7 @@ class DestinationsSeeder extends Seeder
             DestinationDetail::create([
                 'language_code' => 'en',
                 'title' => $faker->sentence,
-                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
+                'image_url' => $imageUrl,
                 'description' => $faker->paragraph,
                 'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
@@ -85,11 +91,12 @@ class DestinationsSeeder extends Seeder
             $destination = Destination::create([
                 'slug' => $faker->slug,
             ]);
+            $imageUrl = getRandImage();
 
             DestinationDetail::create([
                 'language_code' => 'id',
                 'title' => $faker->sentence,
-                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
+                'image_url' => $imageUrl,
                 'description' => $faker->paragraph,
                 'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
@@ -98,7 +105,7 @@ class DestinationsSeeder extends Seeder
             DestinationDetail::create([
                 'language_code' => 'en',
                 'title' => $faker->sentence,
-                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
+                'image_url' => $imageUrl,
                 'description' => $faker->paragraph,
                 'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
@@ -110,11 +117,13 @@ class DestinationsSeeder extends Seeder
             $destination = Destination::create([
                 'slug' => $faker->slug,
             ]);
+            $imageUrl = getRandImage();
+
 
             DestinationDetail::create([
                 'language_code' => 'id',
                 'title' => $faker->sentence,
-                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
+                'image_url' => $imageUrl,
                 'description' => $faker->paragraph,
                 'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
@@ -123,7 +132,7 @@ class DestinationsSeeder extends Seeder
             DestinationDetail::create([
                 'language_code' => 'en',
                 'title' => $faker->sentence,
-                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
+                'image_url' => $imageUrl,
                 'description' => $faker->paragraph,
                 'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,

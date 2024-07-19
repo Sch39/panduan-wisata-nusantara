@@ -16,16 +16,21 @@ class TravelInspirationSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        // function getRandImage()
+        // {
+        //     return '/assets/images/destinations/' . rand(1, 4) . '.jpg';
+        // }
+
         for ($i = 0; $i < 5; $i++) {
             $travelInspirationSlug = TravelInspirationSlug::create(['slug' => $faker->slug]);
 
             $destination = DestinationDetail::findOrFail($i + 1);
-
+            $imageUrl = getRandImage();
             TravelInspiration::create([
                 'language_code' => 'id',
                 'title' => $destination->title,
                 'author' => $faker->name,
-                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
+                'image_url' => $imageUrl,
                 'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
                 'travel_inspiration_slug_id' => $travelInspirationSlug->id,
@@ -34,7 +39,7 @@ class TravelInspirationSeeder extends Seeder
                 'language_code' => 'en',
                 'title' => $destination->title,
                 'author' => $faker->name,
-                'image_url' => '/assets/images/volcano-with-mist-sunset.jpg',
+                'image_url' => $imageUrl,
                 'html_content' => '<p>' . $faker->paragraph . '</p>',
                 'destination_id' => $destination->id,
                 'travel_inspiration_slug_id' => $travelInspirationSlug->id,

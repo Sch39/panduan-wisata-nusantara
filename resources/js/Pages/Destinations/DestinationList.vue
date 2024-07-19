@@ -30,7 +30,7 @@
                     :address="`${toTitleCase(destination.regency.name)}, ${toTitleCase(destination.regency.province.name)}`"
                     :rating="destination.destination.rating.avg_rating" :description="destination.description"
                     :buttonLink="$useRoute(`/tour/${destination.destination.slug}?from=/destinations/${destination.regency.province.code}${destination.regency.code}`)"
-                    :buttonText="__('utils.visit').toUpperCase()" />
+                    :buttonText="__('utils.visit').toUpperCase()" :image="destination.image_url" />
             </div>
         </div>
 

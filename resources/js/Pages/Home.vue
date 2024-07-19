@@ -30,7 +30,7 @@
                             :address="`${toTitleCase(destination.regency.name)}, ${toTitleCase(destination.regency.province.name)}`"
                             :rating="destination.destination.rating.avg_rating" :description="destination.description"
                             :buttonLink="$useRoute(`/tour/${destination.destination.slug}`)"
-                            :buttonText="__('utils.visit').toUpperCase()" />
+                            :buttonText="__('utils.visit').toUpperCase()" :image="destination.image_url" />
                     </div>
                 </Slide>
             </template>
@@ -74,7 +74,7 @@
                 </h3>
                 <div
                     class="input-form max-w-2xl mx-auto w-full flex flex-col md:flex-row gap-y-2 items-center justify-center lg:justify-start gap-x-5 lg:gap-x-5 mt-5">
-                    <div class="w-full">
+                    <div id="inputNewsletter" class="w-full">
                         <input type="text" :placeholder="__('utils.email_placeholder')"
                             class="py-2.5 px-5 placeholder:text-sm rounded-lg bg-white/20 border border-zinc-400/40 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500/50 ring-offset-2 ring-offset-white transition duration-200">
                     </div>
