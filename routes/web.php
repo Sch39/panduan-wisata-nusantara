@@ -5,6 +5,7 @@ use App\Http\Controllers\CarbonCalculatorController;
 use App\Http\Controllers\DestinationDetailController;
 use App\Http\Controllers\DestinationListController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\UserController;
 use App\Models\DestinationDetail;
 use App\Models\Province;
@@ -170,6 +171,10 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
 
                 //Carbon Calculator
                 Route::get('/carbon-calculator', [CarbonCalculatorController::class, 'show'])->name('Carbon.calculator');
+
+                // Rating/vote
+                Route::post('/votes', [RatingController::class, 'store'])->name('Rating.add');
+                Route::delete('/votes/{id}', [RatingController::class, 'destroy'])->name('Rating.delete');
             });
         });
     });

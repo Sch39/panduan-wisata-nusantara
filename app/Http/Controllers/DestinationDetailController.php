@@ -23,7 +23,7 @@ class DestinationDetailController extends Controller
         if (!$destination) {
             return to_route('Error.404');
         }
-        $previousUrl = $request->query('from');
+        $previousUrl = $request->query('from', '/');
         // return $destination;
         return Inertia::render('Destinations/DestinationDetail', [
             'destination_detail' => $destination,

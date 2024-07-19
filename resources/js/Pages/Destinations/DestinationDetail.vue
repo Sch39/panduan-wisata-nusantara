@@ -33,7 +33,7 @@
                         class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-40 rounded-lg">
                     </div>
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <h1 class="text-4xl font-bold text-white">{{
+                        <h1 class="text-4xl font-bold text-white text-center">{{
             props.destination_detail.destination_details[0].title
         }}
                         </h1>
@@ -61,7 +61,9 @@
 
 
             <div class="mt-4" v-else-if="activeTab === 'reviews'">
-                <Form v-if="$page.props.auth" @submit="submitForm" class="bg-white p-6 rounded-lg shadow-md">
+                <Form
+                    v-if="$page.props.auth && !props.destination_detail.votes.find(vote => vote.user_id === $page.props.auth.id)"
+                    @submit="store" class="bg-white p-6 rounded-lg shadow-md">
                     <!-- Rating Display on the Left -->
                     <div class="flex item-start justify-between w-full">
                         <div class="flex items-center space-x-4">
@@ -72,8 +74,8 @@
                         <!-- Form on the Right -->
                         <div class="flex items-start space-x-4">
                             <div class="flex flex-col space-y-2">
-                                <Field type="number" min="0" max="5" rules="required|numeric" step="0.5" name="rating"
-                                    v-model="form.rating"
+                                <Field type="number" min="0" max="5" rules="required|numeric|min_value:0|max_value:5"
+                                    step="0.5" name="rating" v-model="form.rating"
                                     class="w-32 py-2 px-4 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-500 hover:shadow-md transition duration-150 ease-in-out"
                                     placeholder="Enter rating" />
 
@@ -92,7 +94,8 @@
                         <ErrorMessage as="p" v-else class="text-red-500 text-sm" name="rating" />
                     </div>
                 </Form>
-                <div v-else class="text-center text-xl">
+
+                <div v-if="!$page.props.auth" class="text-center text-xl">
                     <TranslateWithLinks tKey="utils.login_for_rating" :replaces="{
             login: { text: __('header.navbar.login'), href: $useRoute('/login') }
         }">
@@ -108,7 +111,8 @@
 
                 <div>
                     <div v-if="props.destination_detail.votes.length < 1">
-                        <p>Belum ada review</p>
+                        <p class="text-xl mt-8 text-center
+                        ">Belum ada review</p>
                     </div>
 
                     <div v-else v-for="vote in props.destination_detail.votes" :key="vote.id"
@@ -121,6 +125,11 @@
                         <div class="flex-1 text-gray-800">
                             <!-- Display User Name -->
                             <span class="font-semibold">{{ vote.user.name }} </span>
+                        </div>
+                        <div>
+                            <button @click.prevent="destroy(vote.id)" class="px-2 py-1 rounded-sm hover:bg-gray-200">
+                                <i class="bx bxs-trash"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -137,8 +146,13 @@ import Rating from './../../Components/UI/Rating.vue'
 import { useVeeValidateI18n } from '../../Composables/useVeeValidateI18n'
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import TranslateWithLinks from './../../Components/UI/TranslateWithLink.vue'
+import { useRoute } from '../../Composables/useRoute'
+import { useToast } from 'vue-toastification'
+
 
 useVeeValidateI18n()
+const toast = useToast()
+
 
 const props = defineProps({
     destination_detail: {
@@ -154,11 +168,45 @@ const props = defineProps({
 const activeTab = ref('destination'),
     form = useForm({
         rating: 0,
+        destination_id: props.destination_detail.id,
     })
 
-function submitForm() {
-    form.post('', {
+function store() {
+    form.post(useRoute('/votes'), {
+        onError(errors) {
+            if (errors.message) {
+                toast.error(errors.message, {
+                    icon: 'bx bx-error',
+                    toastClassName: 'toast-error',
+                });
+            }
+        },
+        onSuccess(page) {
+            toast.success(page.props.flash.message, {
+                icon: 'bx bx-check',
+                toastClassName: 'toast-succes',
+            });
+        }
+    })
+}
 
+function destroy(id) {
+    const form = useForm({})
+    form.delete(useRoute(`/votes/${id}`), {
+        onError(errors) {
+            if (errors.message) {
+                toast.error(errors.message, {
+                    icon: 'bx bx-error',
+                    toastClassName: 'toast-error',
+                });
+            }
+        },
+        onSuccess(page) {
+            toast.success(page.props.flash.message, {
+                icon: 'bx bx-check',
+                toastClassName: 'toast-succes',
+            });
+        }
     })
 }
 </script>

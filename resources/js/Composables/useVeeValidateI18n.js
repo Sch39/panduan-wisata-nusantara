@@ -3,7 +3,7 @@ import { localize, setLocale } from '@vee-validate/i18n'
 import id from './../../../lang/Inertia/validations/id.json'
 import en from './../../../lang/Inertia/validations/en.json'
 import { usePage } from '@inertiajs/vue3'
-import { email, required, digits, min, alpha_spaces, numeric } from '@vee-validate/rules'
+import { email, required, digits, min, alpha_spaces, min_value, max_value } from '@vee-validate/rules'
 import { minOneLetter, minOneLowerOneUpper, minOneNumber, minOneSymbol } from '../Validations/testPattern'
 
 
@@ -23,6 +23,8 @@ function rules(locale) {
     defineRule('digits', digits)
     defineRule('min', min)
     defineRule('alpha_spaces', alpha_spaces)
+    defineRule('min_value', min_value)
+    defineRule('max_value', max_value)
 
 
     // custom rules
