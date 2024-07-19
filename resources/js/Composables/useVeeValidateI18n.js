@@ -3,7 +3,7 @@ import { localize, setLocale } from '@vee-validate/i18n'
 import id from './../../../lang/Inertia/validations/id.json'
 import en from './../../../lang/Inertia/validations/en.json'
 import { usePage } from '@inertiajs/vue3'
-import { email, required, digits, min, alpha_spaces } from '@vee-validate/rules'
+import { email, required, digits, min, alpha_spaces, numeric } from '@vee-validate/rules'
 import { minOneLetter, minOneLowerOneUpper, minOneNumber, minOneSymbol } from '../Validations/testPattern'
 
 
@@ -24,11 +24,20 @@ function rules(locale) {
     defineRule('min', min)
     defineRule('alpha_spaces', alpha_spaces)
 
+
     // custom rules
     const messages = locale === 'id' ? id.messages : en.messages;
     const fields = locale === 'id' ? id.fields : en.fields
 
-    // defineRule('confirmed', confirmed)
+    defineRule('numeric', (value) => {
+        if (typeof value === 'number') {
+            return true;
+        }
+
+        const numericRegex = /^-?\d+(\.\d+)?$/;
+        return numericRegex.test(value);
+    })
+
     defineRule('confirmed', (value, [target], ctx) => {
         if (value !== ctx.form[target]) {
             return messages.confirmed.replace('{field}', fields[ctx.name]).replace('{target}', fields[target])

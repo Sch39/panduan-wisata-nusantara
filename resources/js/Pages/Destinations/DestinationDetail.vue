@@ -6,7 +6,6 @@
         </Link>
 
         <div class="w-full mx-auto p-2 bg-white rounded-lg shadow-md">
-            <!-- Tabs for Reviews -->
             <div class="mt-1">
                 <div class="border-b border-gray-300">
                     <nav class="flex space-x-4">
@@ -45,7 +44,7 @@
                 <div class="flex items-center justify-between mt-4">
                     <div class="flex items-center space-x-1">
                         <Rating :rating="parseFloat(props.destination_detail.rating.avg_rating).toFixed(1)"
-                            fill-color="text-accent" background-color="text-gray-200" :size="12" />
+                            fill-color="text-accent" background-color="text-gray-200" :size="20" />
                         <span class="font-semibold ml-2 text-sm">{{
             parseFloat(props.destination_detail.rating.avg_rating).toFixed(1)
         }}</span>
@@ -60,9 +59,70 @@
                 </div>
             </div>
 
+
             <div class="mt-4" v-else-if="activeTab === 'reviews'">
+                <Form v-if="$page.props.auth" @submit="submitForm" class="bg-white p-6 rounded-lg shadow-md">
+                    <!-- Rating Display on the Left -->
+                    <div class="flex item-start justify-between w-full">
+                        <div class="flex items-center space-x-4">
+                            <Rating :rating="parseFloat(form.rating).toFixed(1)" fill-color="text-accent"
+                                background-color="text-gray-200" :size="12" />
+                        </div>
+
+                        <!-- Form on the Right -->
+                        <div class="flex items-start space-x-4">
+                            <div class="flex flex-col space-y-2">
+                                <Field type="number" min="0" max="5" rules="required|numeric" step="0.5" name="rating"
+                                    v-model="form.rating"
+                                    class="w-32 py-2 px-4 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-500 hover:shadow-md transition duration-150 ease-in-out"
+                                    placeholder="Enter rating" />
+
+                            </div>
+                            <button type="submit"
+                                class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out"
+                                :disabled="form.processing" :class="{ '!bg-blue-200 ': form.processing }">
+                                Vote
+                                <i v-if="form.processing" class="bx bx-loader-alt bx-spin ml-2"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                    <div class="text-right mt-2">
+                        <p class="text-red-500 text-sm" v-if="form.errors.rating">{{ form.errors.rating }}</p>
+                        <ErrorMessage as="p" v-else class="text-red-500 text-sm" name="rating" />
+                    </div>
+                </Form>
+                <div v-else class="text-center text-xl">
+                    <TranslateWithLinks tKey="utils.login_for_rating" :replaces="{
+            login: { text: __('header.navbar.login'), href: $useRoute('/login') }
+        }">
+                        <template #text="{ value }">
+                            <span>{{ value }}</span>
+                        </template>
+                        <template #link="{ href, value }">
+                            <Link class="text-indigo-500 underline-offset-4 hover:underline" :href="href">{{ value }}
+                            </Link>
+                        </template>
+                    </TranslateWithLinks>
+                </div>
+
                 <div>
-                    <p class="text-gray-600">Reviews content will be here...</p>
+                    <div v-if="props.destination_detail.votes.length < 1">
+                        <p>Belum ada review</p>
+                    </div>
+
+                    <div v-else v-for="vote in props.destination_detail.votes" :key="vote.id"
+                        class="p-4 bg-white shadow-md rounded-lg flex items-center space-x-4">
+                        <div class="flex items-center">
+                            <Rating :rating="parseFloat(vote.rating).toFixed(1)" fill-color="text-accent"
+                                background-color="text-gray-200" :size="12" />
+                            <span class="ml-2 text-gray-700 text-lg">{{ parseFloat(vote.rating).toFixed(1) }}</span>
+                        </div>
+                        <div class="flex-1 text-gray-800">
+                            <!-- Display User Name -->
+                            <span class="font-semibold">{{ vote.user.name }} </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,8 +132,13 @@
 
 <script setup>
 import { ref } from 'vue';
-import { Link, Head } from '@inertiajs/vue3'
+import { Link, Head, useForm } from '@inertiajs/vue3'
 import Rating from './../../Components/UI/Rating.vue'
+import { useVeeValidateI18n } from '../../Composables/useVeeValidateI18n'
+import { Form, Field, ErrorMessage } from 'vee-validate'
+import TranslateWithLinks from './../../Components/UI/TranslateWithLink.vue'
+
+useVeeValidateI18n()
 
 const props = defineProps({
     destination_detail: {
@@ -86,5 +151,14 @@ const props = defineProps({
     },
 })
 
-const activeTab = ref('destination');
+const activeTab = ref('destination'),
+    form = useForm({
+        rating: 0,
+    })
+
+function submitForm() {
+    form.post('', {
+
+    })
+}
 </script>

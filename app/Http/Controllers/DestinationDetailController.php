@@ -18,14 +18,13 @@ class DestinationDetailController extends Controller
                 $q->where('language_code', $locale);
             }, 'destinationDetails.regency:id,name,code,provinces_code', 'destinationDetails.regency.province' => function ($q) use ($locale) {
                 $q->where('language_code', $locale);
-            }, 'votes', 'rating'])
+            }, 'votes', 'votes.user', 'rating'])
             ->first();
         if (!$destination) {
             return to_route('Error.404');
         }
         $previousUrl = $request->query('from');
-        // return $destination->votes;
-        // return $destination->destinationDetails[0];
+        // return $destination;
         return Inertia::render('Destinations/DestinationDetail', [
             'destination_detail' => $destination,
             'previous_url' => $previousUrl,
