@@ -56,7 +56,9 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
                 ->with('destination:id,slug')
                 ->first();
 
-            // return $travelInspirationsDetail;
+            if (!$travelInspirationsDetail) {
+                return to_route('Error.404');
+            }
             return Inertia::render('TravelInspirations/TravelInspirationsDetail', [
                 'travel_inspirations_detail' => $travelInspirationsDetail,
             ]);

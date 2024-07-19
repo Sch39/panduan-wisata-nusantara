@@ -27,7 +27,7 @@
             <!-- Menggunakan grid untuk responsivitas -->
             <div v-for="(destination, index) in props.destinations_pagination.data" :key="`${index}-${destination.id}`">
                 <DestinationCard class="w-full " :title="destination.title"
-                    :address="`${destination.regency.name}, ${destination.regency.province.name}`"
+                    :address="`${toTitleCase(destination.regency.name)}, ${toTitleCase(destination.regency.province.name)}`"
                     :rating="destination.destination.rating.avg_rating" :description="destination.description"
                     :buttonLink="$useRoute('/tour/' + destination.destination.slug)"
                     :buttonText="__('utils.visit').toUpperCase()" />
