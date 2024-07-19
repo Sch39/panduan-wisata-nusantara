@@ -51,7 +51,7 @@ class DestinationsSeeder extends Seeder
                 'description' => $faker->paragraph,
                 'html_content' => $faker->paragraph,
                 'destination_id' => $destination->id,
-                'regency_id' => 514,
+                'regency_id' => 515,
             ]);
         }
 
@@ -77,7 +77,7 @@ class DestinationsSeeder extends Seeder
                 'description' => $faker->paragraph,
                 'html_content' => $faker->paragraph,
                 'destination_id' => $destination->id,
-                'regency_id' => 516,
+                'regency_id' => 517,
             ]);
         }
 

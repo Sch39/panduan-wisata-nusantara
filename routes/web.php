@@ -36,6 +36,8 @@ Route::prefix('{locale}')->where(['locale' => '[a-zA-Z]{2}'])
 
         Route::get('/destinations/{postal_code}', [DestinationListController::class, 'show'])->name('Destination.list');
 
+        // Route::get('/destinations/{postal_code}', [DestinationListController::class, 'show'])->name('Destination.list');
+
         Route::get('/travel-inspirations', function ($locale) {
             $travelInspirations = TravelInspiration::where('language_code', $locale)
                 ->select(['id', 'language_code', 'image_url', 'travel_inspiration_slug_id', 'title'])
